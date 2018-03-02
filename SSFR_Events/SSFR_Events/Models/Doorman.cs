@@ -4,10 +4,10 @@ using System.Text;
 
 namespace SSFR_Events.Models
 {
-    public class GateKeeper : User
+    public class Doorman : User
     {
 
-        public GateKeeper() => new User();
+        public Doorman() => new User();
        
     }
 }

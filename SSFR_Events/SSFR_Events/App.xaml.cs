@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SSFR_Events.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,15 @@ namespace SSFR_Events
 {
 	public partial class App : Application
 	{
-		public App ()
+        public static IDBRepository repository;
+
+		public App (IDBRepository repo)
 		{
 			InitializeComponent();
 
-			MainPage = new SSFR_Events.MainPage();
+            repo = repository;
+
+			MainPage = null;
 		}
 
 		protected override void OnStart ()

@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using System.IO;
+using SQLiteEntityFramework.cs;
 
 namespace SSFR_Events.Droid
 {
@@ -18,6 +20,10 @@ namespace SSFR_Events.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+            
+            var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "SSFR_DB.db");
+
+            DBRepository dBRepository = new DBRepository(path);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
