@@ -26,7 +26,7 @@ namespace SSFR_Events.Droid
             DBRepository dBRepository = new DBRepository(path);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+            LoadApplication(new App(dBRepository));
         }
     }
 }
