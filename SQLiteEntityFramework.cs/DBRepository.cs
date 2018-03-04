@@ -16,7 +16,7 @@ namespace SQLiteEntityFramework.cs
             dbContext = new DatabaseContext(path);
         }
 
-        //*                  ADDS                   *\\
+        //*                  ADDS METHODS                   *\\
 
         public async Task<bool> AddDoorman(Doorman doorman)
         {
@@ -63,104 +63,186 @@ namespace SQLiteEntityFramework.cs
             return added;
         }
 
+        //*                 DELETES METHODS                *\\
+
         public async Task<bool> DeleteDoorman(Doorman doorman)
         {
-            throw new NotImplementedException();
+            var rem = dbContext.Doormans.Remove(doorman);
+
+            await dbContext.SaveChangesAsync();
+
+            var removed = rem.State == EntityState.Deleted;
+
+            return removed;
         }
 
         public async Task<bool> DeleteEvent(Events @event)
         {
-            throw new NotImplementedException();
+            var rem = dbContext.Events.Remove(@event);
+
+            await dbContext.SaveChangesAsync();
+
+            var removed = rem.State == EntityState.Deleted;
+
+            return removed;
         }
 
         public async Task<bool> DeleteGuest(Guest guest)
         {
-            throw new NotImplementedException();
+            var rem = dbContext.Guests.Remove(guest);
+
+            await dbContext.SaveChangesAsync();
+
+            var removed = rem.State == EntityState.Deleted;
+
+            return removed;
         }
 
         public async Task<bool> DeleteUser(User user)
         {
-            throw new NotImplementedException();
+            var rem = dbContext.Users.Remove(user);
+
+            await dbContext.SaveChangesAsync();
+
+            var removed = rem.State == EntityState.Deleted;
+
+            return removed;
         }
 
-        public async Task<bool> DoormanExist(Doorman doorman)
+        //*                 EXISTENCES METHODS                  *\\
+
+        public async Task<bool> DoormanExist(int id)
         {
-            throw new NotImplementedException();
+
+            var obj = await dbContext.Doormans.FindAsync(id);
+
+            var all = await dbContext.Doormans.ToListAsync();
+
+            foreach (Doorman D in all)
+            {
+                if (D.Id == obj.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
         }
 
         public async Task<bool> EventExists(int id)
         {
-            throw new NotImplementedException();
-        }
+            var obj = await dbContext.Events.FindAsync(id);
 
-        public async Task<Doorman> GetDoorman(int id)
-        {
-            throw new NotImplementedException();
-        }
+            var all = await dbContext.Events.ToListAsync();
 
-        public async Task<IEnumerable<Doorman>> GetDoormans()
-        {
-            throw new NotImplementedException();
-        }
+            foreach (Events E in all)
+            {
+                if (E.Id == obj.Id)
+                {
+                    return true;
+                }
+            }
 
-        public async Task<Events> GetEvent(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<Events>> GetEvents()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<Guest> GetGuest(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<Guest>> GetGuests()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<User> GetUser(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<User>> GetUsers()
-        {
-            throw new NotImplementedException();
+            return false;
         }
 
         public async Task<bool> GuestExits(int id)
         {
-            throw new NotImplementedException();
+            var obj = await dbContext.Guests.FindAsync(id);
+
+            var all = await dbContext.Guests.ToListAsync();
+
+            foreach (Guest G in all)
+            {
+                if (G.Id == obj.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
+        
+        public async Task<bool> UserExist(int id)
+        {
+            var obj = await dbContext.Users.FindAsync(id);
+
+            var all = await dbContext.Users.ToListAsync();
+
+            foreach (User U in all)
+            {
+                if (U.Id == obj.Id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        //*                 GETTERS BY ID METHODS                   *\\
+
+        public async Task<Doorman> GetDoorman(int id) => await dbContext.Doormans.FindAsync(id) ?? null;
+
+        public async Task<IEnumerable<Doorman>> GetDoormans() => await dbContext.Doormans.AsNoTracking().ToListAsync() ?? null;
+
+        public async Task<Events> GetEvent(int id) => await dbContext.Events.FindAsync(id) ?? null;
+
+        public async Task<IEnumerable<Events>> GetEvents() => await dbContext.Events.AsNoTracking().ToListAsync() ?? null;
+
+        public async Task<Guest> GetGuest(int id) => await dbContext.Guests.FindAsync(id) ?? null;
+
+        public async Task<IEnumerable<Guest>> GetGuests() => await dbContext.Guests.AsNoTracking().ToListAsync() ?? null;
+
+        public async Task<User> GetUser(int id) => await dbContext.Users.FindAsync(id) ?? null;
+
+        public async Task<IEnumerable<User>> GetUsers() => await dbContext.Users.AsNoTracking().ToListAsync() ?? null;
+
+        //*                 UPDATES METHODS                *\\
 
         public async Task<bool> UpdateDoorman(Doorman doorman)
         {
-            throw new NotImplementedException();
+            var obj = dbContext.Doormans.Update(doorman);
+
+            await dbContext.SaveChangesAsync();
+
+            var modied = obj.State == EntityState.Modified;
+
+            return true;
         }
 
         public async Task<bool> UpdateEvent(Events @event)
         {
-            throw new NotImplementedException();
+            var obj = dbContext.Events.Update(@event);
+
+            await dbContext.SaveChangesAsync();
+
+            var modied = obj.State == EntityState.Modified;
+
+            return true;
         }
 
         public async Task<bool> UpdateGuest(Guest guest)
         {
-            throw new NotImplementedException();
+            var obj = dbContext.Guests.Update(guest);
+
+            await dbContext.SaveChangesAsync();
+
+            var modied = obj.State == EntityState.Modified;
+
+            return true;
         }
 
         public async Task<bool> UpdateUser(User user)
         {
-            throw new NotImplementedException();
-        }
+            var obj = dbContext.Users.Update(user);
 
-        public async Task<bool> UserExist(int id)
-        {
-            throw new NotImplementedException();
+            await dbContext.SaveChangesAsync();
+
+            var modied = obj.State == EntityState.Modified;
+
+            return true;
         }
     }
 }

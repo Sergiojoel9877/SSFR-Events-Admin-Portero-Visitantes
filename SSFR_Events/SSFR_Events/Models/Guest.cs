@@ -9,29 +9,31 @@ namespace SSFR_Events.Models
     public class Guest
     {
         [Key]
-        private int Id { get; set; }
+        public int Id { get; set; }
+
         [Required]
         [StringLength(30)]
-        private string Name { get; set; }
+        public string Name { get; set; }
+
         [Required]
         [StringLength(30)]
-        private string LastName { get; set; }
+        public string LastName { get; set; }
+
         [Required]
         [StringLength(30)]
-        private string Telephone { get; set; }
+        public string Telephone { get; set; }
+
         [Required]
         [StringLength(100)]
-        private string Address { get; set; }
+        public string Address { get; set; }
+
         [Required]
         [StringLength(100)]
-        private string Email{ get; set; }
+        public string Email{ get; set; }
+
         [Required]
         [StringLength(1)]
-        private string Gender { get; set; }
+        public string Gender { get; set; }
 
-        public Guest()
-        {
-
-        }
     }
 }

@@ -9,23 +9,23 @@ namespace SSFR_Events.Models
     public class User
     {
         [Key]
-        private int Id { get; set; }
+        public int Id { get; set; }
+
         [Required]
         [StringLength(30)]
-        private string Name { get; set; }
+        public string Name { get; set; }
+
         [Required]
         [StringLength(30)]
-        private string LastName { get; set; }
+        public string LastName { get; set; }
+
         [Required]
         [StringLength(20)]
-        private string ProfUser { get; set; }
+        public string ProfUser { get; set; }
+
         [Required]
         [StringLength(16)]
-        private string Pass { get; set; }
+        public string Pass { get; set; }
 
-        public User()
-        {
-
-        }
     }
 }
