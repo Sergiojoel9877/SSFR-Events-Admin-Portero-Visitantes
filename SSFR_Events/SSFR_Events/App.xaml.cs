@@ -15,11 +15,13 @@ namespace SSFR_Events
 
 		public App (IDBRepository repo)
 		{
+         
 			InitializeComponent();
 
             repo = repository;
 
 			MainPage = new NavigationPage(new LoginPage());
+
 		}
 
         public App()

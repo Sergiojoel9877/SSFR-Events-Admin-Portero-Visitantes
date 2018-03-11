@@ -70,7 +70,7 @@
 
                 <Label Text="¿No estás registrado/a?" FontAttributes="Bold" LineBreakMode="NoWrap" VerticalOptions="Center" TextColor="#FFA500"/>
 
-                <Button Text="REGISTRATE" BackgroundColor="#33FFFFFF" TextColor="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" HorizontalOptions="Center"/>
+                <Button Text="REGISTRATE" Command="{Binding Register}" BackgroundColor="#33FFFFFF" TextColor="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" HorizontalOptions="Center"/>
 
             </StackLayout>
 

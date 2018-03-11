@@ -15,11 +15,11 @@ namespace SSFR_Events.Views
 	{
         RegisterPageViewModel ViewModel;
 
-		public RegisterPage ()
+		public RegisterPage()
 		{
 			InitializeComponent ();
 
-            ViewModel = new RegisterPageViewModel();
+            ViewModel = new RegisterPageViewModel(Navigation);
 
             BindingContext = ViewModel;
 		}

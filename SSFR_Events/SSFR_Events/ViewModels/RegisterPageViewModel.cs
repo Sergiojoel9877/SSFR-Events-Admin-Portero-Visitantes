@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SSFR_Events.Services;
+using SSFR_Events.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -7,6 +9,9 @@ namespace SSFR_Events.ViewModels
 {
     public class RegisterPageViewModel : ViewModelBase
     {
+
+        private readonly INavigation _navService;
+   
         private string email;
         public string Email
         {
@@ -36,8 +41,14 @@ namespace SSFR_Events.ViewModels
 
             get => register ?? (register = new Command( () => {
 
-
             }));
+        }
+
+        public RegisterPageViewModel(INavigation navService)
+        {
+
+            _navService = navService;
+
         }
     }
 }
