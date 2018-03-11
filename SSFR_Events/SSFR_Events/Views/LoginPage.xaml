@@ -9,15 +9,15 @@
     <ContentPage.Content>
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All">
 
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.009, 0.4, 0.4" HorizontalOptions="Center" WidthRequest="120" HeightRequest="120">
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.12, 0.8, 0.5" HorizontalOptions="Center" WidthRequest="620" HeightRequest="220">
 
-                <Image x:Name="LockerLogo" Source="Lock.png"/>
+                <Image x:Name="Logo" Source="Title.png"/>
 
             </StackLayout>
              
             <Frame x:Name="CenteredFrame" BackgroundColor="#707070" AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.8, 0.6" AbsoluteLayout.LayoutFlags="All" HasShadow="True" CornerRadius="15">
 
-                <Grid x:Name="Grid">
+                <Grid x:Name="Grid" >
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

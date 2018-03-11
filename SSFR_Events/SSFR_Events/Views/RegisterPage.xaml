@@ -2,9 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:SSFR_Events.CustomRenderers"
-             x:Class="SSFR_Events.Views.RegisterPage">
+             x:Class="SSFR_Events.Views.RegisterPage"
+             Title="Registro de usuarios">
     <ContentPage.Content>
         <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            
             
             
         </AbsoluteLayout>
