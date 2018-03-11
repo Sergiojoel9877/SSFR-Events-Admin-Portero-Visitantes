@@ -109,6 +109,75 @@ namespace SQLiteEntityFramework.cs
             return removed;
         }
 
+        //*                 GETTERS BY ID METHODS                   *\\
+
+        public async Task<Doorman> GetDoorman(int id) => await dbContext.Doormans.FindAsync(id) ?? null;
+
+        public async Task<Events> GetEvent(int id) => await dbContext.Events.FindAsync(id) ?? null;
+        
+        public async Task<Guest> GetGuest(int id) => await dbContext.Guests.FindAsync(id) ?? null;
+
+        public async Task<User> GetUser(int id) => await dbContext.Users.FindAsync(id) ?? null;
+
+
+        //*                 GETTERS                 *\\
+
+        public async Task<IEnumerable<Doorman>> GetDoormans() => await dbContext.Doormans.AsNoTracking().ToListAsync() ?? null;
+
+        public async Task<IEnumerable<Events>> GetEvents() => await dbContext.Events.AsNoTracking().ToListAsync() ?? null;
+
+        public async Task<IEnumerable<Guest>> GetGuests() => await dbContext.Guests.AsNoTracking().ToListAsync() ?? null;
+
+        public async Task<IEnumerable<User>> GetUsers() => await dbContext.Users.AsNoTracking().ToListAsync() ?? null;
+
+
+        //*                 UPDATES METHODS                *\\
+
+        public async Task<bool> UpdateDoorman(Doorman doorman)
+        {
+            var obj = dbContext.Doormans.Update(doorman);
+
+            await dbContext.SaveChangesAsync();
+
+            var modied = obj.State == EntityState.Modified;
+
+            return true;
+        }
+
+        public async Task<bool> UpdateEvent(Events @event)
+        {
+            var obj = dbContext.Events.Update(@event);
+
+            await dbContext.SaveChangesAsync();
+
+            var modied = obj.State == EntityState.Modified;
+
+            return true;
+        }
+
+        public async Task<bool> UpdateGuest(Guest guest)
+        {
+            var obj = dbContext.Guests.Update(guest);
+
+            await dbContext.SaveChangesAsync();
+
+            var modied = obj.State == EntityState.Modified;
+
+            return true;
+        }
+
+        public async Task<bool> UpdateUser(User user)
+        {
+            var obj = dbContext.Users.Update(user);
+
+            await dbContext.SaveChangesAsync();
+
+            var modied = obj.State == EntityState.Modified;
+
+            return true;
+        }
+
+
         //*                 EXISTENCES METHODS                  *\\
 
         public async Task<bool> DoormanExist(int id)
@@ -163,7 +232,7 @@ namespace SQLiteEntityFramework.cs
 
             return false;
         }
-        
+
         public async Task<bool> UserExist(int id)
         {
             var obj = await dbContext.Users.FindAsync(id);
@@ -179,70 +248,6 @@ namespace SQLiteEntityFramework.cs
             }
 
             return false;
-        }
-
-        //*                 GETTERS BY ID METHODS                   *\\
-
-        public async Task<Doorman> GetDoorman(int id) => await dbContext.Doormans.FindAsync(id) ?? null;
-
-        public async Task<IEnumerable<Doorman>> GetDoormans() => await dbContext.Doormans.AsNoTracking().ToListAsync() ?? null;
-
-        public async Task<Events> GetEvent(int id) => await dbContext.Events.FindAsync(id) ?? null;
-
-        public async Task<IEnumerable<Events>> GetEvents() => await dbContext.Events.AsNoTracking().ToListAsync() ?? null;
-
-        public async Task<Guest> GetGuest(int id) => await dbContext.Guests.FindAsync(id) ?? null;
-
-        public async Task<IEnumerable<Guest>> GetGuests() => await dbContext.Guests.AsNoTracking().ToListAsync() ?? null;
-
-        public async Task<User> GetUser(int id) => await dbContext.Users.FindAsync(id) ?? null;
-
-        public async Task<IEnumerable<User>> GetUsers() => await dbContext.Users.AsNoTracking().ToListAsync() ?? null;
-
-        //*                 UPDATES METHODS                *\\
-
-        public async Task<bool> UpdateDoorman(Doorman doorman)
-        {
-            var obj = dbContext.Doormans.Update(doorman);
-
-            await dbContext.SaveChangesAsync();
-
-            var modied = obj.State == EntityState.Modified;
-
-            return true;
-        }
-
-        public async Task<bool> UpdateEvent(Events @event)
-        {
-            var obj = dbContext.Events.Update(@event);
-
-            await dbContext.SaveChangesAsync();
-
-            var modied = obj.State == EntityState.Modified;
-
-            return true;
-        }
-
-        public async Task<bool> UpdateGuest(Guest guest)
-        {
-            var obj = dbContext.Guests.Update(guest);
-
-            await dbContext.SaveChangesAsync();
-
-            var modied = obj.State == EntityState.Modified;
-
-            return true;
-        }
-
-        public async Task<bool> UpdateUser(User user)
-        {
-            var obj = dbContext.Users.Update(user);
-
-            await dbContext.SaveChangesAsync();
-
-            var modied = obj.State == EntityState.Modified;
-
-            return true;
         }
     }
 }

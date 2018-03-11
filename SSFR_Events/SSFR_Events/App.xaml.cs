@@ -1,4 +1,5 @@
 ﻿using SSFR_Events.Services;
+using SSFR_Events.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,13 @@ namespace SSFR_Events
 
             repo = repository;
 
-			MainPage = null;
+			MainPage = new NavigationPage(new LoginPage());
 		}
+
+        public App()
+        {
+
+        }
 
 		protected override void OnStart ()
 		{

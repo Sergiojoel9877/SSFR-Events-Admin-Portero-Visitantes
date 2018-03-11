@@ -65,6 +65,7 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="23.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomRenderers\CheckBoxRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
