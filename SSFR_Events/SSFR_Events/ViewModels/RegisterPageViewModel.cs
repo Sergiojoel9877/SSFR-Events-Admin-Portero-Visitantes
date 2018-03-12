@@ -11,7 +11,33 @@ namespace SSFR_Events.ViewModels
     {
 
         private readonly INavigation _navService;
-   
+
+        private APIServices _APIServices = new APIServices();
+        
+        private string nameEntry;
+        public string NameEntry
+        {
+            get => nameEntry;
+
+            set => SetProperty(ref nameEntry, value);
+        }
+
+        private string lastNameEntry;
+        public string LastEntry
+        {
+            get => lastNameEntry;
+
+            set => SetProperty(ref lastNameEntry, value);
+        }
+
+        private string profUser;
+        public string ProfUser
+        {
+            get => profUser;
+
+            set => SetProperty(ref profUser, value);
+        }
+
         private string email;
         public string Email
         {
@@ -39,7 +65,10 @@ namespace SSFR_Events.ViewModels
         private Command register;
         public Command Register {
 
-            get => register ?? (register = new Command( () => {
+            get => register ?? (register = new Command( async () => 
+            {
+
+                await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
 
             }));
         }

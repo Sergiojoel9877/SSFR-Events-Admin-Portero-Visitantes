@@ -3,6 +3,7 @@ using SSFR_Events.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 
 using Xamarin.Forms;
@@ -13,6 +14,8 @@ namespace SSFR_Events
 	{
         public static IDBRepository repository;
 
+        public static HttpClient client;
+
 		public App (IDBRepository repo)
 		{
          
@@ -20,6 +23,11 @@ namespace SSFR_Events
 
             repo = repository;
 
+            client = new HttpClient {
+
+                BaseAddress = new Uri("https://localhost:44393/")
+            };
+        
 			MainPage = new NavigationPage(new LoginPage());
 
 		}

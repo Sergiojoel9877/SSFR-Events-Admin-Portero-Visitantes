@@ -14,7 +14,8 @@ namespace SSFR_Events.ViewModels
         public Command Register
         {
 
-            get => register ?? (register = new Command(() => {
+            get => register ?? (register = new Command(() => 
+            {
 
                 _navService.PushAsync(new RegisterPage());
                 
