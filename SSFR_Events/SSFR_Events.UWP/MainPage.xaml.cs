@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLiteEntityFramework.cs;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,8 +21,13 @@ namespace SSFR_Events.UWP
         public MainPage()
         {
             this.InitializeComponent();
+            
+            //var path = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+            //string fullPath = Path.Combine(path, "SSFR_DB.db");
 
-            LoadApplication(new SSFR_Events.App());
+            //DBRepository dBRepository = new DBRepository(path);
+            
+            LoadApplication(new SSFR_Events.App(/*dBRepository*/));
         }
     }
 }

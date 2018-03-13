@@ -155,6 +155,10 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SQLiteEntityFramework.cs\SQLiteEntityFramework.cs.csproj">
+      <Project>{959A7F78-5390-44A5-A003-F24645781394}</Project>
+      <Name>SQLiteEntityFramework.cs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SSFR_Events\SSFR_Events.csproj">
       <Project>{9D15BCFA-529F-4C59-9A70-51AFEB82BE0C}</Project>
       <Name>SSFR_Events</Name>

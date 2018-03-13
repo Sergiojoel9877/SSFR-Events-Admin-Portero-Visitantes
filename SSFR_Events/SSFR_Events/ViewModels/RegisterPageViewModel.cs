@@ -68,7 +68,16 @@ namespace SSFR_Events.ViewModels
             get => register ?? (register = new Command( async () => 
             {
 
-                await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
+               var registrado = await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
+
+                if (registrado)
+                {
+                    DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
+                }
+                else
+                {
+                    DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + registrado.ToString());
+                }
 
             }));
         }

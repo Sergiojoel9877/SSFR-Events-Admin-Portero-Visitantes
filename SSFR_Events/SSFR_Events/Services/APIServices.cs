@@ -24,9 +24,9 @@ namespace SSFR_Events.Services
 
             var Json = JsonConvert.SerializeObject(model);
 
-            HttpContent content = new StringContent(Json);
+            var content = new StringContent(Json, Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync("api/Account/Register", content);
+            HttpResponseMessage response = await client.PostAsync("/api/Account/Register", content);
 
             return response.IsSuccessStatusCode;
         }

@@ -21,12 +21,12 @@ namespace SSFR_Events.Droid
 
             base.OnCreate(bundle);
             
-            var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "SSFR_DB.db");
+            //var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "SSFR_DB.db");
 
-            DBRepository dBRepository = new DBRepository(path);
+            //DBRepository dBRepository = new DBRepository(path);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App(dBRepository));
+            LoadApplication(new App(/*dBRepository*/));
         }
     }
 }
