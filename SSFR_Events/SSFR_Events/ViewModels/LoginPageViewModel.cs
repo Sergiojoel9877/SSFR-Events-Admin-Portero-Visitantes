@@ -10,7 +10,15 @@ namespace SSFR_Events.ViewModels
     {
         private readonly INavigation _navService;
 
-     
+        private Command login;
+        public Command Login
+        {
+            get => login ?? (login = new Command(() => {
+
+            _navService.PushModalAsync(new MainMasterDetailPage());
+
+            })); 
+        }
 
         private Command register;
         public Command Register

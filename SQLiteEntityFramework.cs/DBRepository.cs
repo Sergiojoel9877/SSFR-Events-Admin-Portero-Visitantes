@@ -71,7 +71,7 @@ namespace SQLiteEntityFramework.cs
 
             await dbContext.SaveChangesAsync();
 
-            var removed = rem.State == EntityState.Deleted;
+            var removed = doorman.Id == rem.Entity.Id;
 
             return removed;
         }
