@@ -16,26 +16,20 @@ namespace SSFR_Events
 
         public static HttpClient client;
 
-		public App (/*IDBRepository repo*/)
+		public App (IDBRepository repo)
 		{
          
 			InitializeComponent();
 
-            //repo = repository;
+            repo = repository;
 
             client = new HttpClient {
-
                 BaseAddress = new Uri("http://oauthssfrapi.azurewebsites.net")
             };
         
 			MainPage = new NavigationPage(new LoginPage());
 
 		}
-
-        //public App()
-        //{
-
-        //}
 
 		protected override void OnStart ()
 		{

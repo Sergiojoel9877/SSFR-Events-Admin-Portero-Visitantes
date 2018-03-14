@@ -21,13 +21,13 @@ namespace SSFR_Events.UWP
         public MainPage()
         {
             this.InitializeComponent();
-            
-            //var path = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-            //string fullPath = Path.Combine(path, "SSFR_DB.db");
 
-            //DBRepository dBRepository = new DBRepository(path);
-            
-            LoadApplication(new SSFR_Events.App(/*dBRepository*/));
+            var path = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+            string fullPath = Path.Combine(path, "SSFR_DB.db");
+
+            DBRepository dBRepository = new DBRepository(path);
+
+            LoadApplication(new SSFR_Events.App(dBRepository));
         }
     }
 }
