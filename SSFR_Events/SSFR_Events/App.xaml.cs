@@ -1,11 +1,12 @@
-﻿using SSFR_Events.Services;
+﻿using Mobile.SSFR_Events.Services;
+using SSFR_Events.Services;
 using SSFR_Events.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-
+using Unity;
 using Xamarin.Forms;
 
 namespace SSFR_Events
@@ -16,7 +17,7 @@ namespace SSFR_Events
 
         public static HttpClient client;
 
-		public App (IDBRepository repo)
+        public App(IDBRepository repo)
 		{
          
 			InitializeComponent();
@@ -24,7 +25,9 @@ namespace SSFR_Events
             repo = repository;
 
             client = new HttpClient {
+
                 BaseAddress = new Uri("http://oauthssfrapi.azurewebsites.net")
+
             };
         
 			MainPage = new NavigationPage(new LoginPage());

@@ -71,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Alert.cs" />
     <Compile Include="Services\CloseBackPress.cs" />
+    <Compile Include="Services\DBRepoInstance.cs" />
     <Compile Include="Services\ToastAlert.cs" />
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>

@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using System.IO;
 using SQLiteEntityFramework.cs;
+using SSFR_Events.Droid.Services;
 
 namespace SSFR_Events.Droid
 {
@@ -21,12 +22,14 @@ namespace SSFR_Events.Droid
 
             base.OnCreate(bundle);
 
-            var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "SSFR_DB.db");
+            //var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "SSFR_DB.db");
 
-            DBRepository dBRepository = new DBRepository(path);
+            //DBRepository dBRepository = new DBRepository(path);
+
+            DBRepoInstance dBRepoInstance = new DBRepoInstance();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App(dBRepository));
+            LoadApplication(new App(dBRepoInstance.getInstance()));
         }
     }
 }

@@ -10,6 +10,8 @@ namespace SSFR_Events.ViewModels
     {
         private readonly INavigation _navService;
 
+     
+
         private Command register;
         public Command Register
         {

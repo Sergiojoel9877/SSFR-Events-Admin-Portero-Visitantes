@@ -1,4 +1,6 @@
-﻿using SSFR_Events.Services;
+﻿using Mobile.SSFR_Events.Services;
+using SSFR_Events.Models;
+using SSFR_Events.Services;
 using SSFR_Events.Views;
 using System;
 using System.Collections.Generic;
@@ -23,7 +25,7 @@ namespace SSFR_Events.ViewModels
         }
 
         private string lastNameEntry;
-        public string LastEntry
+        public string LastNameEntry
         {
             get => lastNameEntry;
 
@@ -68,17 +70,44 @@ namespace SSFR_Events.ViewModels
             get => register ?? (register = new Command( async () => 
             {
 
-               var registrado = await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
-
-                if (registrado)
+                if (ProfUser != String.Empty || NameEntry != String.Empty || Email != String.Empty || LastNameEntry != String.Empty || (ConfirmPassWord == PassWord) || (PassWord == ConfirmPassWord))
                 {
-                    DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
+
+                    if (Email.Contains("@")) 
+                    {
+
+                        var registrado = await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
+
+                        if (registrado)
+                        {
+
+                            User user = new User() { LastName = LastNameEntry, Name = NameEntry, Pass = PassWord, ProfUser = ProfUser };
+
+                            if (user.Pass != null)
+                            {
+
+                                //var r = await App.repository.AddUser(user);
+                                var r = DependencyService.Get<IDBRepoInstance>().getInstance().AddUser(user).Result;
+
+                                if (r)
+                                {
+                                    DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
+
+                                   await _navService.PopAsync();
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + registrado.ToString());
+                        }
+                    }
                 }
                 else
                 {
-                    DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + registrado.ToString());
+                    DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales");
                 }
-
             }));
         }
 

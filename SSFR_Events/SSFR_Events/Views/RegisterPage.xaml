@@ -52,7 +52,7 @@
                 <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4">
 
                     <Entry x:Name="Email" Text="{Binding Email}" Placeholder="E-mail" PlaceholderColor="#FFA500" TextColor="White"/>
-
+ 
                 </StackLayout>
 
                 <!--Password-->
@@ -68,7 +68,6 @@
                     <Entry x:Name="ConfirmPass" Text="{Binding ConfirmPassWord}" Placeholder="Confirmar Contraseña" IsPassword="True" PlaceholderColor="#FFA500" TextColor="White"/>
 
                 </StackLayout>
-
 
                 <Frame Padding="2" BackgroundColor="#FFA500" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" HorizontalOptions="Center" HeightRequest="80" WidthRequest="170" CornerRadius="28" HasShadow="True">
                     <Frame.GestureRecognizers>
