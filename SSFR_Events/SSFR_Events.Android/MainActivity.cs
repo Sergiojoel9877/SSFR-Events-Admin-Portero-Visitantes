@@ -9,6 +9,8 @@ using Android.OS;
 using System.IO;
 using SQLiteEntityFramework.cs;
 using SSFR_Events.Droid.Services;
+using Android.Graphics;
+using Android.Support.V4.Content.Res;
 
 namespace SSFR_Events.Droid
 {
@@ -27,7 +29,7 @@ namespace SSFR_Events.Droid
             //DBRepository dBRepository = new DBRepository(path);
 
             DBRepoInstance dBRepoInstance = new DBRepoInstance();
-
+            
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(dBRepoInstance.getInstance()));
         }

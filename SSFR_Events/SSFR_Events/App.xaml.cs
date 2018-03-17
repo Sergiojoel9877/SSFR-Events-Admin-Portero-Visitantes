@@ -30,7 +30,10 @@ namespace SSFR_Events
 
             };
         
-			MainPage = new NavigationPage(new LoginPage());
+            var loginPage = new NavigationPage(new LoginPage());
+            loginPage.BarTextColor = Color.FromHex("#FFA500");
+
+            MainPage = loginPage;
 
 		}
 

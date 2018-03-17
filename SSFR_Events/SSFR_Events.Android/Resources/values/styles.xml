@@ -19,10 +19,10 @@
     <item name="windowActionBar">false</item>
     <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette -->
     <!-- colorPrimary is used for the default action bar background -->
-    <item name="colorPrimary">#FFA500</item>
+    <item name="colorPrimary">#2B2B2B</item>
     <!-- colorPrimaryDark is used for the status bar -->
-    <item name="colorPrimaryDark">#FF6D00</item>
-    <!-- colorAccent is used as the default value for colorControlActivated
+    <item name="colorPrimaryDark">#4D4947</item>
+    <!-- colorAccent is used as the defaul,t value for colorControlActivated
          which is used to tint widgets -->
     <item name="colorAccent">#80CBC4</item>
     <!-- You can also set colorControlNormal, colorControlActivated

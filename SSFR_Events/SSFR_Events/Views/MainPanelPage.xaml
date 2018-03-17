@@ -3,22 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SSFR_Events.Views.MainPanelPage"
              Title="¡Crea el evento de tu preferencia!"
-             BackgroundColor="#000"
-             >
+             BackgroundColor="#000">
     <ContentPage.Content>
         <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All">
 
-            <StackLayout x:Name="AniversaryLayout" AbsoluteLayout.LayoutBounds="0.5, 0.4, 0.4, 0.3" AbsoluteLayout.LayoutFlags="All">
-                    
-                <Image Source="{Binding AniversaryImage}" WidthRequest="258" HeightRequest="194"/>
-                    
-            </StackLayout>
+            <ScrollView AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <Grid>
 
-            <StackLayout x:Name="MarryAgImage" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Image Source="{Binding Binding MarryageImage}" WidthRequest="258" HeightRequest="194"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-            </StackLayout>
+                    <StackLayout x:Name="AniversaryLayout" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" Margin="15">
+
+                        <Image Source="{Binding AniversaryImage}" WidthRequest="358" HeightRequest="294"/>
+
+                    </StackLayout>
+
+                    <StackLayout x:Name="MarriageLayout" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" Margin="15">
+
+                        <Image Source="{Binding MarryageImage}" WidthRequest="358" HeightRequest="294"/>
+
+                    </StackLayout>
+
+                    <!--<StackLayout x:Name="AniversaryLayout" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" Margin="5">
+
+                        <Image Source="{Binding AniversaryImage}" WidthRequest="358" HeightRequest="294"/>
+
+                    </StackLayout>-->
+
+                </Grid>
+                                
+            </ScrollView>
 
         </AbsoluteLayout>
     </ContentPage.Content>

@@ -25,6 +25,8 @@ namespace SSFR_Events.ViewModels
         {
 
             MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 0, Title = "Reportes", TargetType = typeof(LoginPage), ImageSource = "icon.png" });
+            
+
         }
 
     }

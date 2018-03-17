@@ -17,7 +17,11 @@ namespace SSFR_Events.Views
         {
             InitializeComponent();
 
-            Detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MainPanelPage)));
+            var detail = new NavigationPage((Page)Activator.CreateInstance(typeof(MainPanelPage)));
+
+            detail.BarTextColor = Color.FromHex("#FFA500");
+
+            Detail = detail;
 
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
         }
@@ -33,7 +37,11 @@ namespace SSFR_Events.Views
 
             page.Title = item.Title;
 
-            Detail = new NavigationPage(page);
+            var detail = new NavigationPage(page);
+
+            detail.BarTextColor = Color.FromHex("#FFA500");
+
+            Detail = detail;
 
             IsPresented = false;
 
