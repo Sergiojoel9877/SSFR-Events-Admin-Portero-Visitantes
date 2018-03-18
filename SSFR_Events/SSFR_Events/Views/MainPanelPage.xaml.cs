@@ -1,4 +1,5 @@
-﻿using SSFR_Events.ViewModels;
+﻿using SSFR_Events.Services;
+using SSFR_Events.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,18 @@ namespace SSFR_Events.Views
 
             BindingContext = ViewModel;
 		}
-	}
+
+        protected override bool OnBackButtonPressed()
+        {
+            var c = DependencyService.Get<ICloseBackPress>();
+
+            if (c != null)
+            {
+                c.Close();
+                base.OnBackButtonPressed();
+            }
+
+            return true;
+        }
+    }
 }

@@ -29,7 +29,7 @@ namespace SSFR_Events.Droid.Services
 
         public override void OnBackPressed()
         {
-            ShowAlert("Exit?", "Are you sure you wanna exit?");
+            ShowAlert("Estás a punto de salir", "¿Estás seguro de que deseas salir?");
         }
 
         AlertDialog.Builder Ab;
