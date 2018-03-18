@@ -8,7 +8,7 @@
         <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All">
 
             <ScrollView AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All">
-                <Grid>
+                <Grid RowSpacing="5">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -20,26 +20,37 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <StackLayout x:Name="AniversaryLayout" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" Margin="15">
+                    <StackLayout x:Name="AniversaryLayout" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" Margin="0, 5, 0, 0">
 
-                        <Image Source="{Binding AniversaryImage}" WidthRequest="358" HeightRequest="294"/>
-
-                    </StackLayout>
-
-                    <StackLayout x:Name="MarriageLayout" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center" Margin="15">
-
-                        <Image Source="{Binding MarryageImage}" WidthRequest="358" HeightRequest="294"/>
+                        <Image Source="{Binding AniversaryImage}"/>
 
                     </StackLayout>
 
-                    <!--<StackLayout x:Name="AniversaryLayout" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" Margin="5">
+                    <StackLayout x:Name="MarriageLayout" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center">
 
-                        <Image Source="{Binding AniversaryImage}" WidthRequest="358" HeightRequest="294"/>
+                        <Image Source="{Binding MarryageImage}"/>
 
-                    </StackLayout>-->
+                    </StackLayout>
+
+                    <StackLayout x:Name="BirthdayLayout" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center">
+
+                        <Image Source="{Binding BirthdayImage}" />
+
+                    </StackLayout>
+
+                    <StackLayout x:Name="FuneralLayout" Grid.Column="0" Grid.Row="3" HorizontalOptions="Center">
+
+                        <Image Source="{Binding FuneralImage}"/>
+
+                    </StackLayout>
+
+                    <StackLayout x:Name="PerzonalizedLayout" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" Margin="0, 0, 0, 5">
+
+                        <Image Source="{Binding PersonalizedImage}"/>
+
+                    </StackLayout>
 
                 </Grid>
                                 
