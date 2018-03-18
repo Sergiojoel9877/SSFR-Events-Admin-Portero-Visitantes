@@ -1,5 +1,4 @@
-﻿using Mobile.SSFR_Events.Services;
-using SSFR_Events.Services;
+﻿using SSFR_Events.Services;
 using SSFR_Events.Views;
 using System;
 using System.Collections.Generic;
@@ -24,14 +23,16 @@ namespace SSFR_Events
 
             repo = repository;
 
-            client = new HttpClient {
+            //client = new HttpClient {
 
-                BaseAddress = new Uri("http://oauthssfrapi.azurewebsites.net")
+            //    BaseAddress = new Uri("http://oauthssfrapi.azurewebsites.net")
 
+            //};
+
+            var loginPage = new NavigationPage(new LoginPage())
+            {
+                BarTextColor = Color.FromHex("#FFA500")
             };
-        
-            var loginPage = new NavigationPage(new LoginPage());
-            loginPage.BarTextColor = Color.FromHex("#FFA500");
 
             MainPage = loginPage;
 

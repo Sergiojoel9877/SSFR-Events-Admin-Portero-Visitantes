@@ -16,8 +16,6 @@ namespace SSFR_Events.Droid.Services
 
         AlertDialog.Builder Ab;
 
-        bool Cl = false;
-
         void IAlert.Alert(string title, string msg)
         {
             ShowAlert(title, msg);

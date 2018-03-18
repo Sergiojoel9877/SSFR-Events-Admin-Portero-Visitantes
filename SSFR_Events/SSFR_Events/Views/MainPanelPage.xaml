@@ -52,7 +52,7 @@
                        
                         </StackLayout.GestureRecognizers>
                         
-                        <Image Source="{Binding BirthdayImage}" />
+                        <Image Source="{Binding BirthdayImage}"/>
 
                     </StackLayout>
 

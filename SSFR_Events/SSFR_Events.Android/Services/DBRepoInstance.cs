@@ -10,10 +10,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Mobile.SSFR_Events.Services;
+using SSFR_Events.Services;
 using SQLiteEntityFramework.cs;
 using SSFR_Events.Droid.Services;
-using SSFR_Events.Services;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(DBRepoInstance))]

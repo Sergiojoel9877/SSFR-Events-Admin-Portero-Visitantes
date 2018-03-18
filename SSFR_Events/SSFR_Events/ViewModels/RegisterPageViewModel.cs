@@ -1,6 +1,5 @@
-﻿using Mobile.SSFR_Events.Services;
+﻿using SSFR_Events.Services;
 using SSFR_Events.Models;
-using SSFR_Events.Services;
 using SSFR_Events.Views;
 using System;
 using System.Collections.Generic;
