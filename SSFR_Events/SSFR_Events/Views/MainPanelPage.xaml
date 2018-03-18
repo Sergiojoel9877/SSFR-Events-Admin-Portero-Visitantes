@@ -24,31 +24,55 @@
                     </Grid.RowDefinitions>
 
                     <StackLayout x:Name="AniversaryLayout" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" Margin="0, 5, 0, 0">
+                        <StackLayout.GestureRecognizers>
 
+                            <TapGestureRecognizer Command="{Binding AniversaryLayoutTapped}"/>
+
+                        </StackLayout.GestureRecognizers>
+                        
                         <Image Source="{Binding AniversaryImage}"/>
 
                     </StackLayout>
 
                     <StackLayout x:Name="MarriageLayout" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center">
-
+                        <StackLayout.GestureRecognizers>
+                            
+                            <TapGestureRecognizer Command="{Binding MarriageLayoutTapped}"/>
+                        
+                        </StackLayout.GestureRecognizers>
+                        
                         <Image Source="{Binding MarryageImage}"/>
 
                     </StackLayout>
 
                     <StackLayout x:Name="BirthdayLayout" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center">
-
+                        <StackLayout.GestureRecognizers>
+                            
+                            <TapGestureRecognizer Command="{Binding BirthdayLayoutTapped}"/>
+                       
+                        </StackLayout.GestureRecognizers>
+                        
                         <Image Source="{Binding BirthdayImage}" />
 
                     </StackLayout>
 
                     <StackLayout x:Name="FuneralLayout" Grid.Column="0" Grid.Row="3" HorizontalOptions="Center">
-
+                        <StackLayout.GestureRecognizers>
+                            
+                            <TapGestureRecognizer Command="{Binding FuneralLayoutTapped}"/>
+                        
+                        </StackLayout.GestureRecognizers>
+                        
                         <Image Source="{Binding FuneralImage}"/>
 
                     </StackLayout>
 
                     <StackLayout x:Name="PerzonalizedLayout" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" Margin="0, 0, 0, 5">
+                        <StackLayout.GestureRecognizers>
 
+                            <TapGestureRecognizer Command="{Binding PersonalizedLayoutTapped}"/>
+
+                        </StackLayout.GestureRecognizers>
                         <Image Source="{Binding PersonalizedImage}"/>
 
                     </StackLayout>

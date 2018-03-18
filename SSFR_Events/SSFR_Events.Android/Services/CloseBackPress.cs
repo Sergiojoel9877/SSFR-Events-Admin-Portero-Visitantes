@@ -54,7 +54,7 @@ namespace SSFR_Events.Droid.Services
 
         public void OnClick(object dialog, DialogClickEventArgs e)
         {
-            activity.FinishAffinity();
+            activity.FinishAffinity();  
         }
     }
 }

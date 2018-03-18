@@ -11,6 +11,8 @@ namespace SSFR_Events.ViewModels
     {
         INavigation _navService;
 
+        #region Images
+
         private ImageSource aniversaryImage = "aniversario.png";
         public ImageSource AniversaryImage
         {
@@ -50,6 +52,62 @@ namespace SSFR_Events.ViewModels
 
             set => SetProperty(ref personalizedImage, value);
         }
+
+        #endregion
+
+        #region Command Methods
+
+        private Command aniversaryLayoutTapped;
+        public Command AniversaryLayoutTapped
+        {
+            get => aniversaryLayoutTapped ?? (aniversaryLayoutTapped = new Command(() => {
+
+
+
+            }));
+        }
+
+        private Command marriageLayoutTapped;
+        public Command MarriageLayoutTapped
+        {
+            get => marriageLayoutTapped ?? (marriageLayoutTapped = new Command(() => {
+
+
+
+            }));
+        }
+
+        private Command birthdayLayoutTapped;
+        public Command BirthdayLayoutTapped
+        {
+            get => birthdayLayoutTapped ?? (birthdayLayoutTapped = new Command( () => {
+
+
+
+            }));
+        }
+
+        private Command funeralLayoutTapped;
+        public Command FuneralLayoutTapped
+        {
+            get => funeralLayoutTapped ?? (funeralLayoutTapped = new Command( () => {
+
+
+
+            }));
+        }
+
+        private Command personalizedLayoutTapped;
+        public Command PersonalizedLayoutTapped
+        {
+            get => personalizedLayoutTapped ?? (personalizedLayoutTapped = new Command( () => {
+
+
+
+            }));
+        }
+       
+        #endregion
 
         public MainPanelPageViewModel(INavigation navService)
         {
