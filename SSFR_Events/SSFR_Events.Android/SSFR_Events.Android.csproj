@@ -97,16 +97,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SQLiteEntityFramework.cs\SQLiteEntityFramework.cs.csproj">
-      <Project>{959a7f78-5390-44a5-a003-f24645781394}</Project>
-      <Name>SQLiteEntityFramework.cs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SSFR_Events\SSFR_Events.csproj">
-      <Project>{9D15BCFA-529F-4C59-9A70-51AFEB82BE0C}</Project>
-      <Name>SSFR_Events</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\Lock.png" />
   </ItemGroup>
   <ItemGroup>
@@ -185,10 +175,20 @@
     <AndroidResource Include="Resources\drawable\act.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\quincianera.png" />
+    <AndroidResource Include="Resources\drawable\SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\SplashScreen.png" />
+    <AndroidResource Include="Resources\drawable\MasterTitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SQLiteEntityFramework.cs\SQLiteEntityFramework.cs.csproj">
+      <Project>{959a7f78-5390-44a5-a003-f24645781394}</Project>
+      <Name>SQLiteEntityFramework.cs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SSFR_Events\SSFR_Events.csproj">
+      <Project>{a7f29ede-1e11-4c3b-9c45-e7017510ff7e}</Project>
+      <Name>SSFR_Events</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

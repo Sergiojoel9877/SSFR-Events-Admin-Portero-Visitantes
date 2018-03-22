@@ -4,37 +4,40 @@
              x:Class="SSFR_Events.Views.MainMasterDetailPageMaster"
              Title="Master"
              NavigationPage.HasNavigationBar="False"
-             NavigationPage.HasBackButton="False">
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="#4D4947">
     <StackLayout>
         <ListView x:Name="MenuItemsListView" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
               <ListView.Header>
-                    <Grid BackgroundColor="#03A9F4">
+                    <Grid BackgroundColor="#000">
                         
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         
                         <Grid.RowDefinitions>
-                             <RowDefinition Height="30"/>
-                             <RowDefinition Height="80"/>
-                             <RowDefinition Height="Auto"/>
-                             <RowDefinition Height="10"/>
+                             <RowDefinition Height="*"/>
+                             <RowDefinition Height="*"/>
+                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="187" HeightRequest="60">
                         
-                         <Label Grid.Column="1" Grid.Row="2" Text="AppName" Style="{DynamicResource SubtitleStyle}"/>
+                            <Image Source="MasterTitle.png"/>
                         
+                        </StackLayout>
+
                     </Grid>
               </ListView.Header>
               <ListView.ItemTemplate>
                    <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="15,10" Spacing="20" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Padding="15,10" Spacing="20" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="#4D4947">
                          
-                                <Image Source="{Binding ImageSource}" WidthRequest="25" HeightRequest="25" VerticalOptions="Center"/>
+                                <Image Source="{Binding ImageSource}" WidthRequest="45" HeightRequest="45" VerticalOptions="Center"/>
                          
-                                <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" FontSize="24"/>
+                                <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" FontSize="20" TextColor="White" FontFamily="Rockwell" FontAttributes="Italic"/>
                          
                             </StackLayout>
                         </ViewCell>

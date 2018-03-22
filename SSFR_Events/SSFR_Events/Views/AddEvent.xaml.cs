@@ -15,7 +15,7 @@ namespace SSFR_Events.Views
 	{
         AddEventViewModel ViewModel;
 
-		public AddEvent ()
+        public AddEvent ()
 		{
 			InitializeComponent ();
 
