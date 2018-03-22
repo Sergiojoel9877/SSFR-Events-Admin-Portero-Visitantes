@@ -11,11 +11,11 @@ using Xamarin.Forms.Xaml;
 namespace SSFR_Events.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AddEvent : ContentPage
+	public partial class AddEventPage : ContentPage
 	{
         AddEventViewModel ViewModel;
 
-        public AddEvent ()
+        public AddEventPage()
 		{
 			InitializeComponent ();
 

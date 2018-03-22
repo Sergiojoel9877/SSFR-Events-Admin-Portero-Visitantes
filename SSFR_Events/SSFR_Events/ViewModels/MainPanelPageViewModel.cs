@@ -1,4 +1,5 @@
 ﻿using SSFR_Events.Models;
+using SSFR_Events.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,14 @@ namespace SSFR_Events.ViewModels
     public class MainPanelPageViewModel : ViewModelBase
     {
         INavigation _navService;
+
+        private string eventType;
+        public string EventType
+        {
+            get => eventType;
+
+            set => SetProperty(ref eventType, value);
+        }
 
         #region Images
 
@@ -62,7 +71,11 @@ namespace SSFR_Events.ViewModels
         {
             get => aniversaryLayoutTapped ?? (aniversaryLayoutTapped = new Command(() => {
 
+                EventType = "AniversaryEvent";
+                
+                MessagingCenter.Send(this, "EventTapped", EventType);
 
+                _navService.PushAsync(new AddEventPage());
 
             }));
         }
@@ -72,7 +85,7 @@ namespace SSFR_Events.ViewModels
         {
             get => marriageLayoutTapped ?? (marriageLayoutTapped = new Command(() => {
 
-
+                _navService.PushAsync(new AddEventPage());
 
             }));
         }
@@ -82,7 +95,7 @@ namespace SSFR_Events.ViewModels
         {
             get => birthdayLayoutTapped ?? (birthdayLayoutTapped = new Command( () => {
 
-
+                _navService.PushAsync(new AddEventPage());
 
             }));
         }
@@ -92,7 +105,7 @@ namespace SSFR_Events.ViewModels
         {
             get => funeralLayoutTapped ?? (funeralLayoutTapped = new Command( () => {
 
-
+                _navService.PushAsync(new AddEventPage());
 
             }));
         }
@@ -102,7 +115,7 @@ namespace SSFR_Events.ViewModels
         {
             get => personalizedLayoutTapped ?? (personalizedLayoutTapped = new Command( () => {
 
-
+                _navService.PushAsync(new AddEventPage());
 
             }));
         }

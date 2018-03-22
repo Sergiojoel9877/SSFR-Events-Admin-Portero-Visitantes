@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SSFR_Events.Views.AddEvent"
+             Title="Añadir un Evento">
+    <ContentPage.Content>
+
+        <StackLayout BackgroundColor="#000">
+            
+            <StackLayout BackgroundColor="#4D4947" HeightRequest="60">
+
+                <Label Text="Ingresa los Datos" HorizontalTextAlignment="Center" FontFamily="Rockwell" FontSize="30" TextColor="#FFA500"/>
+
+            </StackLayout>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

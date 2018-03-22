@@ -24,10 +24,13 @@
     <Compile Update="Models\MainMasterDetailPageMenuItem.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\AddEventPage.xaml.cs">
+      <DependentUpon>AddEventPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\AddEvent.xaml">
+    <EmbeddedResource Update="Views\AddEventPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">

@@ -13,11 +13,11 @@ namespace SSFR_Events.ViewModels
     {
 
         public ObservableCollection<MainMasterDetailPageMenuItem> MenuItems { get; set; }
-
+        
         public MainMasterDetailPageMasterViewModel()
         {
             MenuItems = new ObservableCollection<MainMasterDetailPageMenuItem>();
-
+            
             FillCollection();
         }
 
@@ -33,6 +33,8 @@ namespace SSFR_Events.ViewModels
             MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 3, Title = "Mostrar Invitados", TargetType = typeof(LoginPage), ImageSource = "ev.png" });
 
             MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 4, Title = "Buscar Visitantes", TargetType = typeof(LoginPage), ImageSource = "bv.png" });
+
+            //Aderir las demás selecciones.
 
         }
     }

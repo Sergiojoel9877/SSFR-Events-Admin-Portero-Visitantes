@@ -6,7 +6,7 @@
              NavigationPage.HasNavigationBar="False"
              NavigationPage.HasBackButton="False"
              BackgroundColor="#4D4947">
-    <StackLayout>
+    <ScrollView>
         <ListView x:Name="MenuItemsListView" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
               <ListView.Header>
                     <Grid BackgroundColor="#000">
@@ -33,7 +33,7 @@
               <ListView.ItemTemplate>
                    <DataTemplate>
                         <ViewCell>
-                        <StackLayout Padding="15,10" Spacing="20" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="#4D4947">
+                            <StackLayout Padding="15,10" Spacing="20" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="#4D4947">
                          
                                 <Image Source="{Binding ImageSource}" WidthRequest="45" HeightRequest="45" VerticalOptions="Center"/>
                          
@@ -44,5 +44,5 @@
                     </DataTemplate>
               </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>
