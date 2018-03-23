@@ -8,7 +8,7 @@
         <ScrollView>
         
             <StackLayout BackgroundColor="#000">
-            
+
                 <StackLayout BackgroundColor="#4D4947" HeightRequest="70" Margin="0, 10, 0, 0">
 
                     <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -16,9 +16,41 @@
                         <Label Text="Ingresa los Datos" HorizontalTextAlignment="Center" FontFamily="Rockwell" FontSize="30" TextColor="#FFA500" VerticalOptions="Center" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
 
                     </AbsoluteLayout>
-                
+
                 </StackLayout>
 
+                <Grid Margin="10, 10, 10, 0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Nombre del evento" Grid.Column="0" Grid.Row="1" FontFamily="Rockwell" FontAttributes="Bold" FontSize="18" TextColor="#FFA500"/>
+
+                    <Entry Text="" Grid.Column="1" Grid.Row="1" FontFamily="Rockwell" FontAttributes="Bold" FontSize="18" TextColor="#FFF"/>
+
+                    <Label Text="Fecha de este" Grid.Column="0" Grid.Row="3" FontFamily="Rockwell" FontAttributes="Bold" FontSize="18" TextColor="#FFA500"/>
+
+                    <DatePicker Grid.Column="1" Grid.Row="3" TextColor="#FFF"/>
+
+                    <Label Text="Direccion" Grid.Column="0" Grid.Row="4" FontFamily="Rockwell" FontAttributes="Bold" FontSize="18" TextColor="#FFA500"/>
+
+                    <Entry Text="" Grid.Column="1" Grid.Row="4" FontFamily="Rockwell" FontAttributes="Bold" FontSize="18" TextColor="#FFF"/>
+
+                    <Label Text="Tipo de Evento" Grid.Column="0" Grid.Row="5" FontFamily="Rockwell" FontAttributes="Bold" FontSize="18" TextColor="#FFA500"/>
+
+                    <Label Text="{Binding EventType}" Grid.Column="1" Grid.Row="5" FontFamily="Rockwell" FontAttributes="Italic" FontSize="18" TextColor="#FFA500"/>
+               
+                </Grid>
+                
             </StackLayout>
 
         </ScrollView>

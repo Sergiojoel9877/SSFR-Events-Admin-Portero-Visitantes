@@ -71,11 +71,11 @@ namespace SSFR_Events.ViewModels
         {
             get => aniversaryLayoutTapped ?? (aniversaryLayoutTapped = new Command(() => {
 
-                EventType = "AniversaryEvent";
-                
-                MessagingCenter.Send(this, "EventTapped", EventType);
+                 EventType = "Aniversario";
 
-                _navService.PushAsync(new AddEventPage());
+                _navService.PushAsync(new AddEventPage(EventType));
+
+                 EventType = String.Empty;
 
             }));
         }
@@ -85,7 +85,11 @@ namespace SSFR_Events.ViewModels
         {
             get => marriageLayoutTapped ?? (marriageLayoutTapped = new Command(() => {
 
-                _navService.PushAsync(new AddEventPage());
+                EventType = "Boda";
+
+                _navService.PushAsync(new AddEventPage(EventType));
+
+                EventType = String.Empty;
 
             }));
         }
@@ -95,7 +99,11 @@ namespace SSFR_Events.ViewModels
         {
             get => birthdayLayoutTapped ?? (birthdayLayoutTapped = new Command( () => {
 
-                _navService.PushAsync(new AddEventPage());
+                EventType = "Cumpleaños";
+
+                _navService.PushAsync(new AddEventPage(EventType));
+
+                EventType = String.Empty;
 
             }));
         }
@@ -105,7 +113,11 @@ namespace SSFR_Events.ViewModels
         {
             get => funeralLayoutTapped ?? (funeralLayoutTapped = new Command( () => {
 
-                _navService.PushAsync(new AddEventPage());
+                EventType = "Funeral";
+
+                _navService.PushAsync(new AddEventPage(EventType));
+
+                EventType = String.Empty;
 
             }));
         }
@@ -115,7 +127,11 @@ namespace SSFR_Events.ViewModels
         {
             get => personalizedLayoutTapped ?? (personalizedLayoutTapped = new Command( () => {
 
-                _navService.PushAsync(new AddEventPage());
+                EventType = "Personalizado";
+
+                _navService.PushAsync(new AddEventPage(EventType));
+
+                EventType = String.Empty;
 
             }));
         }

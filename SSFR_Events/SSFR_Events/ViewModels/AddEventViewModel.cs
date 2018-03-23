@@ -21,25 +21,7 @@ namespace SSFR_Events.ViewModels
         public AddEventViewModel(INavigation navService)
         {
             _navService = navService;
-
-            //ReceivingMessage();
         }
 
-        void ReceivingMessage()
-        {
-            MessagingCenter.Subscribe<MainPanelPageViewModel, String>(this, "EventTapped", (s, p) =>
-            {
-
-                switch (p)
-                {
-                    case "AniversaryEvent":
-
-                        EventType = "AniversaryEvent";
-
-                        break;
-                }
-
-            });
-        }
     }
 }

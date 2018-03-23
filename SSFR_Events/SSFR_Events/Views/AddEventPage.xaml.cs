@@ -15,14 +15,15 @@ namespace SSFR_Events.Views
 	{
         AddEventViewModel ViewModel;
 
-        public AddEventPage()
+        public AddEventPage(string eventType)
 		{
             InitializeComponent();
 
             ViewModel = new AddEventViewModel(Navigation);
 
+            ViewModel.EventType = eventType;
+
             BindingContext = ViewModel;
-            
-		}
-	}
+        }
+    }
 }

@@ -62,11 +62,11 @@
                     <StackLayout x:Name="FuneralLayout" Grid.Column="0" Grid.Row="3" HorizontalOptions="Center">
 
                         <Image Source="{Binding FuneralImage}">
-                            <Image..GestureRecognizers>
+                            <Image.GestureRecognizers>
 
                                 <TapGestureRecognizer Command="{Binding FuneralLayoutTapped}"/>
 
-                            </Image..GestureRecognizers>
+                            </Image.GestureRecognizers>
                         </Image>
 
                     </StackLayout>
