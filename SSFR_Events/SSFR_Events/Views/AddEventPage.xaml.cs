@@ -10,14 +10,14 @@ using Xamarin.Forms.Xaml;
 
 namespace SSFR_Events.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AddEventPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AddEventPage : ContentPage
 	{
         AddEventViewModel ViewModel;
 
         public AddEventPage()
 		{
-			InitializeComponent ();
+            InitializeComponent();
 
             ViewModel = new AddEventViewModel(Navigation);
 

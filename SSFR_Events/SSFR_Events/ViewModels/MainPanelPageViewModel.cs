@@ -62,7 +62,7 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref personalizedImage, value);
         }
 
-        #endregion
+        #endregion 
 
         #region Command Methods
 

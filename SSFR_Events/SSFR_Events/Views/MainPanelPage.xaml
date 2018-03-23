@@ -24,56 +24,62 @@
                     </Grid.RowDefinitions>
 
                     <StackLayout x:Name="AniversaryLayout" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" Margin="0, 5, 0, 0">
-                        <StackLayout.GestureRecognizers>
 
-                            <TapGestureRecognizer Command="{Binding AniversaryLayoutTapped}"/>
+                        <Image Source="{Binding AniversaryImage}">
+                            <Image.GestureRecognizers>
 
-                        </StackLayout.GestureRecognizers>
-                        
-                        <Image Source="{Binding AniversaryImage}"/>
+                                <TapGestureRecognizer Command="{Binding AniversaryLayoutTapped}"/>
+
+                            </Image.GestureRecognizers>
+                        </Image>
 
                     </StackLayout>
 
                     <StackLayout x:Name="MarriageLayout" Grid.Column="0" Grid.Row="1" HorizontalOptions="Center">
-                        <StackLayout.GestureRecognizers>
-                            
-                            <TapGestureRecognizer Command="{Binding MarriageLayoutTapped}"/>
-                        
-                        </StackLayout.GestureRecognizers>
-                        
-                        <Image Source="{Binding MarryageImage}"/>
+
+                        <Image Source="{Binding MarryageImage}">
+                            <Image.GestureRecognizers>
+
+                                <TapGestureRecognizer Command="{Binding MarriageLayoutTapped}"/>
+
+                            </Image.GestureRecognizers>
+                        </Image>
 
                     </StackLayout>
 
                     <StackLayout x:Name="BirthdayLayout" Grid.Column="0" Grid.Row="2" HorizontalOptions="Center">
-                        <StackLayout.GestureRecognizers>
-                            
-                            <TapGestureRecognizer Command="{Binding BirthdayLayoutTapped}"/>
-                       
-                        </StackLayout.GestureRecognizers>
-                        
-                        <Image Source="{Binding BirthdayImage}"/>
+
+                        <Image Source="{Binding BirthdayImage}">
+                            <Image.GestureRecognizers>
+
+                                <TapGestureRecognizer Command="{Binding BirthdayLayoutTapped}"/>
+
+                            </Image.GestureRecognizers>
+                        </Image>
 
                     </StackLayout>
 
                     <StackLayout x:Name="FuneralLayout" Grid.Column="0" Grid.Row="3" HorizontalOptions="Center">
-                        <StackLayout.GestureRecognizers>
-                            
-                            <TapGestureRecognizer Command="{Binding FuneralLayoutTapped}"/>
-                        
-                        </StackLayout.GestureRecognizers>
-                        
-                        <Image Source="{Binding FuneralImage}"/>
+
+                        <Image Source="{Binding FuneralImage}">
+                            <Image..GestureRecognizers>
+
+                                <TapGestureRecognizer Command="{Binding FuneralLayoutTapped}"/>
+
+                            </Image..GestureRecognizers>
+                        </Image>
 
                     </StackLayout>
 
                     <StackLayout x:Name="PerzonalizedLayout" Grid.Column="0" Grid.Row="4" HorizontalOptions="Center" Margin="0, 0, 0, 5">
-                        <StackLayout.GestureRecognizers>
 
-                            <TapGestureRecognizer Command="{Binding PersonalizedLayoutTapped}"/>
+                        <Image Source="{Binding PersonalizedImage}">
+                            <Image.GestureRecognizers>
 
-                        </StackLayout.GestureRecognizers>
-                        <Image Source="{Binding PersonalizedImage}"/>
+                                <TapGestureRecognizer Command="{Binding PersonalizedLayoutTapped}"/>
+
+                            </Image.GestureRecognizers>
+                        </Image>
 
                     </StackLayout>
 

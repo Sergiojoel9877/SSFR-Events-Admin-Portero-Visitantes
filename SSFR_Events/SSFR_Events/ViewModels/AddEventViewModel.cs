@@ -21,6 +21,8 @@ namespace SSFR_Events.ViewModels
         public AddEventViewModel(INavigation navService)
         {
             _navService = navService;
+
+            //ReceivingMessage();
         }
 
         void ReceivingMessage()
@@ -34,9 +36,6 @@ namespace SSFR_Events.ViewModels
 
                         EventType = "AniversaryEvent";
 
-                        break;
-                    //Me quede aqui.
-                    default: 
                         break;
                 }
 
