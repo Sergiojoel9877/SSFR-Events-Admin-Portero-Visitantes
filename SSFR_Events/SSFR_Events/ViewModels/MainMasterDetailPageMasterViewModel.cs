@@ -34,7 +34,9 @@ namespace SSFR_Events.ViewModels
 
             MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 4, Title = "Buscar Visitantes", TargetType = typeof(LoginPage), ImageSource = "bv.png" });
 
-            //Aderir las demás selecciones.
+            MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 5, Title = "Próximos Eventos", TargetType = typeof(LoginPage), ImageSource = "x_ev.png" });
+
+            MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 5, Title = "Mantenimiento", TargetType = typeof(LoginPage), ImageSource = "act.png" });
 
         }
     }

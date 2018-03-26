@@ -37,7 +37,7 @@
                          
                                 <Image Source="{Binding ImageSource}" WidthRequest="45" HeightRequest="45" VerticalOptions="Center"/>
 
-                            <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" FontSize="20" TextColor="White" FontFamily="Comic Sans MS" FontAttributes="Bold, Italic"/>
+                            <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" FontSize="20" TextColor="White" FontFamily="Droid Sans Mono" FontAttributes="Bold, Italic"/>
                          
                             </StackLayout>
                         </ViewCell>
