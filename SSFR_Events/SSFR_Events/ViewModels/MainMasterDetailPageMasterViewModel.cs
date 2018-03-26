@@ -13,6 +13,15 @@ namespace SSFR_Events.ViewModels
     {
 
         public ObservableCollection<MainMasterDetailPageMenuItem> MenuItems { get; set; }
+
+        private string role = "Modo Admin";
+        public string Role {
+
+            get => role;
+
+            set => SetProperty(ref role, value);
+
+        }
         
         public MainMasterDetailPageMasterViewModel()
         {
