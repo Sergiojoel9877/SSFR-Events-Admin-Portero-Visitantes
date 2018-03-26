@@ -10,12 +10,12 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
-using SSFR_Events.Droid.CustomRenderers;
+using SSFR_Events.Droid;
 using Xamarin.Forms.Platform.Android;
 using System.ComponentModel;
 
 [assembly: ExportRenderer(typeof(SSFR_Events.CustomRenderers.CheckBox), typeof(CheckBoxRenderer))]
-namespace SSFR_Events.Droid.CustomRenderers
+namespace SSFR_Events.Droid
 {
     public class CheckBoxRenderer : ViewRenderer<SSFR_Events.CustomRenderers.CheckBox, Android.Widget.CheckBox>
     {

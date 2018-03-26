@@ -26,6 +26,10 @@ namespace SSFR_Events.Models
         [Required]
         [StringLength(16)]
         public string Pass { get; set; }
+		
+		[Required]
+		[StringLength(10)]
+		public string Role { get; set; }
 
     }
 }

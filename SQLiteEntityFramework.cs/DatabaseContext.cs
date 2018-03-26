@@ -12,7 +12,7 @@ namespace SQLiteEntityFramework.cs
 
         public DbSet<Events> Events { get; set; }
 
-        public DbSet<Doorman> Doormans { get; set; }
+        //public DbSet<Doorman> Doormans { get; set; }
 
         public DbSet<Guest> Guests { get; set; }
 

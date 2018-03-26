@@ -33,13 +33,13 @@ namespace SSFR_Events.Services
         Task<bool> UpdateEvent(Events @event);
         Task<bool> DeleteEvent(Events @event);
 
-        //CRUD Doormans
-        Task<bool> AddDoorman(Doorman doorman);
-        Task<Doorman> GetDoorman(int id);
-        Task<IEnumerable<Doorman>> GetDoormans();
-        Task<bool> DoormanExist(int id);
-        Task<bool> UpdateDoorman(Doorman doorman);
-        Task<bool> DeleteDoorman(Doorman doorman);
+        ////CRUD Doormans
+        //Task<bool> AddDoorman(Doorman doorman);
+        //Task<Doorman> GetDoorman(int id);
+        //Task<IEnumerable<Doorman>> GetDoormans();
+        //Task<bool> DoormanExist(int id);
+        //Task<bool> UpdateDoorman(Doorman doorman);
+        //Task<bool> DeleteDoorman(Doorman doorman);
         
     }
 }

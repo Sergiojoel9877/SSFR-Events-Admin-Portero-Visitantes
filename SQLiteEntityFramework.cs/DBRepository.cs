@@ -18,17 +18,17 @@ namespace SQLiteEntityFramework.cs
 
         //*                  ADDS METHODS                   *\\
 
-        public async Task<bool> AddDoorman(Doorman doorman)
-        {
-            var obj = await dbContext.Doormans.AddAsync(doorman);
+        //public async Task<bool> AddDoorman(Doorman doorman)
+        //{
+        //    var obj = await dbContext.Doormans.AddAsync(doorman);
 
-            await dbContext.SaveChangesAsync();
+        //    await dbContext.SaveChangesAsync();
 
-            var added = obj.State == EntityState.Added;
+        //    var added = obj.State == EntityState.Added;
 
-            return added;
+        //    return added;
 
-        }
+        //}
 
         public async Task<bool> AddEvent(Events @event)
         {
@@ -65,16 +65,16 @@ namespace SQLiteEntityFramework.cs
 
         //*                 DELETES METHODS                *\\
 
-        public async Task<bool> DeleteDoorman(Doorman doorman)
-        {
-            var rem = dbContext.Doormans.Remove(doorman);
+        //public async Task<bool> DeleteDoorman(Doorman doorman)
+        //{
+        //    var rem = dbContext.Doormans.Remove(doorman);
 
-            await dbContext.SaveChangesAsync();
+        //    await dbContext.SaveChangesAsync();
 
-            var removed = doorman.Id == rem.Entity.Id;
+        //    var removed = doorman.Id == rem.Entity.Id;
 
-            return removed;
-        }
+        //    return removed;
+        //}
 
         public async Task<bool> DeleteEvent(Events @event)
         {
@@ -111,7 +111,7 @@ namespace SQLiteEntityFramework.cs
 
         //*                 GETTERS BY ID METHODS                   *\\
 
-        public async Task<Doorman> GetDoorman(int id) => await dbContext.Doormans.FindAsync(id) ?? null;
+        //public async Task<Doorman> GetDoorman(int id) => await dbContext.Doormans.FindAsync(id) ?? null;
 
         public async Task<Events> GetEvent(int id) => await dbContext.Events.FindAsync(id) ?? null;
         
@@ -122,7 +122,7 @@ namespace SQLiteEntityFramework.cs
 
         //*                 GETTERS                 *\\
 
-        public async Task<IEnumerable<Doorman>> GetDoormans() => await dbContext.Doormans.AsNoTracking().ToListAsync() ?? null;
+        //public async Task<IEnumerable<Doorman>> GetDoormans() => await dbContext.Doormans.AsNoTracking().ToListAsync() ?? null;
 
         public async Task<IEnumerable<Events>> GetEvents() => await dbContext.Events.AsNoTracking().ToListAsync() ?? null;
 
@@ -133,16 +133,16 @@ namespace SQLiteEntityFramework.cs
 
         //*                 UPDATES METHODS                *\\
 
-        public async Task<bool> UpdateDoorman(Doorman doorman)
-        {
-            var obj = dbContext.Doormans.Update(doorman);
+        //public async Task<bool> UpdateDoorman(Doorman doorman)
+        //{
+        //    var obj = dbContext.Doormans.Update(doorman);
 
-            await dbContext.SaveChangesAsync();
+        //    await dbContext.SaveChangesAsync();
 
-            var modied = obj.State == EntityState.Modified;
+        //    var modied = obj.State == EntityState.Modified;
 
-            return true;
-        }
+        //    return true;
+        //}
 
         public async Task<bool> UpdateEvent(Events @event)
         {
@@ -180,24 +180,24 @@ namespace SQLiteEntityFramework.cs
 
         //*                 EXISTENCES METHODS                  *\\
 
-        public async Task<bool> DoormanExist(int id)
-        {
+        //public async Task<bool> DoormanExist(int id)
+        //{
 
-            var obj = await dbContext.Doormans.FindAsync(id);
+        //    var obj = await dbContext.Doormans.FindAsync(id);
 
-            var all = await dbContext.Doormans.ToListAsync();
+        //    var all = await dbContext.Doormans.ToListAsync();
 
-            foreach (Doorman D in all)
-            {
-                if (D.Id == obj.Id)
-                {
-                    return true;
-                }
-            }
+        //    foreach (Doorman D in all)
+        //    {
+        //        if (D.Id == obj.Id)
+        //        {
+        //            return true;
+        //        }
+        //    }
 
-            return false;
+        //    return false;
 
-        }
+        //}
 
         public async Task<bool> EventExists(int id)
         {

@@ -38,6 +38,11 @@ namespace SSFR_Events
 
 		}
 
+        public App()
+        {
+
+        }
+
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
