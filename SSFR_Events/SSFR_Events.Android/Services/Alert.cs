@@ -14,11 +14,15 @@ namespace SSFR_Events.Droid.Services
         Activity activity = (MainActivity)Forms.Context;
 #pragma warning restore CS068
 
+        bool Yes = false;
+
         AlertDialog.Builder Ab;
 
-        void IAlert.Alert(string title, string msg)
+        bool IAlert.Alert(string title, string msg)
         {
             ShowAlert(title, msg);
+
+            return Yes;
         }
 
         public void ShowAlert(string title, string msg)
@@ -41,7 +45,7 @@ namespace SSFR_Events.Droid.Services
 
         public void OnClick(object dialog, DialogClickEventArgs e)
         {
-           
+            Yes = true;
         }
     }
 }

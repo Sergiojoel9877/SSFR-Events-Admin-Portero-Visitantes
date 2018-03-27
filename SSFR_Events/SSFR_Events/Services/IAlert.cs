@@ -6,7 +6,7 @@ namespace SSFR_Events.Services
 {
     public interface IAlert
     {
-        void Alert(string title, string msg);
+        bool Alert(string title, string msg);
 
     }
 }

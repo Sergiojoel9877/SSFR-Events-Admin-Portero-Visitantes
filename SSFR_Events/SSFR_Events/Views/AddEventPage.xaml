@@ -121,11 +121,13 @@
 
                             <Frame BackgroundColor="#212121" HorizontalOptions="Center" CornerRadius="20" Padding="2" WidthRequest="240" HasShadow="False">
 
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Register}" />
-                                </Frame.GestureRecognizers>
+                                <Image VerticalOptions="Center" HeightRequest="50" WidthRequest="50" Source="save.png">
 
-                                <Image VerticalOptions="Center" HeightRequest="50" WidthRequest="50" Source="save.png"/>
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Register}" />
+                                    </Image.GestureRecognizers>
+                                    
+                                </Image>
 
                             </Frame>
 
