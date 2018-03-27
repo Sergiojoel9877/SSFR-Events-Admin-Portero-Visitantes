@@ -54,7 +54,7 @@
                                 <TapGestureRecognizer  />
                             </Frame.GestureRecognizers>
 
-                            <local:TransparentEditor x:Name="Password" Placeholder="Contraseña" Margin="10, 0, 0, 0" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+                            <local:TransparentEditor x:Name="Password" Placeholder="Contraseña" IsPassword="True" Margin="10, 0, 0, 0" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
 
                         </Frame>
 
@@ -70,13 +70,13 @@
 
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" HorizontalOptions="Center" Orientation="Horizontal">
 
-                        <Frame Padding="2" BackgroundColor="#FFA500"  HeightRequest="80" WidthRequest="150" CornerRadius="18" HasShadow="True">
+                        <Frame Padding="1" BackgroundColor="#FFA500" WidthRequest="150" CornerRadius="18" HasShadow="True">
 
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Login}" />
                             </Frame.GestureRecognizers>
                         
-                            <Label Text="Entrar" TextColor="#000" VerticalTextAlignment="Center" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="20"/>
+                            <Label Text="Entrar" TextColor="#000" VerticalTextAlignment="Center" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="25"/>
 
                         </Frame>
                         

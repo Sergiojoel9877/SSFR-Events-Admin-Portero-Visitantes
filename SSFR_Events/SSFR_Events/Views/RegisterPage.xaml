@@ -6,83 +6,129 @@
              Title="Registro de Usuarios"
              BackgroundColor="#000">
     <ContentPage.Content>
-        <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All">
+        <ScrollView Orientation="Vertical">
+            <StackLayout VerticalOptions="Center">
+                <Frame x:Name="CenteredFrame" BackgroundColor="#212121" HorizontalOptions="Center" Margin="16, 5, 16, 5" HasShadow="True" CornerRadius="25">
 
-            <Grid AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.6, 1" AbsoluteLayout.LayoutFlags="All">
+                    <Grid Grid.RowSpan="80">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                <!--Nombre-->
-                <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+                        <!--Nombre-->
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="0, 0, 0, 0">
 
-                    <Entry x:Name="NameEntry" Text="{Binding NameEntry}" Placeholder="Nombre" PlaceholderColor="#FFA500" TextColor="White"/>
+                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
 
-                </StackLayout>
+                                <local:TransparentEditor x:Name="NameEntry" Text="{Binding NameEntry}" Placeholder="Nombre" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
 
-                <!--Apellidos-->
-                <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+                            </Frame>
 
-                    <Entry x:Name="LastNameEntry" Text="{Binding LastNameEntry}" Placeholder="Apellido" PlaceholderColor="#FFA500" TextColor="White"/>
+                        </StackLayout>
 
-                </StackLayout>
-                
-                <!--NombreDeUsuario-->
-                <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3">
+                        <!--Apellidos-->
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="0, 5, 0, 0">
 
-                    <Entry x:Name="ProfUser" Text="{Binding ProfUser}" Placeholder="Nombre de Usuario" PlaceholderColor="#FFA500" TextColor="White"/>
+                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
 
-                </StackLayout>
+                                <local:TransparentEditor x:Name="LastNameEntry" Text="{Binding LastNameEntry}" Placeholder="Apellidos" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
 
-                <!--Email-->
-                <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4">
+                            </Frame>
 
-                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="E-mail" PlaceholderColor="#FFA500" TextColor="White"/>
- 
-                </StackLayout>
+                        </StackLayout>
 
-                <!--Password-->
-                <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5">
+                        <!--NombreDeUsuario-->
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="0, 10, 0, 0">
 
-                    <Entry x:Name="Password" Text="{Binding PassWord}" Placeholder="Contraseña" IsPassword="True" PlaceholderColor="#FFA500" TextColor="White"/>
+                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
 
-                </StackLayout>
+                                <local:TransparentEditor x:Name="ProfUser" Text="{Binding ProfUser}" Placeholder="Nombre de Usuario" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
 
-                <!--ConfirmarPassword-->
-                <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6">
+                            </Frame>
 
-                    <Entry x:Name="ConfirmPass" Text="{Binding ConfirmPassWord}" Placeholder="Confirmar Contraseña" IsPassword="True" PlaceholderColor="#FFA500" TextColor="White"/>
+                        </StackLayout>
 
-                </StackLayout>
+                        <!--Email-->
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Margin="0, 10, 0, 0">
 
-                <Frame Padding="2" BackgroundColor="#FFA500" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" HorizontalOptions="Center" HeightRequest="80" WidthRequest="170" CornerRadius="28" HasShadow="True">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Register}" />
-                    </Frame.GestureRecognizers>
+                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
 
-                    <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                                <local:TransparentEditor x:Name="Email" Text="{Binding Email}" Placeholder="E-mail" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
 
-                        <Label Text="Registrar" TextColor="White" VerticalTextAlignment="Center" FontAttributes="Bold" HorizontalTextAlignment="Center" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All" FontSize="23"/>
+                            </Frame>
 
-                    </AbsoluteLayout>
+                        </StackLayout>
+
+                        <!--Password-->
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Margin="0, 10, 0, 0">
+
+                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
+
+                                <local:TransparentEditor x:Name="Password" Text="{Binding PassWord}" Placeholder="Contraseña" IsPassword="True" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+
+                            </Frame>
+
+                        </StackLayout>
+
+                        <!--ConfirmarPassword-->
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Margin="0, 10, 0, 0">
+
+                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
+
+                                <local:TransparentEditor x:Name="ConfirmPass" Text="{Binding ConfirmPassWord}" Placeholder="Confirmar Contraseña" IsPassword="True" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+
+                            </Frame>
+
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Orientation="Vertical" Margin="0, 15, 0, 5">
+
+                            <Frame BackgroundColor="#FFA500" HorizontalOptions="Center" CornerRadius="20" Padding="2" WidthRequest="240" HasShadow="False">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Register}" />
+                                </Frame.GestureRecognizers>
+
+                                <Label Text="Registrar" TextColor="#000" VerticalTextAlignment="Center" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="25"/>
+
+                            </Frame>
+
+                        </StackLayout>
+
+                    </Grid>
+
                 </Frame>
-
-            </Grid>
-                
-        </AbsoluteLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
