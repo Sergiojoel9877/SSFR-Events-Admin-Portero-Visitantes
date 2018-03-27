@@ -11,17 +11,19 @@ using Xamarin.Forms.Xaml;
 namespace SSFR_Events.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AddGuestPage : ContentPage
+	public partial class GuestToArrivePage : ContentPage
 	{
-        AddGuestViewModel ViewModel;
 
-		public AddGuestPage (string evnTyp)
+        GuestToArriveViewModel ViewModel;
+
+		public GuestToArrivePage ()
 		{
 			InitializeComponent ();
 
-            ViewModel = new AddGuestViewModel(Navigation, evnTyp);
-            
+            ViewModel = new GuestToArriveViewModel(Navigation);
+
             BindingContext = ViewModel;
+
 		}
 	}
 }
