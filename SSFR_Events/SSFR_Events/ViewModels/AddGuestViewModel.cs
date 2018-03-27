@@ -13,12 +13,11 @@ namespace SSFR_Events.ViewModels
         public ObservableCollection<string> Gender { get; set; } = new ObservableCollection<string>();
 
         private int guestCount = 0;
-        public int GuestCount {
-
+        public int GuestCount
+        {
             get => guestCount;
 
             set => SetProperty(ref guestCount, value);
-
         }
 
         private string lastNameEntry;
@@ -47,24 +46,13 @@ namespace SSFR_Events.ViewModels
 
         }
 
-        public AddGuestViewModel(INavigation navService)
+        public AddGuestViewModel(INavigation navService, string enTyp)
         {
             _navService = navService;
 
             AddGender();
 
-            //MessagingCenter.Subscribe<AddEventViewModel, List<string>>(this, "EventType", (s, p) => {
-
-            //    foreach (string e in p)
-            //    {
-            //        SendedString = e;
-
-            //        LastNameEntry = SendedString;
-            //    }
-              
-                //MessagingCenter.Unsubscribe<AddEventViewModel>(this, "EvenType");
-
-            //});
+            SendedString = enTyp;
         }
     }
 }

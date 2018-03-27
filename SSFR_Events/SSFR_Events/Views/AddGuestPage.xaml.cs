@@ -19,10 +19,8 @@ namespace SSFR_Events.Views
 		{
 			InitializeComponent ();
 
-            ViewModel = new AddGuestViewModel(Navigation);
-
-            ViewModel.LastNameEntry = evnTyp; ///SOLO ES UNA PRUEBA
-
+            ViewModel = new AddGuestViewModel(Navigation, envTyp);
+            
             BindingContext = ViewModel;
 		}
 	}
