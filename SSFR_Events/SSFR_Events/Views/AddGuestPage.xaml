@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SSFR_Events.CustomRenderers"
+             x:Class="SSFR_Events.Views.AddGuestPage"
+             Title="Añadir Invitados"
+             BackgroundColor="#000">
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical">
+            <StackLayout VerticalOptions="Center">
+                <Frame x:Name="CenteredFrame" BackgroundColor="#212121" HorizontalOptions="Center" Margin="16, 5, 16, 5" HasShadow="True" CornerRadius="25">
+
+                    <Grid Grid.RowSpan="80">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="0, 10, 0, 0">
+
+                            <Label Text="Ingresa los Invitados" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="40" TextColor="#FFA500" VerticalOptions="End" />
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="0, 0, 0, 0">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Text="Cantidad de invitados" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="18" VerticalTextAlignment="Center" TextColor="#FFA500" Grid.Column="0" Grid.Row="0"/>
+
+                                <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="60" HasShadow="False" BackgroundColor="#131212" Grid.Column="1" Grid.Row="0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer  />
+                                    </Frame.GestureRecognizers>
+
+                                    <local:TransparentEditor x:Name="GuestCount" Text="{Binding GuestCount}" Placeholder="Nombre" HorizontalTextAlignment="Center" Keyboard="Numeric" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+
+                                </Frame>
+                            </Grid>
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="0, 5, 0, 0">
+
+                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
+
+                                <local:TransparentEditor x:Name="NameEntry" Text="{Binding NameEntry}" Placeholder="Nombre" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+
+                            </Frame>
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Margin="0, 10, 0, 0">
+
+                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
+
+                                <local:TransparentEditor x:Name="LastNameEntry" Text="{Binding LastNameEntry}" Placeholder="Apellidos" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+
+                            </Frame>
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Margin="0, 10, 0, 0">
+
+                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
+
+                                <local:TransparentEditor x:Name="Telephone" Text="{Binding TelephoneNumber}" Placeholder="Teléfono" HorizontalTextAlignment="Center" Keyboard="Telephone" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+
+                            </Frame>
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Margin="0, 10, 0, 0">
+
+                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
+
+                                <local:TransparentEditor x:Name="EmailEntry" Text="{Binding EmailEntry}" Placeholder="Email" Keyboard="Email" IsPassword="True" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+
+                            </Frame>
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Margin="0, 10, 0, 0">
+
+                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
+
+                                <Grid>
+                                    
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="Sexo " HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="18" VerticalTextAlignment="Center" TextColor="#FFA500" Grid.Column="0" Grid.Row="0"/>
+
+                                    <Picker x:Name="Gender" TextColor="#FFA500" ItemsSource="{Binding Gender}" HorizontalOptions="Start" VerticalOptions="End" WidthRequest="100" Grid.Column="1" Grid.Row="0" Margin="0, 0, 15, 0"/>
+
+                                </Grid>
+
+                            </Frame>
+
+                        </StackLayout>
+                        
+                        <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" Orientation="Vertical" Margin="0, 15, 0, 5">
+
+                            <Frame BackgroundColor="#212121" HorizontalOptions="Center" CornerRadius="20" Padding="2" WidthRequest="240" HasShadow="False">
+
+                                <Image VerticalOptions="Center" HeightRequest="50" WidthRequest="50" Source="save.png">
+
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Register}" />
+                                    </Image.GestureRecognizers>
+
+                                </Image>
+
+                            </Frame>
+
+                        </StackLayout>
+
+                    </Grid>
+
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

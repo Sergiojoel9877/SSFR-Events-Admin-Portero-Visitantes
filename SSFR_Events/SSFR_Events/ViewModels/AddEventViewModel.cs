@@ -1,5 +1,6 @@
 ﻿using SSFR_Events.Models;
 using SSFR_Events.Services;
+using SSFR_Events.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,8 @@ namespace SSFR_Events.ViewModels
     public class AddEventViewModel : ViewModelBase
     {
         INavigation _navService;
+
+        //List<string> EventTypeList { get; set; } = new List<string>();
 
         private string eventType;
         public string EventType
@@ -24,13 +27,14 @@ namespace SSFR_Events.ViewModels
 
             get => register ?? (register = new Command( () => {
 
-              bool a = DependencyService.Get<IAlert>().Alert("¿Deseas Añadir visitantes?", "Ingresa cuantos quieras, !No hay limites!");
-               
-                if (a == true)
-                {
+                //EventTypeList.Add(EventType);
 
-                }
+                //MessagingCenter.Send(this, "EventType", EventTypeList);
 
+                bool a = DependencyService.Get<IAlert>().Alert("¿Deseas Añadir visitantes?", "Ingresa cuantos quieras, !No hay limites!");
+          
+                _navService.PushAsync(new AddGuestPage(EventType));
+                
             }));
 
         }
@@ -38,7 +42,7 @@ namespace SSFR_Events.ViewModels
         public AddEventViewModel(INavigation navService)
         {
             _navService = navService;
+            
         }
-
     }
 }

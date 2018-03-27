@@ -22,11 +22,7 @@ namespace SSFR_Events.Models
         [Required]
         [StringLength(30)]
         public string Telephone { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string Address { get; set; }
-
+        
         [Required]
         [StringLength(100)]
         public string Email{ get; set; }
