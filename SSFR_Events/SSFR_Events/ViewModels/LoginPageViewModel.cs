@@ -13,9 +13,10 @@ namespace SSFR_Events.ViewModels
         private Command login;
         public Command Login
         {
-            get => login ?? (login = new Command(() => {
+            get => login ?? (login = new Command(() =>
+            {
 
-            _navService.PushModalAsync(new MainMasterDetailPage());
+                _navService.PushModalAsync(new MainMasterDetailPage());
 
             })); 
         }
@@ -26,7 +27,6 @@ namespace SSFR_Events.ViewModels
 
             get => register ?? (register = new Command(() => 
             {
-
                 _navService.PushAsync(new RegisterPage());
                 
             }));

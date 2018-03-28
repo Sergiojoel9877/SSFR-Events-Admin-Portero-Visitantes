@@ -1,12 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SSFR_Events.CustomRenderers"
+             BackgroundColor="#000"
              x:Class="SSFR_Events.Views.GuestToArrivePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView Orientation="Vertical">
+            <StackLayout x:Name="Stack">
+
+                <Frame x:Name="CenteredFrame" BackgroundColor="#212121" HorizontalOptions="Center" Margin="16, 15, 16, 0" HasShadow="True" CornerRadius="25">
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212" Grid.Column="0" Grid.Row="0">
+
+                            <local:TransparentEditor x:Name="NameEntry" Text="{Binding Name}" Placeholder="Nombre del evento" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End"/>
+
+                        </Frame>
+
+                        <Image VerticalOptions="Center" HeightRequest="50" WidthRequest="50" Source="buscar.png" Grid.Column="1" Grid.Row="0">
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Register}" />
+                            </Image.GestureRecognizers>
+
+                        </Image>
+
+                    </Grid>
+
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

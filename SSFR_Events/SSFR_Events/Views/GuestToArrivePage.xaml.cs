@@ -25,5 +25,16 @@ namespace SSFR_Events.Views
             BindingContext = ViewModel;
 
 		}
+
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PopModalAsync();
+            Navigation.PushModalAsync(new MainMasterDetailPage());
+
+            base.OnBackButtonPressed();
+
+            return true;
+
+        }
 	}
 }
