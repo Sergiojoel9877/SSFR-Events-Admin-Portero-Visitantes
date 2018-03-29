@@ -120,7 +120,7 @@
                                     <TapGestureRecognizer  />
                                 </Frame.GestureRecognizers>
 
-                                <Picker x:Name="Role" ItemsSource="{Binding RoleList}" SelectedItem="{Binding SelectedRole, Mode=TwoWay}" VerticalOptions="End" />
+                                <Picker x:Name="Role" ItemsSource="{Binding RoleList}" TextColor="#FFA500" SelectedItem="{Binding SelectedRole, Mode=TwoWay}" VerticalOptions="End" />
 
                             </Frame>
 

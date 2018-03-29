@@ -23,12 +23,6 @@ namespace SSFR_Events.Views
 
             BindingContext = ViewModel;
 
-            MessagingCenter.Send(this, "RoleSelected", "Admin");
-		}
-
-        void SelectedItem()
-        {
-
         }
 	}
 }

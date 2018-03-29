@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace SSFR_Events.ViewModels
 {
@@ -16,12 +17,21 @@ namespace SSFR_Events.ViewModels
 
         public ObservableCollection<string> RoleList { get; set; } = new ObservableCollection<string>();
 
-        private bool empty = false;
+        private bool empty = true;
         public bool Empty {
 
             get => empty;
 
             set => SetProperty(ref empty, value);
+
+        }
+
+        private bool admin = false;
+        public bool Admin {
+
+            get => admin;
+
+            set => SetProperty(ref admin, value);
 
         }
 
@@ -83,56 +93,97 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref role, value);
         }
 
+        private string selectedRole;
+        public string SelectedRole
+        {
+            get => selectedRole;
+
+            set => SetProperty(ref selectedRole, value);
+        }
+
         private Command register;
         public Command Register {
 
-            get => register ?? (register = new Command( async () => 
+            get => register ?? (register = new Command( () => 
             {
-
-                Empty = false;
-
-                if (ProfUser != String.Empty || NameEntry != String.Empty || Email != String.Empty || LastNameEntry != String.Empty || (ConfirmPassWord == PassWord) || (PassWord == ConfirmPassWord))
+                if (NameEntry != null || ProfUser != null || Email != null || LastNameEntry != null || SelectedRole != null || ConfirmPassWord != null || PassWord != null || ConfirmPassWord == PassWord)
                 {
+                    Empty = false;
 
-                    if (Email.Contains("@"))
-                    { 
+                    if (Empty == false)
+                    {
 
-                        //var registrado = await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
+                        var usersList = DependencyService.Get<IDBRepoInstance>().getInstance().GetUsers().Result;
+                        
+                        var query = usersList.Any(U => U.Role == "Admin");
+                       
+                        if (SelectedRole == "Admin" && query)
+                        {
+                            DependencyService.Get<IAlert>().Alert("Ya exite un Administrador", "Lo siento, ya exite un administrador.");
 
-                        //if (registrado)
-                        //{
-
-                            User user = new User() { LastName = LastNameEntry, Name = NameEntry, Pass = PassWord, ProfUser = ProfUser, Role = Role };
-
-                            if (user.Pass != null)
+                            _navService.PopAsync();
+                        }
+                        else
+                        {
+                            if (Email.Contains("@"))
                             {
 
-                                //var r = await App.repository.AddUser(user);
-                                var r = DependencyService.Get<IDBRepoInstance>().getInstance().AddUser(user).Result;
+                                //var registrado = await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
 
-                                if (r)
+                                //if (registrado)
+                                //{
+
+                                User user = new User()
                                 {
-                                    DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
+                                    LastName = LastNameEntry,
+                                    Name = NameEntry,
+                                    Pass = PassWord,
+                                    ProfUser = ProfUser,
+                                    Role = SelectedRole
+                                };
 
-                                   await _navService.PopAsync();
 
+                                if (user.Pass != null)
+                                {
+
+                                    var r = DependencyService.Get<IDBRepoInstance>().getInstance().AddUser(user).Result;
+
+                                    if (r)
+                                    {
+                                        DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
+
+                                        _navService.PopAsync();
+
+                                    }
                                 }
+                                //}
+                                //else
+                                //{
+                                //    DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + registrado.ToString());
+                                //}
                             }
-                        //}
-                        //else
-                        //{
-                        //    DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + registrado.ToString());
-                        //}
+                            else
+                            {
+                                DependencyService.Get<IAlert>().Alert("ERROR", "Error el correo no es valido");
+                            }
+                        }
                     }
                     else
                     {
-                        DependencyService.Get<IAlert>().Alert("ERROR", "Error el correo no es valido");
+                        NameEntry = null;
+                        LastNameEntry = null;
+                        ConfirmPassWord = null;
+                        PassWord = null;
+                        ProfUser = null;
+                        Email = null;
+
+                        DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                     }
+
                 }
                 else
                 {
-                    await _navService.PopAsync();
-                    DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales");
+                    DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                 }
             }));
         }
@@ -153,15 +204,7 @@ namespace SSFR_Events.ViewModels
 
             _navService = navService;
 
-            Empty = false;
-
             AddRoles();
-
-            MessagingCenter.Subscribe<RegisterPage, string>(this, "RoleSelected", (s, p) => {
-
-                Role = p;
-
-            });
 
         }
     }
