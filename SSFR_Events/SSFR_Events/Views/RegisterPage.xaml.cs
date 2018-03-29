@@ -22,6 +22,13 @@ namespace SSFR_Events.Views
             ViewModel = new RegisterPageViewModel(Navigation);
 
             BindingContext = ViewModel;
+
+            MessagingCenter.Send(this, "RoleSelected", "Admin");
 		}
+
+        void SelectedItem()
+        {
+
+        }
 	}
 }

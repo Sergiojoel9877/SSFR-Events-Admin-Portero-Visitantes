@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using System.Collections.ObjectModel;
 
 namespace SSFR_Events.ViewModels
 {
@@ -12,6 +13,17 @@ namespace SSFR_Events.ViewModels
     {
 
         private readonly INavigation _navService;
+
+        public ObservableCollection<string> RoleList { get; set; } = new ObservableCollection<string>();
+
+        private bool empty = false;
+        public bool Empty {
+
+            get => empty;
+
+            set => SetProperty(ref empty, value);
+
+        }
 
         private APIServices _APIServices = new APIServices();
         
@@ -63,24 +75,34 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref confirmPassWord, value);
         }
 
+        private string role;
+        public string Role
+        {
+            get => role;
+
+            set => SetProperty(ref role, value);
+        }
+
         private Command register;
         public Command Register {
 
             get => register ?? (register = new Command( async () => 
             {
 
+                Empty = false;
+
                 if (ProfUser != String.Empty || NameEntry != String.Empty || Email != String.Empty || LastNameEntry != String.Empty || (ConfirmPassWord == PassWord) || (PassWord == ConfirmPassWord))
                 {
 
-                    if (Email.Contains("@")) 
-                    {
+                    if (Email.Contains("@"))
+                    { 
 
-                        var registrado = await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
+                        //var registrado = await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
 
-                        if (registrado)
-                        {
+                        //if (registrado)
+                        //{
 
-                            User user = new User() { LastName = LastNameEntry, Name = NameEntry, Pass = PassWord, ProfUser = ProfUser };
+                            User user = new User() { LastName = LastNameEntry, Name = NameEntry, Pass = PassWord, ProfUser = ProfUser, Role = Role };
 
                             if (user.Pass != null)
                             {
@@ -96,24 +118,50 @@ namespace SSFR_Events.ViewModels
 
                                 }
                             }
-                        }
-                        else
-                        {
-                            DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + registrado.ToString());
-                        }
+                        //}
+                        //else
+                        //{
+                        //    DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + registrado.ToString());
+                        //}
+                    }
+                    else
+                    {
+                        DependencyService.Get<IAlert>().Alert("ERROR", "Error el correo no es valido");
                     }
                 }
                 else
                 {
+                    await _navService.PopAsync();
                     DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales");
                 }
             }));
+        }
+
+        void AddRoles()
+        {
+            string Admin = "Admin";
+
+            string Portero = "Portero";
+
+            RoleList.Add(Admin);
+
+            RoleList.Add(Portero);
         }
 
         public RegisterPageViewModel(INavigation navService)
         {
 
             _navService = navService;
+
+            Empty = false;
+
+            AddRoles();
+
+            MessagingCenter.Subscribe<RegisterPage, string>(this, "RoleSelected", (s, p) => {
+
+                Role = p;
+
+            });
 
         }
     }

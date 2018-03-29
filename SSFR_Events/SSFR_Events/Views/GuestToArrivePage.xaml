@@ -39,6 +39,23 @@
 
                 </Frame>
 
+                <Frame x:Name="guestList" BackgroundColor="#212121" HorizontalOptions="Center" Margin="16, 15, 16, 0" HasShadow="True" CornerRadius="25">
+
+                    <ListView ItemsSource="{Binding GuestList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+
+                                        
+                                        
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </Frame>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

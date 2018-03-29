@@ -29,6 +29,7 @@ namespace SSFR_Events.Views
         protected override bool OnBackButtonPressed()
         {
             Navigation.PopModalAsync();
+
             Navigation.PushModalAsync(new MainMasterDetailPage());
 
             base.OnBackButtonPressed();
