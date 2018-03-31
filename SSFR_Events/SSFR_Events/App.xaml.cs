@@ -23,11 +23,12 @@ namespace SSFR_Events
 
             repo = repository;
 
-            //client = new HttpClient {
+            client = new HttpClient
+            {
 
-            //    BaseAddress = new Uri("http://oauthssfrapi.azurewebsites.net")
+                BaseAddress = new Uri("http://sf-oauth-api.azurewebsites.net")
 
-            //};
+            };
 
             var loginPage = new NavigationPage(new LoginPage())
             {

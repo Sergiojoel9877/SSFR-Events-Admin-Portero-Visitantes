@@ -104,7 +104,7 @@ namespace SSFR_Events.ViewModels
         private Command register;
         public Command Register {
 
-            get => register ?? (register = new Command( () => 
+            get => register ?? (register = new Command( async () => 
             {
                 if (NameEntry != null || ProfUser != null || Email != null || LastNameEntry != null || SelectedRole != null || ConfirmPassWord != null || PassWord != null || ConfirmPassWord == PassWord)
                 {
@@ -113,7 +113,7 @@ namespace SSFR_Events.ViewModels
                     if (Empty == false)
                     {
 
-                        var usersList = DependencyService.Get<IDBRepoInstance>().getInstance().GetUsers().Result;
+                        var usersList = await DependencyService.Get<IDBRepoInstance>().getInstance().GetUsers();
                         
                         var query = usersList.Any(U => U.Role == "Admin");
                        
@@ -121,46 +121,46 @@ namespace SSFR_Events.ViewModels
                         {
                             DependencyService.Get<IAlert>().Alert("Ya exite un Administrador", "Lo siento, ya exite un administrador.");
 
-                            _navService.PopAsync();
+                            await _navService.PopAsync();
                         }
                         else
                         {
                             if (Email.Contains("@"))
                             {
 
-                                //var registrado = await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
+                                var registrado = await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
 
-                                //if (registrado)
-                                //{
-
-                                User user = new User()
-                                {
-                                    LastName = LastNameEntry,
-                                    Name = NameEntry,
-                                    Pass = PassWord,
-                                    ProfUser = ProfUser,
-                                    Role = SelectedRole
-                                };
-
-
-                                if (user.Pass != null)
+                                if (registrado)
                                 {
 
-                                    var r = DependencyService.Get<IDBRepoInstance>().getInstance().AddUser(user).Result;
-
-                                    if (r)
+                                    User user = new User()
                                     {
-                                        DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
+                                        LastName = LastNameEntry,
+                                        Name = NameEntry,
+                                        Pass = PassWord,
+                                        ProfUser = ProfUser,
+                                        Role = SelectedRole
+                                    };
 
-                                        _navService.PopAsync();
 
+                                    if (user.Pass != null)
+                                    {
+
+                                        var r = await DependencyService.Get<IDBRepoInstance>().getInstance().AddUser(user);
+
+                                        if (r)
+                                        {
+                                            DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
+
+                                            await _navService.PopAsync();
+
+                                        }
                                     }
                                 }
-                                //}
-                                //else
-                                //{
-                                //    DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + registrado.ToString());
-                                //}
+                                else
+                                {
+                                    DependencyService.Get<IAlert>().Alert("ERROR", "Error: Asegurate de que tienes conexión a internet, e intentalo de nuevo " + registrado.ToString());
+                                }
                             }
                             else
                             {
@@ -170,13 +170,6 @@ namespace SSFR_Events.ViewModels
                     }
                     else
                     {
-                        NameEntry = null;
-                        LastNameEntry = null;
-                        ConfirmPassWord = null;
-                        PassWord = null;
-                        ProfUser = null;
-                        Email = null;
-
                         DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                     }
 
