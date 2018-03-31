@@ -125,7 +125,7 @@
 
                                     <Label Text="Sexo " HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="18" VerticalTextAlignment="Center" TextColor="#FFA500" Grid.Column="0" Grid.Row="0"/>
 
-                                    <Picker x:Name="Gender" TextColor="#FFA500" ItemsSource="{Binding Gender}" HorizontalOptions="Start" VerticalOptions="End" WidthRequest="100" Grid.Column="1" Grid.Row="0" Margin="0, 0, 15, 0"/>
+                                    <Picker x:Name="Gender" TextColor="#FFA500" ItemsSource="{Binding Gender}" SelectedItem="{Binding SelectedGender}" HorizontalOptions="Start" VerticalOptions="End" WidthRequest="100" Grid.Column="1" Grid.Row="0" Margin="0, 0, 15, 0"/>
 
                                 </Grid>
 
