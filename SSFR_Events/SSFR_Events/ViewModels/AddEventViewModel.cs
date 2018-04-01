@@ -86,7 +86,7 @@ namespace SSFR_Events.ViewModels
 
                         if (query)
                         {
-                            DependencyService.Get<IAlert>().Alert("Este invitado ya existe", "Lo siento tal parece que  ya existe un invitado con este correo.");
+                            DependencyService.Get<IAlert>().Alert("Este Evento ya existe", "Lo siento tal parece que ya existe un evento con este correo.");
                         }
                         else
                         {
