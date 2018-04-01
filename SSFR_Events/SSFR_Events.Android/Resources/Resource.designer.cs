@@ -26,6 +26,42 @@ namespace SSFR_Events.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Attribute.cardBackgroundColor = global::SSFR_Events.Droid.Resource.Attribute.cardBackgroundColor;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Attribute.cardCornerRadius = global::SSFR_Events.Droid.Resource.Attribute.cardCornerRadius;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Attribute.cardElevation = global::SSFR_Events.Droid.Resource.Attribute.cardElevation;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Attribute.cardMaxElevation = global::SSFR_Events.Droid.Resource.Attribute.cardMaxElevation;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Attribute.cardPreventCornerOverlap = global::SSFR_Events.Droid.Resource.Attribute.cardPreventCornerOverlap;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Attribute.cardUseCompatPadding = global::SSFR_Events.Droid.Resource.Attribute.cardUseCompatPadding;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Attribute.contentPadding = global::SSFR_Events.Droid.Resource.Attribute.contentPadding;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Attribute.contentPaddingBottom = global::SSFR_Events.Droid.Resource.Attribute.contentPaddingBottom;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Attribute.contentPaddingLeft = global::SSFR_Events.Droid.Resource.Attribute.contentPaddingLeft;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Attribute.contentPaddingRight = global::SSFR_Events.Droid.Resource.Attribute.contentPaddingRight;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Attribute.contentPaddingTop = global::SSFR_Events.Droid.Resource.Attribute.contentPaddingTop;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Color.cardview_dark_background = global::SSFR_Events.Droid.Resource.Color.cardview_dark_background;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Color.cardview_light_background = global::SSFR_Events.Droid.Resource.Color.cardview_light_background;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Color.cardview_shadow_end_color = global::SSFR_Events.Droid.Resource.Color.cardview_shadow_end_color;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Color.cardview_shadow_start_color = global::SSFR_Events.Droid.Resource.Color.cardview_shadow_start_color;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Dimension.cardview_compat_inset_shadow = global::SSFR_Events.Droid.Resource.Dimension.cardview_compat_inset_shadow;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Dimension.cardview_default_elevation = global::SSFR_Events.Droid.Resource.Dimension.cardview_default_elevation;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Dimension.cardview_default_radius = global::SSFR_Events.Droid.Resource.Dimension.cardview_default_radius;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Style.Base_CardView = global::SSFR_Events.Droid.Resource.Style.Base_CardView;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Style.CardView = global::SSFR_Events.Droid.Resource.Style.CardView;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Style.CardView_Dark = global::SSFR_Events.Droid.Resource.Style.CardView_Dark;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Style.CardView_Light = global::SSFR_Events.Droid.Resource.Style.CardView_Light;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView = global::SSFR_Events.Droid.Resource.Styleable.CardView;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_android_minHeight = global::SSFR_Events.Droid.Resource.Styleable.CardView_android_minHeight;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_android_minWidth = global::SSFR_Events.Droid.Resource.Styleable.CardView_android_minWidth;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_cardBackgroundColor = global::SSFR_Events.Droid.Resource.Styleable.CardView_cardBackgroundColor;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_cardCornerRadius = global::SSFR_Events.Droid.Resource.Styleable.CardView_cardCornerRadius;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_cardElevation = global::SSFR_Events.Droid.Resource.Styleable.CardView_cardElevation;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_cardMaxElevation = global::SSFR_Events.Droid.Resource.Styleable.CardView_cardMaxElevation;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap = global::SSFR_Events.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_cardUseCompatPadding = global::SSFR_Events.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_contentPadding = global::SSFR_Events.Droid.Resource.Styleable.CardView_contentPadding;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_contentPaddingBottom = global::SSFR_Events.Droid.Resource.Styleable.CardView_contentPaddingBottom;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_contentPaddingLeft = global::SSFR_Events.Droid.Resource.Styleable.CardView_contentPaddingLeft;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_contentPaddingRight = global::SSFR_Events.Droid.Resource.Styleable.CardView_contentPaddingRight;
+			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_contentPaddingTop = global::SSFR_Events.Droid.Resource.Styleable.CardView_contentPaddingTop;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::SSFR_Events.Droid.Resource.Attribute.actionBarSize;
 		}
 		

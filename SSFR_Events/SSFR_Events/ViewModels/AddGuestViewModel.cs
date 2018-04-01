@@ -95,13 +95,13 @@ namespace SSFR_Events.ViewModels
         {
             get => register ?? ( register = new Command( async () => {
 
+               var count = GuestCount -= 1;
+
                 do
                 {
-                    if(GuestCount != 0)
+                    if(count != 0)
                     {
                         GuestCountEnabled = false;
-
-                        GuestCount--;
 
                         if (GuestCount != 0 || NameEntry != null || LastNameEntry != null || TelephoneNumber != null || EmailEntry != null || SelectedGender != null)
                         {
@@ -178,7 +178,7 @@ namespace SSFR_Events.ViewModels
                         GuestCountEnabled = true;
                     }
 
-                } while (GuestCount > 0);
+                } while (count < GuestCount);
                 
             }));
         }

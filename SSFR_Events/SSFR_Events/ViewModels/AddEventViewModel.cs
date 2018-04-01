@@ -37,8 +37,8 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref eventType, value);
         }
 
-        private TimeSpan dateSelected;
-        public TimeSpan DateSelected
+        private DateTime dateSelected;
+        public DateTime DateSelected
         {
             get => dateSelected;
 
@@ -60,13 +60,18 @@ namespace SSFR_Events.ViewModels
 
             set => SetProperty(ref location, value);
         }
-        
+
+        private void ChangeDate(DateTime newDate)
+        {
+            DateSelected = newDate; 
+        }
+
         private Command register;
         public Command Register {
 
             get => register ?? (register = new Command( async () => {
 
-                if (NameEntry != null || DateSelected != null || TimeSelected != null || Location != null)
+                if (NameEntry != null || Location != null)
                 {
                     Empty = false;
 
@@ -107,7 +112,7 @@ namespace SSFR_Events.ViewModels
                 }
                 else
                 {
-                    DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
+                    DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios");
                 }
                 
             }));

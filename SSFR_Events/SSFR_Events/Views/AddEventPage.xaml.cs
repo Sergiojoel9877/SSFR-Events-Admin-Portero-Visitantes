@@ -15,6 +15,8 @@ namespace SSFR_Events.Views
 	{
         AddEventViewModel ViewModel;
 
+        DateTime date { get; set; }
+
         public AddEventPage(string eventType)
 		{
             InitializeComponent();
@@ -25,6 +27,15 @@ namespace SSFR_Events.Views
 
             BindingContext = ViewModel;
 
+            DatePicker.DateSelected += OnDateSelected;
+
+        }
+
+        public void OnDateSelected(object sender, DateChangedEventArgs e)
+        {
+            date = e.NewDate.Date;
+
+            ViewModel.DateSelected = date;
         }
     }
 }
