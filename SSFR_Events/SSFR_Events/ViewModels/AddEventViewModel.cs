@@ -6,12 +6,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Xamarin.Forms;
+using Syncfusion.SfBarcode.XForms;
 
 namespace SSFR_Events.ViewModels
 {
     public class AddEventViewModel : ViewModelBase
     {
         INavigation _navService;
+
+        SfBarcode barcode = new SfBarcode();
 
         private bool empty;
         public bool Empty
@@ -96,7 +99,11 @@ namespace SSFR_Events.ViewModels
                             };
 
                             var r = await DependencyService.Get<IDBRepoInstance>().getInstance().AddEvent(@event);
+                            
+                            barcode.Text = NameEntry;
 
+                            barcode.Symbology = BarcodeSymbolType.QRCode; //ME QUEDE AQUI
+                            
                             if (r)
                             {
                                 bool a = DependencyService.Get<IAlert>().Alert("¡Añade unos visitantes!", "Ingresa cuantos quieras, ¡No hay limites!");
