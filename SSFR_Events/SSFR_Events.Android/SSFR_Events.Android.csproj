@@ -58,8 +58,14 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.1</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBarcode">
+      <Version>16.1.0.32</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBarcode.Android">
+      <Version>16.1.0.32</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugins.Messaging">
-      <Version>5.1.0</Version>
+      <Version>3.2.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="2.4.0.280" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="23.3.0" />

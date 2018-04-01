@@ -24,6 +24,7 @@ namespace SSFR_Events.Views
             ViewModel.EventType = eventType;
 
             BindingContext = ViewModel;
+
         }
     }
 }

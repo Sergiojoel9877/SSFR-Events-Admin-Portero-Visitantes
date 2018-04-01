@@ -21,8 +21,8 @@ namespace SQLiteEntityFramework.cs
         public DatabaseContext(string _path)
         {
             Path = _path;
-            //Database.EnsureCreated();
-            Database.EnsureDeleted();
+            Database.EnsureCreated();
+            //Database.EnsureDeleted();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)

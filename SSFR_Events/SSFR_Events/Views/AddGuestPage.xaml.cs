@@ -1,4 +1,5 @@
-﻿using SSFR_Events.ViewModels;
+﻿using SSFR_Events.Models;
+using SSFR_Events.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,11 @@ namespace SSFR_Events.Views
 	{
         AddGuestViewModel ViewModel;
 
-		public AddGuestPage (string evnTyp)
+		public AddGuestPage (Events evnt)
 		{
 			InitializeComponent ();
 
-            ViewModel = new AddGuestViewModel(Navigation, evnTyp);
+            ViewModel = new AddGuestViewModel(Navigation, evnt);
             
             BindingContext = ViewModel;
 		}

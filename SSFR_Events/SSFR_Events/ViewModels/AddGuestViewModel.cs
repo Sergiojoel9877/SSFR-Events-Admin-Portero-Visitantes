@@ -65,12 +65,12 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref emailEntry, value);
         }
         
-        private string sendedString;
-        public string SendedString
+        private Events sendedEvent;
+        public Events SendedEvent
         {
-            get => sendedString;
+            get => sendedEvent;
 
-            set => SetProperty(ref sendedString, value);
+            set => SetProperty(ref sendedEvent, value);
         }
 
         private string selectedGender;
@@ -79,6 +79,15 @@ namespace SSFR_Events.ViewModels
             get => selectedGender;
 
             set => SetProperty(ref selectedGender, value);
+        }
+
+        private bool guestCountEnabled = true;
+        public bool GuestCountEnabled {
+
+            get => guestCountEnabled;
+
+            set => SetProperty(ref guestCountEnabled, value);
+
         }
 
         private Command register;
@@ -90,6 +99,8 @@ namespace SSFR_Events.ViewModels
                 {
                     if(GuestCount != 0)
                     {
+                        GuestCountEnabled = false;
+
                         GuestCount--;
 
                         if (GuestCount != 0 || NameEntry != null || LastNameEntry != null || TelephoneNumber != null || EmailEntry != null || SelectedGender != null)
@@ -121,23 +132,22 @@ namespace SSFR_Events.ViewModels
                                                 Email = EmailEntry,
                                                 Gender = SelectedGender,
                                                 Telephone = TelephoneNumber,
-                                                //Event = new Events() {   }
+                                                Event = SendedEvent
                                             };
 
                                             var r = await DependencyService.Get<IDBRepoInstance>().getInstance().AddGuest(guest);
 
                                             if (r)
                                             {
-
                                                 var sendEmail = CrossMessaging.Current.EmailMessenger;
 
                                                 if (sendEmail.CanSendEmail)
                                                 {
 
                                                     sendEmail.SendEmail(EmailEntry, "¡Hey hola!", "Señores Sergio Joel Ferreras les escribe, esto es una simple prueba desde mi App (la cual estoy desarrollando), disculpen las molestias que les pueda causar, pasen buenas tardes.");
-                                            
+                                                    
+                                                    DependencyService.Get<IAlert>().Alert("Registrado con éxito", "Invitado registrado con éxito");
                                                 }
-
                                             }
                                         }
                                         catch (Exception e)
@@ -145,16 +155,30 @@ namespace SSFR_Events.ViewModels
                                             DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + e.ToString());
                                         }
                                     }
+                                    else
+                                    {
+                                        DependencyService.Get<IAlert>().Alert("ERROR", "Error el correo no es valido");
+                                    }
                                 }
                             }
+                            else
+                            {
+                                DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
+                            }
+                        }
+                        else
+                        {
+                            DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                         }
                     }
                     else
                     {
                         DependencyService.Get<IAlert>().Alert("Todos los invitados fueron registrados", "Todos los invitados registrados exitosamente");
+
+                        GuestCountEnabled = true;
                     }
 
-                } while (GuestCount >= 0);
+                } while (GuestCount > 0);
                 
             }));
         }
@@ -169,13 +193,13 @@ namespace SSFR_Events.ViewModels
 
         }
 
-        public AddGuestViewModel(INavigation navService, string enTyp)
+        public AddGuestViewModel(INavigation navService, Events evnt)
         {
             _navService = navService;
 
             AddGender();
 
-            SendedString = enTyp;
+            SendedEvent = evnt;
         }
     }
 }

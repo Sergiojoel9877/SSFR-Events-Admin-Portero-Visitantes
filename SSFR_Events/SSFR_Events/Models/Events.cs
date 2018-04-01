@@ -19,6 +19,9 @@ namespace SSFR_Events.Models
         public string Date { get; set; }
 
         [Required]
+        public string Time { get; set; }
+
+        [Required]
         [StringLength(250)]
         public string Location { get; set; }
 

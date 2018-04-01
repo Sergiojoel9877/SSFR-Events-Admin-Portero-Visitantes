@@ -36,7 +36,7 @@ namespace SQLiteEntityFramework.cs
 
             await dbContext.SaveChangesAsync();
 
-            var added = obj.State == EntityState.Added;
+            var added = @event.Id == obj.Entity.Id;
 
             return added;
         }
@@ -47,7 +47,7 @@ namespace SQLiteEntityFramework.cs
 
             await dbContext.SaveChangesAsync();
 
-            var added = obj.State == EntityState.Added;
+            var added = guest.Id == obj.Entity.Id;
 
             return added;
         }
