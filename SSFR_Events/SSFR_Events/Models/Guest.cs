@@ -31,7 +31,7 @@ namespace SSFR_Events.Models
         [StringLength(1)]
         public string Gender { get; set; }
 
-        public int? EventId { get; set; }
+        public int EventId { get; set; }
 
         [ForeignKey("EventId")]
         public Events Event { get; set; }

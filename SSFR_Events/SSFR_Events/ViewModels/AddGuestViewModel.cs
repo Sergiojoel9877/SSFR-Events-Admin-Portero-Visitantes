@@ -93,17 +93,20 @@ namespace SSFR_Events.ViewModels
         private Command register;
         public Command Register
         {
-            get => register ?? ( register = new Command( async () => {
-
-               var count = GuestCount -= 1;
+            get => register ?? ( register = new Command( async () =>
+            {
 
                 do
                 {
-                    if(count != 0)
+             
+                    if (GuestCount != 0)
                     {
+                     
+                        GuestCount--;
+
                         GuestCountEnabled = false;
 
-                        if (GuestCount != 0 || NameEntry != null || LastNameEntry != null || TelephoneNumber != null || EmailEntry != null || SelectedGender != null)
+                        if (NameEntry != null || LastNameEntry != null || TelephoneNumber != null || EmailEntry != null || SelectedGender != null)
                         {
                             Empty = false;
 
@@ -132,7 +135,7 @@ namespace SSFR_Events.ViewModels
                                                 Email = EmailEntry,
                                                 Gender = SelectedGender,
                                                 Telephone = TelephoneNumber,
-                                                Event = SendedEvent
+                                                EventId = SendedEvent.Id
                                             };
 
                                             var r = await DependencyService.Get<IDBRepoInstance>().getInstance().AddGuest(guest);
@@ -145,7 +148,7 @@ namespace SSFR_Events.ViewModels
                                                 {
 
                                                     sendEmail.SendEmail(EmailEntry, "¡Hey hola!", "Señores Sergio Joel Ferreras les escribe, esto es una simple prueba desde mi App (la cual estoy desarrollando), disculpen las molestias que les pueda causar, pasen buenas tardes.");
-                                                    
+
                                                     DependencyService.Get<IAlert>().Alert("Registrado con éxito", "Invitado registrado con éxito");
                                                 }
                                             }
@@ -173,12 +176,12 @@ namespace SSFR_Events.ViewModels
                     }
                     else
                     {
-                        DependencyService.Get<IAlert>().Alert("Todos los invitados fueron registrados", "Todos los invitados registrados exitosamente");
+                        DependencyService.Get<IAlert>().Alert("Todos los invitados fueron registrados", "Yo todos los invitados han sido registrados exitosamente.");
 
                         GuestCountEnabled = true;
                     }
 
-                } while (count < GuestCount);
+                } while (GuestCount > 0);
                 
             }));
         }
