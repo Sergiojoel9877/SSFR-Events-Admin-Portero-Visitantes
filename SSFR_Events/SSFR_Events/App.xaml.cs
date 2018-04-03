@@ -26,7 +26,7 @@ namespace SSFR_Events
             client = new HttpClient
             {
 
-                BaseAddress = new Uri("http://sf-oauth-api.azurewebsites.net")
+                BaseAddress = new Uri("http://oauthsfapi2018sergio.azurewebsites.net/")
 
             };
 

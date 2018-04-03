@@ -36,6 +36,8 @@ namespace SSFR_Events.ViewModels
         public LoginPageViewModel(INavigation navService)
         {
             _navService = navService;
+
+
         }
     }
 }

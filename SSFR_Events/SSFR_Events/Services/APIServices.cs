@@ -28,7 +28,7 @@ namespace SSFR_Events.Services
 
             try
             {
-                HttpResponseMessage response = await client.PostAsync("/api/Account/Register", content);
+                HttpResponseMessage response = await client.PostAsync("api/Account/Register", content);
 
                 return response.IsSuccessStatusCode;
             }
@@ -41,25 +41,37 @@ namespace SSFR_Events.Services
             
         }
 
-        public async Task<bool> LoginAsync(string email, string password)
-        {
+        //public async Task<bool> LoginAsync(string userName, string password)
+        //{
 
-            var client = App.client;
+        //    //var client = App.client;
 
-            var model = new UserSignUp_In
-            {
-                Email = email,
-                Password = password,
-            };
+        //    //var model = new UserSignUp_In
+        //    //{
+        //    //    Email = email,
+        //    //    Password = password,
+        //    //};
 
-            var Json = JsonConvert.SerializeObject(model);
+        //    //var Json = JsonConvert.SerializeObject(model);
 
-            var content = new StringContent(Json, Encoding.UTF8, "application/json");
+        //    //var content = new StringContent(Json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PostAsync("/api/Account/Login", content);
+        //    //HttpResponseMessage response = await client.PostAsync("/api/Account/Login", content);
 
-            return response.IsSuccessStatusCode;
+        //    //return response.IsSuccessStatusCode;
 
-        }
+        //    var keyValues = new List<KeyValuePair<string, string>>
+        //    {
+
+        //        new KeyValuePair<string, string>("username", userName),
+        //        new KeyValuePair<string, string>("password", password),
+        //        new KeyValuePair<string, string>("grant_type", "password")
+
+        //    };
+
+        //    HttpResponseMessage response = await client.PostAsync("/Toke", content);
+
+
+        //}
     }
 }

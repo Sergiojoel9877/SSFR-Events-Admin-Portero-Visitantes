@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using SSFR_Events.Helpers;
 using System.Linq;
 
 namespace SSFR_Events.ViewModels
@@ -150,6 +151,9 @@ namespace SSFR_Events.ViewModels
 
                                         if (r)
                                         {
+                                            Settings.UserName = ProfUser;
+                                            Settings.Password = passWord;
+
                                             DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
 
                                             await _navService.PopAsync();

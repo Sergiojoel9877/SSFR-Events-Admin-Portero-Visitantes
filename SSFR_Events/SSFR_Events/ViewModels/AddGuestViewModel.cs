@@ -150,6 +150,13 @@ namespace SSFR_Events.ViewModels
                                                     sendEmail.SendEmail(EmailEntry, "¡Hey hola!", "Señores Sergio Joel Ferreras les escribe, esto es una simple prueba desde mi App (la cual estoy desarrollando), disculpen las molestias que les pueda causar, pasen buenas tardes.");
 
                                                     DependencyService.Get<IAlert>().Alert("Registrado con éxito", "Invitado registrado con éxito");
+
+                                                    NameEntry = null;
+                                                    LastNameEntry = null;
+                                                    EmailEntry = null;
+                                                    SelectedGender = null;
+                                                    TelephoneNumber = null;
+
                                                 }
                                             }
                                         }
