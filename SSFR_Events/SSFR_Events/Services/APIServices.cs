@@ -15,7 +15,7 @@ namespace SSFR_Events.Services
 
             var client = App.client;
 
-            var model = new UserSignUp_In
+            var model = new UserSignUp
             {
                 Email = email,
                 Password = passWord,
@@ -30,6 +30,8 @@ namespace SSFR_Events.Services
             {
                 HttpResponseMessage response = await client.PostAsync("api/Account/Register", content);
 
+                Console.WriteLine("" + await response.Content.ReadAsStringAsync());
+
                 return response.IsSuccessStatusCode;
             }
             catch (Exception e)
@@ -41,37 +43,30 @@ namespace SSFR_Events.Services
             
         }
 
-        //public async Task<bool> LoginAsync(string userName, string password)
-        //{
+        public async Task<object> LoginAsync(string email, string password, bool remember)
+        {
 
-        //    //var client = App.client;
+            var client = App.client;
 
-        //    //var model = new UserSignUp_In
-        //    //{
-        //    //    Email = email,
-        //    //    Password = password,
-        //    //};
+            var model = new UserSignIn
+            {
+                Email = email,
+                Password = password,
+                RememberMe = false,
+            };
 
-        //    //var Json = JsonConvert.SerializeObject(model);
+            var Json = JsonConvert.SerializeObject(model);
 
-        //    //var content = new StringContent(Json, Encoding.UTF8, "application/json");
+            var content = new StringContent(Json, Encoding.UTF8, "application/json");
 
-        //    //HttpResponseMessage response = await client.PostAsync("/api/Account/Login", content);
+            HttpResponseMessage response = await client.PostAsync("api/Account/Login", content);
 
-        //    //return response.IsSuccessStatusCode;
+            var data = await response.Content.ReadAsStringAsync();
 
-        //    var keyValues = new List<KeyValuePair<string, string>>
-        //    {
+            var r = JsonConvert.DeserializeObject(data);
 
-        //        new KeyValuePair<string, string>("username", userName),
-        //        new KeyValuePair<string, string>("password", password),
-        //        new KeyValuePair<string, string>("grant_type", "password")
-
-        //    };
-
-        //    HttpResponseMessage response = await client.PostAsync("/Toke", content);
-
-
-        //}
+            return r;
+            
+        }
     }
 }

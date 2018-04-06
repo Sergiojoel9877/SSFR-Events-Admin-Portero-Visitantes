@@ -42,7 +42,7 @@
                                 <TapGestureRecognizer  />
                             </Frame.GestureRecognizers>
 
-                            <local:TransparentEditor x:Name="UserName" Placeholder="Usuario" Margin="10, 0, 0, 0" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+                            <local:TransparentEditor x:Name="UserName" Text="{Binding Email}" Placeholder="Email" Margin="10, 0, 0, 0" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
 
                         </Frame>
                     </StackLayout>
@@ -54,7 +54,7 @@
                                 <TapGestureRecognizer  />
                             </Frame.GestureRecognizers>
 
-                            <local:TransparentEditor x:Name="Password" Placeholder="Contraseña" IsPassword="True" Margin="10, 0, 0, 0" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+                            <local:TransparentEditor x:Name="Password" Text="{Binding Password}" Placeholder="Contraseña" IsPassword="True" Margin="10, 0, 0, 0" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
 
                         </Frame>
 
@@ -62,7 +62,7 @@
 
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalOptions="Center" Orientation="Horizontal">
 
-                        <local:CheckBox IsChecked="False" Color="#FFA500"/>
+                        <local:CheckBox IsChecked="{Binding IsChecked}" Color="#FFA500"/>
 
                         <Label Text="¿Admin?, seleccioname" FontAttributes="Bold" LineBreakMode="NoWrap" FontSize="15" VerticalOptions="Center" TextColor="#FFA500"/>
 

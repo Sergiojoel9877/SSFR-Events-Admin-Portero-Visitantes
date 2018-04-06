@@ -16,6 +16,8 @@ namespace SSFR_Events
 
         public static HttpClient client;
 
+        public static APIServices _APIServices;
+
         public App(IDBRepository repo)
 		{
          
@@ -23,10 +25,12 @@ namespace SSFR_Events
 
             repo = repository;
 
+            _APIServices = new APIServices();
+
             client = new HttpClient
             {
 
-                BaseAddress = new Uri("http://oauthsfapi2018sergio.azurewebsites.net/")
+                BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/")
 
             };
 

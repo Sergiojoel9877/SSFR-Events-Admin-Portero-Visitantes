@@ -35,8 +35,6 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref admin, value);
 
         }
-
-        private APIServices _APIServices = new APIServices();
         
         private string nameEntry;
         public string NameEntry
@@ -129,7 +127,7 @@ namespace SSFR_Events.ViewModels
                             if (Email.Contains("@"))
                             {
 
-                                var registrado = await _APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
+                                var registrado = await App._APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
 
                                 if (registrado)
                                 {
@@ -151,9 +149,6 @@ namespace SSFR_Events.ViewModels
 
                                         if (r)
                                         {
-                                            Settings.UserName = ProfUser;
-                                            Settings.Password = passWord;
-
                                             DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
 
                                             await _navService.PopAsync();
