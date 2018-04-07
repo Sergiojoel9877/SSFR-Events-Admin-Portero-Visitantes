@@ -6,6 +6,7 @@ using System.Text;
 using Xamarin.Forms;
 using SSFR_Events.Services;
 using System.Security.Claims;
+using System.Net.Http;
 
 namespace SSFR_Events.ViewModels
 {
@@ -21,11 +22,24 @@ namespace SSFR_Events.ViewModels
 
                 var logged = await App._APIServices.LoginAsync(Email, Password, false);
 
-                logged. 
+                Settings.Token = logged;
+
+                HttpClient clnt = new HttpClient();
+
+                clnt.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
+
+                clnt.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
+
+                App.client = null;
+
+                App.client = clnt;
 
                 if (logged != null)
                 {
-                    DependencyService.Get<IToast>().LongAlert(logged);
+
+                    var claims = await App._APIServices.GetUserClaims();
+
+                    DependencyService.Get<IToast>().LongAlert(logged.ToString());
 
                     Email = Settings.UserName;
 
@@ -78,10 +92,10 @@ namespace SSFR_Events.ViewModels
         {
             _navService = navService;
 
-            //Email = Settings.UserName;
+            Email = Settings.UserName;
 
-            //Password = Settings.Password;
-            
+            Password = Settings.Password;
+
         }
     }
 }

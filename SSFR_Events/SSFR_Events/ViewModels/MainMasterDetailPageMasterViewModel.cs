@@ -33,7 +33,7 @@ namespace SSFR_Events.ViewModels
         private void FillCollection()
         {
 
-            MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 0, Title = "Reportes", TargetType = typeof(LoginPage), ImageSource = "repo.png" });
+            MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 0, Title = "Reportes", TargetType = typeof(ReportsPage), ImageSource = "repo.png" });
 
             MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 1, Title = "Eventos Actuales", TargetType = typeof(LoginPage), ImageSource = "evn.png" });
 

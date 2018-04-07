@@ -43,7 +43,7 @@ namespace SSFR_Events.Services
             
         }
 
-        public async Task<object> LoginAsync(string email, string password, bool remember)
+        public async Task<string> LoginAsync(string email, string password, bool remember)
         {
 
             var client = App.client;
@@ -63,9 +63,17 @@ namespace SSFR_Events.Services
 
             var data = await response.Content.ReadAsStringAsync();
 
-            var r = JsonConvert.DeserializeObject(data);
+            return data;
+            
+        }
 
-            return r;
+        public async Task<string> GetUserClaims()
+        {
+            HttpResponseMessage response = await App.client.GetAsync("api/Account/Claim");
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            return json;
             
         }
     }

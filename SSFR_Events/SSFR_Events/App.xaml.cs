@@ -14,7 +14,7 @@ namespace SSFR_Events
 	{
         public static IDBRepository repository;
 
-        public static HttpClient client;
+        public static HttpClient client { get; set; }
 
         public static APIServices _APIServices;
 

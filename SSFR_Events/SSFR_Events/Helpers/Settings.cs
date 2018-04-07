@@ -30,6 +30,19 @@ namespace SSFR_Events.Helpers
                 AppSettings.AddOrUpdateValue("Username", value);
             }
         }
+
+        public static string Token
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("Token", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("Token", value);
+            }
+        }
+
         public static string Password
         {
             get
