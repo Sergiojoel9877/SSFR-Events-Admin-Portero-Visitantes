@@ -31,6 +31,7 @@ namespace SSFR_Events
             {
 
                 BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/")
+                //BaseAddress = new Uri("http://localhost:5000/")
 
             };
 

@@ -22,32 +22,37 @@ namespace SSFR_Events.ViewModels
 
                 var logged = await App._APIServices.LoginAsync(Email, Password, false);
 
-                Settings.Token = logged;
-
-                HttpClient clnt = new HttpClient();
-
-                clnt.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
-
-                clnt.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
-
-                App.client = null;
-
-                App.client = clnt;
-
-                if (logged != null)
+                if(logged != null)
                 {
 
+                    Settings.Token = logged;
+
+                    HttpClient clnt = new HttpClient();
+
+                    clnt.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
+                    //clnt.BaseAddress = new Uri("http://localhost:5000/");
+
+                    clnt.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
+
+                    App.client = null;
+
+                    App.client = clnt;
+                    
                     var claims = await App._APIServices.GetUserClaims();
 
-                    DependencyService.Get<IToast>().LongAlert(logged.ToString());
+                    DependencyService.Get<IToast>().LongAlert(Settings.Token);
 
-                    Email = Settings.UserName;
+                    Settings.UserName = Email;
 
-                    Password = Settings.Password;
+                    Settings.Password = password;
 
                     await _navService.PushModalAsync(new MainMasterDetailPage());
+                    
                 }
-                
+                else
+                {
+                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer a ocurrido un error al momento de iniciar sesion, por favor intenta nuevamente.");
+                }
             })); 
         }
 

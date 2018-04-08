@@ -59,11 +59,18 @@ namespace SSFR_Events.Services
 
             var content = new StringContent(Json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PostAsync("api/Account/Login", content);
+            try
+            {
+                HttpResponseMessage response = await client.PostAsync("api/Account/Login", content);
 
-            var data = await response.Content.ReadAsStringAsync();
+                var data = await response.Content.ReadAsStringAsync();
 
-            return data;
+                return data;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
             
         }
 
@@ -72,6 +79,8 @@ namespace SSFR_Events.Services
             HttpResponseMessage response = await App.client.GetAsync("api/Account/Claim");
 
             var json = await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine(json);
 
             return json;
             
