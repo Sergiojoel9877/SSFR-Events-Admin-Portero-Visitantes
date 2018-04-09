@@ -79,12 +79,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Alert.cs" />
     <Compile Include="Services\CloseBackPress.cs" />
-    <Compile Include="Services\DBRepoInstance.cs" />
     <Compile Include="Services\ToastAlert.cs" />
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
@@ -189,10 +187,6 @@
     <AndroidResource Include="Resources\drawable\MasterTitle.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SQLiteEntityFramework.cs\SQLiteEntityFramework.cs.csproj">
-      <Project>{959a7f78-5390-44a5-a003-f24645781394}</Project>
-      <Name>SQLiteEntityFramework.cs</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SSFR_Events\SSFR_Events.csproj">
       <Project>{a7f29ede-1e11-4c3b-9c45-e7017510ff7e}</Project>
       <Name>SSFR_Events</Name>

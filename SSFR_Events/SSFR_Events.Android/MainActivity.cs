@@ -31,10 +31,8 @@ namespace SSFR_Events.Droid
 
            // IsPlayServicesAvailable();
 
-            DBRepoInstance dBRepoInstance = new DBRepoInstance();
-            
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App(dBRepoInstance.getInstance()));
+            LoadApplication(new App());
         }
 
         //public bool IsPlayServicesAvailable()

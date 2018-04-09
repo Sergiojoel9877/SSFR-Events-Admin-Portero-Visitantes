@@ -12,28 +12,31 @@ namespace SSFR_Events
 {
 	public partial class App : Application
 	{
-        public static IDBRepository repository;
+        public static HttpClient Oauthclient { get; set; }
 
-        public static HttpClient client { get; set; }
+        public static HttpClient CrudClient { get; set; }
 
         public static APIServices _APIServices;
 
-        public App(IDBRepository repo)
+        public App()
 		{
          
 			InitializeComponent();
 
-            repo = repository;
-
             _APIServices = new APIServices();
 
-            client = new HttpClient
+            Oauthclient = new HttpClient
             {
 
                 BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/")
                 //BaseAddress = new Uri("http://localhost:5000/")
 
             };
+
+            CrudClient = new HttpClient()
+            {
+                BaseAddress = new Uri("https://ssfrmainapi.azurewebsites.net/")
+            }
 
             var loginPage = new NavigationPage(new LoginPage())
             {
