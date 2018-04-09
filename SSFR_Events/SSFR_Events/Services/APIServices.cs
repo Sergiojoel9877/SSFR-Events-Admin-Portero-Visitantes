@@ -67,7 +67,7 @@ namespace SSFR_Events.Services
 
                 return data;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }

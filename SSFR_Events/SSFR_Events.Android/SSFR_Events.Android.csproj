@@ -64,9 +64,6 @@
     <PackageReference Include="Syncfusion.Xamarin.SfBarcode.Android">
       <Version>16.1.0.32</Version>
     </PackageReference>
-    <PackageReference Include="Xam.Plugins.Messaging">
-      <Version>3.2.1</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="2.4.0.280" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="23.3.0" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="23.3.0" />
@@ -87,6 +84,7 @@
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
+    <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
