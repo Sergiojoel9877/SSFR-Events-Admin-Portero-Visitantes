@@ -35,8 +35,8 @@ namespace SSFR_Events
 
             CrudClient = new HttpClient()
             {
-                BaseAddress = new Uri("https://ssfrmainapi.azurewebsites.net/")
-            }
+                BaseAddress = new Uri("http://ssfrmainapi.azurewebsites.net/")
+            };
 
             var loginPage = new NavigationPage(new LoginPage())
             {

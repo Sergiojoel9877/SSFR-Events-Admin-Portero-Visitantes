@@ -13,7 +13,7 @@ namespace SSFR_Events.Services
         public async Task<bool> RegisterAsync(string email, string passWord, string confirmPassWord)
         {
 
-            var client = App.client;
+            var client = App.Oauthclient;
 
             var model = new UserSignUp
             {
@@ -46,7 +46,7 @@ namespace SSFR_Events.Services
         public async Task<string> LoginAsync(string email, string password, bool remember)
         {
 
-            var client = App.client;
+            var client = App.Oauthclient;
 
             var model = new UserSignIn
             {

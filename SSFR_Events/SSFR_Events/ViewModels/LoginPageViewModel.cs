@@ -34,9 +34,9 @@ namespace SSFR_Events.ViewModels
 
                     clnt.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
 
-                    App.client = null;
+                    App.Oauthclient = null;
 
-                    App.client = clnt;
+                    App.Outhclient = clnt;
                     
                     var claims = await App._APIServices.GetUserClaims();
 
