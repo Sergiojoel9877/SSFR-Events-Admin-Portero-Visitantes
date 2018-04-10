@@ -112,7 +112,7 @@ namespace SSFR_Events.ViewModels
                     if (Empty == false)
                     {
 
-                        var usersList = await DependencyService.Get<IDBRepoInstance>().getInstance().GetUsers();
+                        var usersList = await App.ssfrClient.ApiUsersGetAsync();
                         
                         var query = usersList.Any(U => U.Role == "Admin");
                        

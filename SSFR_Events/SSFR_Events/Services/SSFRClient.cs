@@ -184,7 +184,7 @@ namespace SSFR_Events.Services
     
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task ApiPostEventPostAsync(Events @event)
+        public System.Threading.Tasks.Task<bool> ApiPostEventPostAsync(Events @event)
         {
             return ApiPostEventPostAsync(@event, System.Threading.CancellationToken.None);
         }
@@ -192,7 +192,7 @@ namespace SSFR_Events.Services
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task ApiPostEventPostAsync(Events @event, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<bool> ApiPostEventPostAsync(Events @event, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/PostEvent");
@@ -227,13 +227,14 @@ namespace SSFR_Events.Services
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200") 
                         {
-                            return;
+                            return true;
                         }
                         else
                         if (status_ != "200" && status_ != "204")
                         {
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
                             throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
+                            return false;
                         }
                     }
                     finally
@@ -242,6 +243,8 @@ namespace SSFR_Events.Services
                             response_.Dispose();
                     }
                 }
+
+                return false;
             }
             finally
             {
@@ -530,7 +533,7 @@ namespace SSFR_Events.Services
     
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task ApiGuestPostAsync(Guest guest)
+        public System.Threading.Tasks.Task<bool> ApiGuestPostAsync(Guest guest)
         {
             return ApiGuestPostAsync(guest, System.Threading.CancellationToken.None);
         }
@@ -538,7 +541,7 @@ namespace SSFR_Events.Services
         /// <returns>Success</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        public async System.Threading.Tasks.Task ApiGuestPostAsync(Guest guest, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<bool> ApiGuestPostAsync(Guest guest, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Guest");
@@ -573,13 +576,14 @@ namespace SSFR_Events.Services
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200") 
                         {
-                            return;
+                            return true;
                         }
                         else
                         if (status_ != "200" && status_ != "204")
                         {
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
                             throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
+                            return false;
                         }
                     }
                     finally
@@ -592,6 +596,7 @@ namespace SSFR_Events.Services
             finally
             {
             }
+            return false;
         }
     
         /// <returns>Success</returns>

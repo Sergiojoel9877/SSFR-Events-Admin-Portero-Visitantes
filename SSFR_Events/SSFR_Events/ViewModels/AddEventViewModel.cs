@@ -80,7 +80,8 @@ namespace SSFR_Events.ViewModels
 
                 if (Empty == false)
                 {
-                    var events = await DependencyService.Get<IDBRepoInstance>().getInstance().GetEvents();
+
+                    var events = await App.ssfrClient.ApiEventsGetAsync();
 
                     var query = events.Any(e => e.Name == NameEntry);
 
@@ -90,7 +91,7 @@ namespace SSFR_Events.ViewModels
                         }
                         else
                         {
-                            var @event = new Events() {
+                            var @event = new SSFR_Events.Services.Events() {
                                 Name = NameEntry,
                                 Location = Location,
                                 Date = DateSelected.ToString(),
@@ -98,7 +99,7 @@ namespace SSFR_Events.ViewModels
                                 EventType = EventType
                             };
 
-                            var r = await DependencyService.Get<IDBRepoInstance>().getInstance().AddEvent(@event);
+                            var r = await App.ssfrClient.ApiPostEventPostAsync(@event);
                             
                             barcode.Text = NameEntry;
 

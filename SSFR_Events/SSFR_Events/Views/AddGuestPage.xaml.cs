@@ -16,7 +16,7 @@ namespace SSFR_Events.Views
 	{
         AddGuestViewModel ViewModel;
 
-		public AddGuestPage (Events evnt)
+		public AddGuestPage (SSFR_Events.Services.Events evnt)
 		{
 			InitializeComponent ();
 

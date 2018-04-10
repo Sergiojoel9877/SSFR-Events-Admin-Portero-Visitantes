@@ -65,8 +65,8 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref emailEntry, value);
         }
         
-        private Events sendedEvent;
-        public Events SendedEvent
+        private SSFR_Events.Models.Events sendedEvent;
+        public SSFR_Events.Models.Events SendedEvent
         {
             get => sendedEvent;
 
@@ -113,7 +113,7 @@ namespace SSFR_Events.ViewModels
                             if (Empty == false)
                             {
 
-                                var GuestList = await DependencyService.Get<IDBRepoInstance>().getInstance().GetGuests();
+                                var GuestList = await App.ssfrClient.ApiGuestsGetAsync();
 
                                 var query = GuestList.Any(g => g.Email == EmailEntry);
 
@@ -128,7 +128,7 @@ namespace SSFR_Events.ViewModels
                                         try
                                         {
 
-                                            var guest = new Guest()
+                                            var guest = new SSFR_Events.Services.Guest()
                                             {
                                                 Name = NameEntry,
                                                 LastName = LastNameEntry,
@@ -138,7 +138,7 @@ namespace SSFR_Events.ViewModels
                                                 EventId = SendedEvent.Id
                                             };
 
-                                            var r = await DependencyService.Get<IDBRepoInstance>().getInstance().AddGuest(guest);
+                                            var r = await App.ssfrClient.ApiGuestPostAsync(guest);
 
                                             if (r)
                                             {
@@ -203,7 +203,7 @@ namespace SSFR_Events.ViewModels
 
         }
 
-        public AddGuestViewModel(INavigation navService, Events evnt)
+        public AddGuestViewModel(INavigation navService, SSFR_Events.Services.Events evnt)
         {
             _navService = navService;
 

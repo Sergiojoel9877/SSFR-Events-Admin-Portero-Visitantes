@@ -30,13 +30,12 @@ namespace SSFR_Events.ViewModels
                     HttpClient clnt = new HttpClient();
 
                     clnt.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
-                    //clnt.BaseAddress = new Uri("http://localhost:5000/");
 
                     clnt.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
 
                     App.Oauthclient = null;
 
-                    App.Outhclient = clnt;
+                    App.Oauthclient = clnt;
                     
                     var claims = await App._APIServices.GetUserClaims();
 

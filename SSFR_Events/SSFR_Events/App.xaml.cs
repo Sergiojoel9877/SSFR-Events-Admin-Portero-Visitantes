@@ -14,7 +14,9 @@ namespace SSFR_Events
 	{
         public static HttpClient Oauthclient { get; set; }
 
-        public static HttpClient CrudClient { get; set; }
+        public static HttpClient client { get; set; }
+
+        public static SSFRClient ssfrClient { get; set; } = new SSFRClient(client);
 
         public static APIServices _APIServices;
 
@@ -29,13 +31,7 @@ namespace SSFR_Events
             {
 
                 BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/")
-                //BaseAddress = new Uri("http://localhost:5000/")
 
-            };
-
-            CrudClient = new HttpClient()
-            {
-                BaseAddress = new Uri("http://ssfrmainapi.azurewebsites.net/")
             };
 
             var loginPage = new NavigationPage(new LoginPage())
