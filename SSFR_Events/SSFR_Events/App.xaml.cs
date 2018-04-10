@@ -14,7 +14,7 @@ namespace SSFR_Events
 	{
         public static HttpClient Oauthclient { get; set; }
 
-        public static HttpClient client { get; set; }
+        public static HttpClient client { get; set; } = new HttpClient();
 
         public static SSFRClient ssfrClient { get; set; } = new SSFRClient(client);
 
@@ -42,11 +42,6 @@ namespace SSFR_Events
             MainPage = loginPage;
 
 		}
-
-        public App()
-        {
-
-        }
 
 		protected override void OnStart ()
 		{

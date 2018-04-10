@@ -7,7 +7,6 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using System.IO;
-using SQLiteEntityFramework.cs;
 using SSFR_Events.Droid.Services;
 using Android.Graphics;
 using Android.Support.V4.Content.Res;

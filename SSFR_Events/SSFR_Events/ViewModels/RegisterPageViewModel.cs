@@ -111,19 +111,11 @@ namespace SSFR_Events.ViewModels
 
                     if (Empty == false)
                     {
-
-                        var usersList = await App.ssfrClient.ApiUsersGetAsync();
                         
-                        var query = usersList.Any(U => U.Role == "Admin");
-                       
-                        if (SelectedRole == "Admin" && query)
+                        if (SelectedRole == "Admin")
                         {
-                            DependencyService.Get<IAlert>().Alert("Ya exite un Administrador", "Lo siento, ya exite un administrador.");
-
-                            await _navService.PopAsync();
-                        }
-                        else
-                        {
+                            Settings.Role = SelectedRole;
+                            
                             if (Email.Contains("@"))
                             {
 
@@ -132,7 +124,7 @@ namespace SSFR_Events.ViewModels
                                 if (registrado)
                                 {
 
-                                    User user = new User()
+                                    var user = new SSFR_Events.Services.User()
                                     {
                                         LastName = LastNameEntry,
                                         Name = NameEntry,
@@ -142,10 +134,11 @@ namespace SSFR_Events.ViewModels
                                     };
 
 
+
                                     if (user.Pass != null)
                                     {
 
-                                        var r = await DependencyService.Get<IDBRepoInstance>().getInstance().AddUser(user);
+                                        var r = await App.ssfrClient.ApiUserPostAsync(user);
 
                                         if (r)
                                         {
@@ -165,6 +158,62 @@ namespace SSFR_Events.ViewModels
                             {
                                 DependencyService.Get<IAlert>().Alert("ERROR", "Error el correo no es valido");
                             }
+                        }
+                        else
+                        {
+                       
+                            Settings.Role = "";
+
+                            if (Email.Contains("@"))
+                            {
+
+                                var registrado = await App._APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
+
+                                if (registrado)
+                                {
+
+                                    var user = new SSFR_Events.Services.User()
+                                    {
+                                        LastName = LastNameEntry,
+                                        Name = NameEntry,
+                                        Pass = PassWord,
+                                        ProfUser = ProfUser,
+                                        Role = SelectedRole
+                                    };
+
+
+
+                                    if (user.Pass != null)
+                                    {
+
+                                        var r = await App.ssfrClient.ApiUserPostAsync(user);
+
+                                        if (r)
+                                        {
+                                            DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
+
+                                            await _navService.PopAsync();
+
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    DependencyService.Get<IAlert>().Alert("ERROR", "Error: Asegurate de que tienes conexión a internet, e intentalo de nuevo " + registrado.ToString());
+                                }
+                            }
+                            else
+                            {
+                                DependencyService.Get<IAlert>().Alert("ERROR", "Error el correo no es valido");
+                            }
+
+                        }
+                        if (SelectedRole == "Admin" && Settings.Role == "Admin")
+                        {
+                            DependencyService.Get<IAlert>().Alert("Ya exite un Administrador", "Lo siento, ya exite un administrador.");
+
+                            await _navService.PopAsync();
+                      
                         }
                     }
                     else

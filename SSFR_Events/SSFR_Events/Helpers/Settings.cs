@@ -54,5 +54,17 @@ namespace SSFR_Events.Helpers
                 AppSettings.AddOrUpdateValue("Password", value);
             }
         }
+
+        public static string Role
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("Role", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("Role", value);
+            }
+        }
     }
 }

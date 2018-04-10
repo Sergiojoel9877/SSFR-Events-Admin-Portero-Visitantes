@@ -65,8 +65,8 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref emailEntry, value);
         }
         
-        private SSFR_Events.Models.Events sendedEvent;
-        public SSFR_Events.Models.Events SendedEvent
+        private SSFR_Events.Services.Events sendedEvent;
+        public SSFR_Events.Services.Events SendedEvent
         {
             get => sendedEvent;
 
