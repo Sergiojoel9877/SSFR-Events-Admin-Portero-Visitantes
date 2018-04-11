@@ -4,7 +4,7 @@
 // </auto-generated>
 //----------------------
 
-namespace SSFR_Events.Sevices
+namespace SSFR_Events.Services
 {
 #pragma warning disable // Disable all warnings
 
