@@ -76,7 +76,7 @@ namespace SSFR_Events.Services
 
         public async Task<string> GetUserClaims()
         {
-            HttpResponseMessage response = await App.client.GetAsync("api/Account/Claim");
+            HttpResponseMessage response = await App.Oauthclient.GetAsync("api/Account/Claim");
 
             var json = await response.Content.ReadAsStringAsync();
 

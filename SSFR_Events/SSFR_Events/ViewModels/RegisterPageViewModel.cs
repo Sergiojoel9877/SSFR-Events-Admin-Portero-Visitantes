@@ -132,9 +132,7 @@ namespace SSFR_Events.ViewModels
                                         ProfUser = ProfUser,
                                         Role = SelectedRole
                                     };
-
-
-
+                                    
                                     if (user.Pass != null)
                                     {
 
@@ -181,8 +179,10 @@ namespace SSFR_Events.ViewModels
                                         Role = SelectedRole
                                     };
 
+                                    Settings.UserName = Email;
 
-
+                                    Settings.Password = PassWord;
+                                    
                                     if (user.Pass != null)
                                     {
 

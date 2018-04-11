@@ -18,15 +18,13 @@ namespace SSFR_Events
 
         public static SSFRClient ssfrClient { get; set; } = new SSFRClient(client);
 
-        public static APIServices _APIServices;
+        public static APIServices _APIServices { get; set; } = new APIServices();
 
         public App()
 		{
          
 			InitializeComponent();
-
-            _APIServices = new APIServices();
-
+            
             Oauthclient = new HttpClient
             {
 
