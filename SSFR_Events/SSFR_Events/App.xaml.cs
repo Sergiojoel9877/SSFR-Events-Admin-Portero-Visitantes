@@ -12,6 +12,10 @@ namespace SSFR_Events
 {
 	public partial class App : Application
 	{
+        public const string NotificationReceivedKey = "NotificationReceived";
+
+        public const string MobileServiceUrl = "http://ssfrpushnotifications.azurewebsites.net";
+
         public static HttpClient Oauthclient { get; set; }
 
         public static HttpClient client { get; set; } = new HttpClient();

@@ -24,7 +24,7 @@ namespace SSFR_Events.ViewModels
 
                 if(logged != null)
                 {
-
+                    
                     Settings.Token = logged;
 
                     HttpClient clnt = new HttpClient();

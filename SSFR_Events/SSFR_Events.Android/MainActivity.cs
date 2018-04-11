@@ -10,7 +10,15 @@ using System.IO;
 using SSFR_Events.Droid.Services;
 using Android.Graphics;
 using Android.Support.V4.Content.Res;
-//using Android.Gms.Common;
+using Android.Gms.Common;
+using Firebase.Iid;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using Firebase.Messaging;
+using Android.Content;
+using Android.Support.V7.App;
+using Android.Media;
+using System.Diagnostics;
 
 namespace SSFR_Events.Droid
 {
@@ -27,36 +35,11 @@ namespace SSFR_Events.Droid
             //var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "SSFR_DB.db");
 
             //DBRepository dBRepository = new DBRepository(path);
-
-           // IsPlayServicesAvailable();
-
+            
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
+            
         }
-
-        //public bool IsPlayServicesAvailable()
-        //{
-        //    int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
-        //    if (resultCode != ConnectionResult.Success)
-        //    {
-        //        if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
-        //        {
-        //            // In a real project you can give the user a chance to fix the issue.
-        //            Console.WriteLine($"Error: {GoogleApiAvailability.Instance.GetErrorString(resultCode)}");
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Error: Play services not supported!");
-        //            Finish();
-        //        }
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Play Services available.");
-        //        return true;
-        //    }
-        //}
     }
 }
 
