@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using Com.OneSignal;
 
 using Xamarin.Forms;
 
@@ -40,6 +41,8 @@ namespace SSFR_Events
             {
                 BarTextColor = Color.FromHex("#FFA500")
             };
+
+            OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
 
             MainPage = loginPage;
 
