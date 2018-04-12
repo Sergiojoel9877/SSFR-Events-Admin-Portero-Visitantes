@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using SSFR_Events.Helpers;
 using System.Linq;
+using Acr.UserDialogs;
 
 namespace SSFR_Events.ViewModels
 {
@@ -105,6 +106,8 @@ namespace SSFR_Events.ViewModels
 
             get => register ?? (register = new Command( async () => 
             {
+                IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
+
                 if (NameEntry != null || ProfUser != null || Email != null || LastNameEntry != null || SelectedRole != null || ConfirmPassWord != null || PassWord != null || ConfirmPassWord == PassWord)
                 {
                     Empty = false;
@@ -129,17 +132,25 @@ namespace SSFR_Events.ViewModels
                                         LastName = LastNameEntry,
                                         Name = NameEntry,
                                         Pass = PassWord,
+                                        Email = Email,
                                         ProfUser = ProfUser,
                                         Role = SelectedRole
                                     };
+
+                                    Settings.UserName = user.Email;
+
+                                    Settings.Password = user.Pass;
                                     
                                     if (user.Pass != null)
                                     {
 
                                         var r = await App.ssfrClient.ApiUserPostAsync(user);
 
+                                        progresss.Dispose();
+
                                         if (r)
                                         {
+
                                             DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
 
                                             await _navService.PopAsync();
@@ -149,11 +160,14 @@ namespace SSFR_Events.ViewModels
                                 }
                                 else
                                 {
+                                    progresss.Dispose();
+
                                     DependencyService.Get<IAlert>().Alert("ERROR", "Error: Asegurate de que tienes conexión a internet, e intentalo de nuevo " + registrado.ToString());
                                 }
                             }
                             else
                             {
+                                progresss.Dispose();
                                 DependencyService.Get<IAlert>().Alert("ERROR", "Error el correo no es valido");
                             }
                         }

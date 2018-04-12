@@ -19,7 +19,7 @@ namespace SSFR_Events.Droid.CustomRenderers
 {
     public class TransparentEditorRenderer : EntryRenderer
     {
-        public TransparentEditorRenderer()
+        public TransparentEditorRenderer(Context context) : base(context)
         {
              
         }

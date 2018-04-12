@@ -56,9 +56,9 @@
                                                 <RowDefinition Height="*"/>
                                             </Grid.RowDefinitions>
 
-                                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" Grid.Column="0" Grid.Row="0"/>
+                                            <Label Text="{Binding Name, StringFormat='Nombre: {0}'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="18" TextColor="#FFA500" Grid.Column="0" Grid.Row="0"/>
 
-                                            <Label Text="{Binding LastName}" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" Grid.Column="1" Grid.Row="0"/>
+                                            <Label Text="{Binding LastName, StringFormat='Apellidos: {0}'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="18" TextColor="#FFA500" Grid.Column="1" Grid.Row="0"/>
 
                                         </Grid>
 

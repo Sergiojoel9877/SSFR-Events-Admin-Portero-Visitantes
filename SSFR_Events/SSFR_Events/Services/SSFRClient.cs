@@ -1313,6 +1313,9 @@ namespace SSFR_Events.Services
         [Newtonsoft.Json.JsonProperty("profUser", Required = Newtonsoft.Json.Required.Always)]
         public string ProfUser { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Always)]
+        public string Email { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("pass", Required = Newtonsoft.Json.Required.Always)]
         public string Pass { get; set; }
     

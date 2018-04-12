@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq;
 using Xamarin.Forms;
 using Syncfusion.SfBarcode.XForms;
+using Acr.UserDialogs;
 
 namespace SSFR_Events.ViewModels
 {
@@ -74,54 +75,58 @@ namespace SSFR_Events.ViewModels
 
             get => register ?? (register = new Command( async () => {
 
-                if (NameEntry != null || Location != null)
-                {
-                    Empty = false;
+                IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
 
-                if (Empty == false)
-                {
+                    if (NameEntry != null || Location != null)
+                    {
+                        Empty = false;
 
-                    var events = await App.ssfrClient.ApiEventsGetAsync();
-
-                    var query = events.Any(e => e.Name == NameEntry);
-
-                        if (query)
+                        if (Empty == false)
                         {
-                            DependencyService.Get<IAlert>().Alert("Este Evento ya existe", "Lo siento tal parece que ya existe un evento con este correo.");
+
+                            var events = await App.ssfrClient.ApiEventsGetAsync();
+
+                            var query = events.Any(e => e.Name == NameEntry);
+
+                            if (query)
+                            {
+                                DependencyService.Get<IAlert>().Alert("Este Evento ya existe", "Lo siento tal parece que ya existe un evento con este correo.");
+                            }
+                            else
+                            {
+                                var @event = new SSFR_Events.Services.Events() {
+                                    Name = NameEntry,
+                                    Location = Location,
+                                    Date = DateSelected.ToString(),
+                                    Time = TimeSelected.ToString(),
+                                    EventType = EventType
+                                };
+
+                                var r = await App.ssfrClient.ApiPostEventPostAsync(@event);
+
+                                barcode.Text = NameEntry;
+
+                                barcode.Symbology = BarcodeSymbolType.QRCode; //ME QUEDE AQUI
+
+                                progresss.Dispose();
+
+                                if (r)
+                                {
+                                    bool a = DependencyService.Get<IAlert>().Alert("¡Añade unos visitantes!", "Ingresa cuantos quieras, ¡No hay limites!");
+
+                                    await _navService.PushAsync(new AddGuestPage(@event));
+                                }
+                            }
                         }
                         else
                         {
-                            var @event = new SSFR_Events.Services.Events() {
-                                Name = NameEntry,
-                                Location = Location,
-                                Date = DateSelected.ToString(),
-                                Time = TimeSelected.ToString(),
-                                EventType = EventType
-                            };
-
-                            var r = await App.ssfrClient.ApiPostEventPostAsync(@event);
-                            
-                            barcode.Text = NameEntry;
-
-                            barcode.Symbology = BarcodeSymbolType.QRCode; //ME QUEDE AQUI
-                            
-                            if (r)
-                            {
-                                bool a = DependencyService.Get<IAlert>().Alert("¡Añade unos visitantes!", "Ingresa cuantos quieras, ¡No hay limites!");
-
-                                await _navService.PushAsync(new AddGuestPage(@event));
-                            }
+                            DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                         }
                     }
                     else
                     {
-                        DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
+                        DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios");
                     }
-                }
-                else
-                {
-                    DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios");
-                }
                 
             }));
 

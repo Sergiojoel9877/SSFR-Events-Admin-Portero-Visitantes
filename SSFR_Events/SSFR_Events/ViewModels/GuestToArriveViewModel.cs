@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 using SSFR_Events.Services;
+using Acr.UserDialogs;
 
 namespace SSFR_Events.ViewModels
 {
@@ -29,6 +30,8 @@ namespace SSFR_Events.ViewModels
 
             get => search ?? (search = new Command(async () =>
             {
+                IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
+
                 var guestList = await App.ssfrClient.ApiGuestsGetAsync();
 
                 var eventList = await App.ssfrClient.ApiEventsGetAsync();
@@ -43,9 +46,18 @@ namespace SSFR_Events.ViewModels
                         {
                             GuestList.Add(e);
                         }
-                        
+
+                        progresss.Dispose();
+                    }
+                    else
+                    {
+
+                        progresss.Dispose();
+                        DependencyService.Get<IToast>().LongAlert("Este evento no existe, intenta otra vez.");
+              
                     }
                 }
+
 
             }));
         }

@@ -1,4 +1,5 @@
-﻿using Plugin.Messaging;
+﻿using Acr.UserDialogs;
+using Plugin.Messaging;
 using SSFR_Events.Models;
 using SSFR_Events.Services;
 using System;
@@ -95,6 +96,7 @@ namespace SSFR_Events.ViewModels
         {
             get => register ?? ( register = new Command( async () =>
             {
+                IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
 
                 do
                 {
@@ -173,6 +175,8 @@ namespace SSFR_Events.ViewModels
                                                     EmailEntry = null;
                                                     SelectedGender = null;
                                                     TelephoneNumber = null;
+
+                                                    progresss.Dispose();
 
                                                 }
                                             }

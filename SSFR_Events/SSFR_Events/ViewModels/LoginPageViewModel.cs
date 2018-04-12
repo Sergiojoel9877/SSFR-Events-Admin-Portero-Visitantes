@@ -7,6 +7,8 @@ using Xamarin.Forms;
 using SSFR_Events.Services;
 using System.Security.Claims;
 using System.Net.Http;
+using Acr.UserDialogs;
+using System.Linq;
 
 namespace SSFR_Events.ViewModels
 {
@@ -20,38 +22,88 @@ namespace SSFR_Events.ViewModels
             get => login ?? (login = new Command(async () =>
             {
 
+                IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
+
                 var logged = await App._APIServices.LoginAsync(Email, Password, false);
 
-                if(logged != "")
+                var userAdmin = await App.ssfrClient.ApiUsersGetAsync();
+
+                var query = (from l in userAdmin where l.Email == Email select l).FirstOrDefault();
+
+                if (logged != "")
                 {
-                    
-                    Settings.Token = logged;
 
-                    HttpClient clnt = new HttpClient();
+                    if (query != null)
+                    {
 
-                    clnt.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
+                        if (IsChecked == true && query.Role == "Admin")
+                        {
 
-                    clnt.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
+                            Settings.Token = logged;
 
-                    App.Oauthclient = null;
+                            HttpClient clnt = new HttpClient();
 
-                    App.Oauthclient = clnt;
-                    
-                    var claims = await App._APIServices.GetUserClaims();
+                            clnt.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
 
-                    DependencyService.Get<IToast>().LongAlert(Settings.Token);
+                            clnt.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
 
-                    Settings.UserName = Email;
+                            App.Oauthclient = null;
 
-                    Settings.Password = password;
+                            App.Oauthclient = clnt;
 
-                    await _navService.PushModalAsync(new MainMasterDetailPage());
-                    
+                            var claims = await App._APIServices.GetUserClaims();
+
+                            progresss.Dispose();
+
+                            DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
+
+                            Settings.UserName = Email;
+
+                            Settings.Password = password;
+                            
+                            await _navService.PushModalAsync(new MainMasterDetailPage());
+
+                        }
+                        else
+                        {
+                            progresss.Dispose();
+                            DependencyService.Get<IAlert>().Alert("Error", "Al parecer no eres el usuario administrador, por favor intenta nuevamente.");
+                        }
+
+                        if(IsChecked != true && query.Role == "Portero")
+                        {
+                            Settings.Token = logged;
+
+                            HttpClient clnt = new HttpClient();
+
+                            clnt.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
+
+                            clnt.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
+
+                            App.Oauthclient = null;
+
+                            App.Oauthclient = clnt;
+
+                            var claims = await App._APIServices.GetUserClaims();
+
+                            progresss.Dispose();
+
+                            DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
+
+                            Settings.UserName = Email;
+
+                            Settings.Password = password;
+
+                            await _navService.PushModalAsync(new MainMasterDetailPage());
+                        }
+                    }
                 }
                 else
                 {
+                    progresss.Dispose();
                     DependencyService.Get<IAlert>().Alert("Error", "Al parecer a ocurrido un error al momento de iniciar sesion, por favor intenta nuevamente.");
                 }
+                
             })); 
         }
 
@@ -72,7 +124,7 @@ namespace SSFR_Events.ViewModels
 
         }
 
-        private bool isChecked = false;
+        private bool isChecked;
         public bool IsChecked
         {
             get => isChecked;

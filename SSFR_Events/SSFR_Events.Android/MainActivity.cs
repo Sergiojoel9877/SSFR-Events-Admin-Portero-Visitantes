@@ -19,6 +19,7 @@ using Android.Support.V7.App;
 using Android.Media;
 using System.Diagnostics;
 using Com.OneSignal;
+using Acr.UserDialogs;
 
 namespace SSFR_Events.Droid
 {
@@ -37,7 +38,9 @@ namespace SSFR_Events.Droid
             //DBRepository dBRepository = new DBRepository(path);
 
             OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
-            
+
+            UserDialogs.Init(this); 
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
             

@@ -19,9 +19,11 @@ namespace SSFR_Events.Droid
 {
     public class CheckBoxRenderer : ViewRenderer<SSFR_Events.CustomRenderers.CheckBox, Android.Widget.CheckBox>
     {
-        private Android.Widget.CheckBox checkBox;
+        Android.Widget.CheckBox checkBox;
 
-        public CheckBoxRenderer()
+
+
+        public CheckBoxRenderer(Context context) : base(context)
         {
 
         }
