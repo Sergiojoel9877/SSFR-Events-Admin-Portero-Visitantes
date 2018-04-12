@@ -22,7 +22,7 @@ namespace SSFR_Events.ViewModels
 
                 var logged = await App._APIServices.LoginAsync(Email, Password, false);
 
-                if(logged != null)
+                if(logged != "")
                 {
                     
                     Settings.Token = logged;

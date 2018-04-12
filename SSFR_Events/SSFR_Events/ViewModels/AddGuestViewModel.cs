@@ -127,17 +127,34 @@ namespace SSFR_Events.ViewModels
                                     {
                                         try
                                         {
+                                            Guest guest;
 
-                                            var guest = new SSFR_Events.Services.Guest()
+                                            if (SelectedGender == "Masculino")
                                             {
-                                                Name = NameEntry,
-                                                LastName = LastNameEntry,
-                                                Email = EmailEntry,
-                                                Gender = SelectedGender,
-                                                Telephone = TelephoneNumber,
-                                                EventId = SendedEvent.Id
-                                            };
+                                                guest = new SSFR_Events.Services.Guest()
+                                                {
+                                                    Name = NameEntry,
+                                                    LastName = LastNameEntry,
+                                                    Email = EmailEntry,
+                                                    Gender = "M",
+                                                    Telephone = TelephoneNumber,
+                                                    EventId = SendedEvent.Id
+                                                };
 
+                                            }
+                                            else
+                                            {
+                                                guest = new SSFR_Events.Services.Guest()
+                                                {
+                                                    Name = NameEntry,
+                                                    LastName = LastNameEntry,
+                                                    Email = EmailEntry,
+                                                    Gender = "F",
+                                                    Telephone = TelephoneNumber,
+                                                    EventId = SendedEvent.Id
+                                                };
+                                            }
+                                            
                                             var r = await App.ssfrClient.ApiGuestPostAsync(guest);
 
                                             if (r)
@@ -209,7 +226,8 @@ namespace SSFR_Events.ViewModels
 
             AddGender();
 
-            SendedEvent = evnt;
+            SendedEvent = App.ssfrClient.ApiEventsGetAsync().Result.FirstOrDefault(e => e.Name == evnt.Name);
+
         }
     }
 }

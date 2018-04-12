@@ -30,7 +30,7 @@
                         <Image VerticalOptions="Center" HeightRequest="50" WidthRequest="50" Source="buscar.png" Grid.Column="1" Grid.Row="0">
 
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Register}" />
+                                <TapGestureRecognizer Command="{Binding Search}" />
                             </Image.GestureRecognizers>
 
                         </Image>
@@ -47,8 +47,21 @@
                                 <ViewCell>
                                     <ViewCell.View>
 
-                                        
-                                        
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" Grid.Column="0" Grid.Row="0"/>
+
+                                            <Label Text="{Binding LastName}" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" Grid.Column="1" Grid.Row="0"/>
+
+                                        </Grid>
+
                                     </ViewCell.View>
                                 </ViewCell>
                             </DataTemplate>
