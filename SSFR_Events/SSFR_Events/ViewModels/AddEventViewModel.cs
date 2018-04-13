@@ -4,20 +4,25 @@ using SSFR_Events.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 using System.Linq;
 using Xamarin.Forms;
 using Syncfusion.SfBarcode.XForms;
 using Acr.UserDialogs;
 using Plugin.Connectivity;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using Newtonsoft.Json;
+using ZXing.Net.Mobile.Forms;
 
 namespace SSFR_Events.ViewModels
 {
     public class AddEventViewModel : ViewModelBase
     {
         INavigation _navService;
-
-        SfBarcode barcode = new SfBarcode();
-
+        
+        ZXingBarcodeImageView barcode;
+        
         private bool empty;
         public bool Empty
         {
@@ -72,9 +77,7 @@ namespace SSFR_Events.ViewModels
         }
 
         private Command register;
-        public Command Register {
-
-            get => register ?? (register = new Command( async () =>
+        public Command Register => register ?? (register = new Command(async () =>
             {
 
                 if (!CrossConnectivity.Current.IsConnected)
@@ -85,65 +88,67 @@ namespace SSFR_Events.ViewModels
 
                 IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
 
-                    if (NameEntry != null && Location != null)
+                if (NameEntry != null && Location != null)
+                {
+                    Empty = false;
+
+                    if (Empty == false)
                     {
-                        Empty = false;
 
-                        if (Empty == false)
+                        var events = await App.ssfrClient.ApiEventsGetAsync();
+
+                        var query = events.Any(e => e.Name == NameEntry);
+
+                        if (query)
                         {
-
-                            var events = await App.ssfrClient.ApiEventsGetAsync();
-
-                            var query = events.Any(e => e.Name == NameEntry);
-
-                            if (query)
-                            {
-                                DependencyService.Get<IAlert>().Alert("Este Evento ya existe", "Lo siento tal parece que ya existe un evento con este correo.");
-                            }
-                            else
-                            {
-                                var @event = new SSFR_Events.Services.Events() {
-                                    Name = NameEntry,
-                                    Location = Location,
-                                    Date = DateSelected.ToString(),
-                                    Time = TimeSelected.ToString(),
-                                    EventType = EventType
-                                };
-
-                                var r = await App.ssfrClient.ApiPostEventPostAsync(@event);
-
-                                barcode.Text = NameEntry;
-
-                                barcode.Symbology = BarcodeSymbolType.QRCode; //ME QUEDE AQUI
-
-                                progresss.Dispose();
-
-                                if (r)
-                                {
-                                    bool a = DependencyService.Get<IAlert>().Alert("¡Añade unos visitantes!", "Ingresa cuantos quieras, ¡No hay limites!");
-
-                                    await _navService.PushAsync(new AddGuestPage(@event));
-                                }
-                            }
-
-                        progresss.Dispose();
-                    }
+                            DependencyService.Get<IAlert>().Alert("Este Evento ya existe", "Lo siento tal parece que ya existe un evento con este correo.");
+                        }
                         else
                         {
+                            var @event = new SSFR_Events.Services.Events()
+                            {
+                                Name = NameEntry,
+                                Location = Location,
+                                Date = DateSelected.ToString(),
+                                Time = TimeSelected.ToString(),
+                                EventType = EventType
+                            };
+
+                            var r = await App.ssfrClient.ApiPostEventPostAsync(@event);
+
+                            barcode = new ZXingBarcodeImageView();
+                      
+                            barcode.BarcodeFormat = ZXing.BarcodeFormat.QR_CODE;
+                            barcode.BarcodeOptions.Width = 500;
+                            barcode.BarcodeOptions.Height = 500;
+                            barcode.BarcodeValue = @event.Name;
+                     
                             progresss.Dispose();
-                            DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
+
+                            if (r)
+                            {
+                                bool a = DependencyService.Get<IAlert>().Alert("¡Añade unos visitantes!", "Ingresa cuantos quieras, ¡No hay limites!");
+
+                                await _navService.PushAsync(new AddGuestPage(@event, barcode));
+                            }
                         }
+
+                        progresss.Dispose();
                     }
                     else
                     {
                         progresss.Dispose();
-                        DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios");
+                        DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                     }
+                }
+                else
+                {
+                    progresss.Dispose();
+                    DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios");
+                }
                 progresss.Dispose();
 
             }));
-
-        }
 
         public AddEventViewModel(INavigation navService)
         {

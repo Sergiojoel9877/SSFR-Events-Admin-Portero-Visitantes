@@ -9,12 +9,18 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using Xamarin.Forms;
+using Syncfusion.SfBarcode.XForms;
+using PCLStorage;
+using System.Threading.Tasks;
+using Android.Graphics;
 
 namespace SSFR_Events.ViewModels
 {
     public class AddGuestViewModel : ViewModelBase
     {
         INavigation _navService;
+
+        Image barcode = new Image();
 
         public ObservableCollection<string> Gender { get; set; } = new ObservableCollection<string>();
 
@@ -174,8 +180,16 @@ namespace SSFR_Events.ViewModels
                                                 if (sendEmail.CanSendEmail)
                                                 {
 
-                                                    sendEmail.SendEmail(EmailEntry, "¡Hey hola!", "Señores Sergio Joel Ferreras les escribe, esto es una simple prueba desde mi App (la cual estoy desarrollando), disculpen las molestias que les pueda causar, pasen buenas tardes.");
+                                                    var mail = new EmailMessageBuilder()
+                                                    .To(EmailEntry)
+                                                    .Subject("¡Hey hola, te e inivitado a mi nuevo evento!")
+                                                    .Body("Mi evento es de nombre: " + SendedEvent.Name + " empieza el " + SendedEvent.Date + " a las " + SendedEvent.Time + " a celebrarse en " + SendedEvent.Location)
+                                                    .Build();
 
+                                                    sendEmail.SendEmail(mail);
+
+                                                    //sendEmail.SendEmail(EmailEntry, "¡Hey hola!", "Señores Sergio Joel Ferreras les escribe, esto es una simple prueba desde mi App (la cual estoy desarrollando), disculpen las molestias que les pueda causar, pasen buenas tardes.");
+                                                    
                                                     DependencyService.Get<IAlert>().Alert("Registrado con éxito", "Invitado registrado con éxito");
 
                                                     NameEntry = null;
@@ -248,11 +262,22 @@ namespace SSFR_Events.ViewModels
 
         }
 
-        public AddGuestViewModel(INavigation navService, SSFR_Events.Services.Events evnt)
+        //public async Task PCLStorageSample()
+        //{
+        //    var s = Convert.ToBase64String(barcode.To);
+        //    IFolder rootFolder = FileSystem.Current.LocalStorage;
+        //    IFolder folder = await rootFolder.CreateFolderAsync("QRCode", CreationCollisionOption.ReplaceExisting);
+        //    IFile file = await folder.CreateFileAsync("QRCode_Image", CreationCollisionOption.ReplaceExisting);
+        //    await file.WriteAllTextAsync("42");
+        //}
+
+        public AddGuestViewModel(INavigation navService, SSFR_Events.Services.Events evnt, Image _barcode)
         {
             _navService = navService;
 
             AddGender();
+
+            barcode = _barcode;
 
             SendedEvent = App.ssfrClient.ApiEventsGetAsync().Result.FirstOrDefault(e => e.Name == evnt.Name);
 

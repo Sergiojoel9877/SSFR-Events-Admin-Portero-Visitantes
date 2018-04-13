@@ -44,6 +44,15 @@ namespace SSFR_Events.ViewModels
 
                 var eventList = await App.ssfrClient.ApiEventsGetAsync();
 
+                var exist = eventList.Any(e => e.Name == Name);
+
+                if (!exist)
+                {
+                    progresss.Dispose();
+                    DependencyService.Get<IToast>().LongAlert("Este evento no existe, intenta otra vez.");
+                    return;
+                }
+
                 foreach (Events i in eventList)
                 {
                     if(i.Name == Name)
@@ -57,20 +66,11 @@ namespace SSFR_Events.ViewModels
 
                         progresss.Dispose();
                     }
-                    else
-                    {
-
-                        progresss.Dispose();
-                        DependencyService.Get<IToast>().LongAlert("Este evento no existe, intenta otra vez.");
-              
-                    }
                 }
-
-
+                
             }));
         }
-
-
+        
         public GuestToArriveViewModel(INavigation navService)
         {
             _navService = navService;

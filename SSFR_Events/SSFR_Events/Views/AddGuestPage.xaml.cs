@@ -2,6 +2,7 @@
 using SSFR_Events.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +17,16 @@ namespace SSFR_Events.Views
 	{
         AddGuestViewModel ViewModel;
 
-		public AddGuestPage (SSFR_Events.Services.Events evnt)
+		public AddGuestPage (SSFR_Events.Services.Events evnt, Image barcode)
 		{
 			InitializeComponent ();
 
-            ViewModel = new AddGuestViewModel(Navigation, evnt);
+            ViewModel = new AddGuestViewModel(Navigation, evnt, barcode);
             
             BindingContext = ViewModel;
+
+            //Img.Source = ImageSource.FromStream(() => new MemoryStream(@byte));
+            
 		}
 
         public AddGuestPage()

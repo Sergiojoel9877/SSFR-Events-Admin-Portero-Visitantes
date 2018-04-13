@@ -20,6 +20,8 @@ using Android.Media;
 using System.Diagnostics;
 using Com.OneSignal;
 using Acr.UserDialogs;
+using Plugin.Screenshot;
+using Plugin.CurrentActivity;
 
 namespace SSFR_Events.Droid
 {
@@ -32,18 +34,27 @@ namespace SSFR_Events.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
+            
             //var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "SSFR_DB.db");
 
             //DBRepository dBRepository = new DBRepository(path);
 
             OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
 
+            OnActivityCreated(this, bundle);
+
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+
             UserDialogs.Init(this); 
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
             
+        }
+
+        public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
+        {
+            CrossCurrentActivity.Current.Activity = activity;
         }
     }
 }
