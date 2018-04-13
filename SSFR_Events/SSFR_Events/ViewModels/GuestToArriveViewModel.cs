@@ -6,6 +6,7 @@ using System.Text;
 using Xamarin.Forms;
 using SSFR_Events.Services;
 using Acr.UserDialogs;
+using Plugin.Connectivity;
 
 namespace SSFR_Events.ViewModels
 {
@@ -30,6 +31,13 @@ namespace SSFR_Events.ViewModels
 
             get => search ?? (search = new Command(async () =>
             {
+
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
+                    return;
+                }
+
                 IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
 
                 var guestList = await App.ssfrClient.ApiGuestsGetAsync();

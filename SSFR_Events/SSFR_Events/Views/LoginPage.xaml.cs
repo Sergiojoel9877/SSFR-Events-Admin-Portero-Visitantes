@@ -1,4 +1,5 @@
-﻿using SSFR_Events.ViewModels;
+﻿using Plugin.Connectivity;
+using SSFR_Events.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,20 @@ namespace SSFR_Events.Views
             ViewModel = new LoginPageViewModel(Navigation);
 
             BindingContext = ViewModel;
+            
 		}
-	}
+
+        void OnTapCheckBox(View view, object s)
+        {
+            if (ViewModel.IsChecked == false)
+            {
+                ViewModel.IsChecked = true;
+            }
+            else
+            {
+                ViewModel.IsChecked = false;
+            }
+        }
+
+    }
 }

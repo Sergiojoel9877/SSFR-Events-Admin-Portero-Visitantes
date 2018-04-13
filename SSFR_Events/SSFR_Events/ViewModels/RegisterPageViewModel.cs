@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using SSFR_Events.Helpers;
 using System.Linq;
 using Acr.UserDialogs;
+using Plugin.Connectivity;
 
 namespace SSFR_Events.ViewModels
 {
@@ -93,7 +94,7 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref role, value);
         }
 
-        private string selectedRole;
+        private string selectedRole = "";
         public string SelectedRole
         {
             get => selectedRole;
@@ -106,10 +107,18 @@ namespace SSFR_Events.ViewModels
 
             get => register ?? (register = new Command( async () => 
             {
-                IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
-
-                if (NameEntry != null || ProfUser != null || Email != null || LastNameEntry != null || SelectedRole != null || ConfirmPassWord != null || PassWord != null || ConfirmPassWord == PassWord)
+               
+                if (NameEntry != null && ProfUser != null && Email != null && LastNameEntry != null && SelectedRole != null && ConfirmPassWord != null && PassWord != null)
                 {
+
+                    if (!CrossConnectivity.Current.IsConnected)
+                    {
+                        DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
+                        return;
+                    }
+
+                    IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
+
                     Empty = false;
 
                     if (Empty == false)
@@ -141,7 +150,7 @@ namespace SSFR_Events.ViewModels
 
                                     Settings.Password = user.Pass;
                                     
-                                    if (user.Pass != null)
+                                    if (user.Pass != null && user.Pass == ConfirmPassWord)
                                     {
 
                                         var r = await App.ssfrClient.ApiUserPostAsync(user);
@@ -156,6 +165,11 @@ namespace SSFR_Events.ViewModels
                                             await _navService.PopAsync();
 
                                         }
+                                    }
+                                    else
+                                    {
+                                        DependencyService.Get<IAlert>().Alert("Error", "Las contraseñas no son iguales.");
+
                                     }
                                 }
                                 else
@@ -189,6 +203,7 @@ namespace SSFR_Events.ViewModels
                                         LastName = LastNameEntry,
                                         Name = NameEntry,
                                         Pass = PassWord,
+                                        Email = Email,
                                         ProfUser = ProfUser,
                                         Role = SelectedRole
                                     };
@@ -202,8 +217,11 @@ namespace SSFR_Events.ViewModels
 
                                         var r = await App.ssfrClient.ApiUserPostAsync(user);
 
+                                        progresss.Dispose();
+
                                         if (r)
                                         {
+
                                             DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
 
                                             await _navService.PopAsync();
@@ -213,11 +231,13 @@ namespace SSFR_Events.ViewModels
                                 }
                                 else
                                 {
+                                    progresss.Dispose();
                                     DependencyService.Get<IAlert>().Alert("ERROR", "Error: Asegurate de que tienes conexión a internet, e intentalo de nuevo " + registrado.ToString());
                                 }
                             }
                             else
                             {
+                                progresss.Dispose();
                                 DependencyService.Get<IAlert>().Alert("ERROR", "Error el correo no es valido");
                             }
 

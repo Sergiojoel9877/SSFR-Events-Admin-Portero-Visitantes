@@ -62,9 +62,7 @@
 
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" HorizontalOptions="Center" Orientation="Horizontal">
 
-                        <local:CheckBox IsChecked="{Binding IsChecked}" Color="#FFA500"/>
-
-                        <Label Text="¿Admin?, seleccioname" FontAttributes="Bold" LineBreakMode="NoWrap" FontSize="15" VerticalOptions="Center" TextColor="#FFA500"/>
+                        <Label Text="¡Version solo para Administradores y porteros!" FontAttributes="Bold" FontSize="15" VerticalOptions="Center" TextColor="#FFA500"/>
 
                     </StackLayout>
 

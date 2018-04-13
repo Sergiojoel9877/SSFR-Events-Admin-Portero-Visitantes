@@ -9,22 +9,27 @@ namespace SSFR_Events.CustomRenderers
 #pragma warning disable CS0618 // Type or member is obsolete
     public class CheckBox : View
     {
+        public bool Checked { get; set; }
 
-        public static readonly BindableProperty IsCheckedProperty = BindableProperty.Create<CheckBox, bool>(p => p.IsChecked, true, propertyChanged: (s, o, n) => { (s as CheckBox).OnChecked(new EventArgs()); });
+        public CheckBox()
+        {
+
+        }
+        //public static readonly BindableProperty IsCheckedProperty = BindableProperty.Create<CheckBox, bool>(p => p.IsChecked, true, propertyChanged: (s, o, n) => { (s as CheckBox).OnChecked(new EventArgs()); });
 
         public static readonly BindableProperty ColorProperty = BindableProperty.Create<CheckBox, Color>(p => p.Color, Color.Default);
 
-        public bool IsChecked
-        {
-            get
-            {
-                return (bool)GetValue(IsCheckedProperty);
-            }
-            set
-            {
-                SetValue(IsCheckedProperty, value);
-            }
-        }
+        //public bool IsChecked
+        //{
+        //    get
+        //    {
+        //        return (bool)GetValue(IsCheckedProperty);
+        //    }
+        //    set
+        //    {
+        //        SetValue(IsCheckedProperty, value);
+        //    }
+        //}
 
         public Color Color
         {
@@ -38,13 +43,13 @@ namespace SSFR_Events.CustomRenderers
             }
         }
 
-        public event EventHandler Checked;
+        //public event EventHandler Checked;
 
-        protected virtual void OnChecked(EventArgs e)
-        {
-            if (Checked != null)
-                Checked(this, e);
-        }
+        //protected virtual void OnChecked(EventArgs e)
+        //{
+        //    if (Checked != null)
+        //        Checked(this, e);
+        //}
     }
 #pragma warning disable CS0618 // Type or member is obsolete
 }

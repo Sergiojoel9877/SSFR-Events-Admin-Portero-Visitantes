@@ -8,6 +8,7 @@ using System.Linq;
 using Xamarin.Forms;
 using Syncfusion.SfBarcode.XForms;
 using Acr.UserDialogs;
+using Plugin.Connectivity;
 
 namespace SSFR_Events.ViewModels
 {
@@ -73,11 +74,18 @@ namespace SSFR_Events.ViewModels
         private Command register;
         public Command Register {
 
-            get => register ?? (register = new Command( async () => {
+            get => register ?? (register = new Command( async () =>
+            {
+
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
+                    return;
+                }
 
                 IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
 
-                    if (NameEntry != null || Location != null)
+                    if (NameEntry != null && Location != null)
                     {
                         Empty = false;
 
@@ -117,17 +125,22 @@ namespace SSFR_Events.ViewModels
                                     await _navService.PushAsync(new AddGuestPage(@event));
                                 }
                             }
-                        }
+
+                        progresss.Dispose();
+                    }
                         else
                         {
+                            progresss.Dispose();
                             DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                         }
                     }
                     else
                     {
+                        progresss.Dispose();
                         DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios");
                     }
-                
+                progresss.Dispose();
+
             }));
 
         }

@@ -1,4 +1,6 @@
-﻿using SSFR_Events.Models;
+﻿using Plugin.Connectivity;
+using SSFR_Events.Models;
+using SSFR_Events.Services;
 using SSFR_Events.Views;
 using System;
 using System.Collections.Generic;
@@ -71,7 +73,13 @@ namespace SSFR_Events.ViewModels
         {
             get => aniversaryLayoutTapped ?? (aniversaryLayoutTapped = new Command(() => {
 
-                 EventType = "Aniversario";
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
+                    return;
+                }
+
+                EventType = "Aniversario";
 
                 _navService.PushAsync(new AddEventPage(EventType));
 
@@ -84,6 +92,12 @@ namespace SSFR_Events.ViewModels
         public Command MarriageLayoutTapped
         {
             get => marriageLayoutTapped ?? (marriageLayoutTapped = new Command(() => {
+
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
+                    return;
+                }
 
                 EventType = "Boda";
 
@@ -99,6 +113,12 @@ namespace SSFR_Events.ViewModels
         {
             get => birthdayLayoutTapped ?? (birthdayLayoutTapped = new Command( () => {
 
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
+                    return;
+                }
+
                 EventType = "Cumpleaños";
 
                 _navService.PushAsync(new AddEventPage(EventType));
@@ -113,6 +133,12 @@ namespace SSFR_Events.ViewModels
         {
             get => funeralLayoutTapped ?? (funeralLayoutTapped = new Command( () => {
 
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
+                    return;
+                }
+
                 EventType = "Funeral";
 
                 _navService.PushAsync(new AddEventPage(EventType));
@@ -126,6 +152,12 @@ namespace SSFR_Events.ViewModels
         public Command PersonalizedLayoutTapped
         {
             get => personalizedLayoutTapped ?? (personalizedLayoutTapped = new Command( () => {
+
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
+                    return;
+                }
 
                 EventType = "Personalizado";
 

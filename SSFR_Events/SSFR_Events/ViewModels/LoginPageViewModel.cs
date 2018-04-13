@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Net.Http;
 using Acr.UserDialogs;
 using System.Linq;
+using Plugin.Connectivity;
 
 namespace SSFR_Events.ViewModels
 {
@@ -21,6 +22,11 @@ namespace SSFR_Events.ViewModels
         {
             get => login ?? (login = new Command(async () =>
             {
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
+                    return;
+                }
 
                 IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
 
@@ -36,9 +42,8 @@ namespace SSFR_Events.ViewModels
                     if (query != null)
                     {
 
-                        if (IsChecked == true && query.Role == "Admin")
+                        if (query.Role != "Admin")
                         {
-
                             Settings.Token = logged;
 
                             HttpClient clnt = new HttpClient();
@@ -60,31 +65,26 @@ namespace SSFR_Events.ViewModels
                             Settings.UserName = Email;
 
                             Settings.Password = password;
-                            
-                            await _navService.PushModalAsync(new MainMasterDetailPage());
 
+                            Settings.Role = "Modo Portero";
+
+                            await _navService.PushModalAsync(new MainMasterDetailPage());
                         }
                         else
                         {
-                            progresss.Dispose();
-                            DependencyService.Get<IAlert>().Alert("Error", "Al parecer no eres el usuario administrador, por favor intenta nuevamente.");
-                        }
-
-                        if(IsChecked != true && query.Role == "Portero")
-                        {
                             Settings.Token = logged;
 
-                            HttpClient clnt = new HttpClient();
+                            HttpClient clntAd = new HttpClient();
 
-                            clnt.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
+                            clntAd.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
 
-                            clnt.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
+                            clntAd.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
 
                             App.Oauthclient = null;
 
-                            App.Oauthclient = clnt;
+                            App.Oauthclient = clntAd;
 
-                            var claims = await App._APIServices.GetUserClaims();
+                            var claimsAd = await App._APIServices.GetUserClaims();
 
                             progresss.Dispose();
 
@@ -94,8 +94,17 @@ namespace SSFR_Events.ViewModels
 
                             Settings.Password = password;
 
+                            Settings.Role = "Modo Admin";
+
                             await _navService.PushModalAsync(new MainMasterDetailPage());
+
                         }
+
+                    }
+                    else
+                    {
+                        progresss.Dispose();
+                        DependencyService.Get<IAlert>().Alert("Error", "Al parecer a ocurrido un error al momento de iniciar sesion, por favor intenta nuevamente, es posible que no estes registrado/a.");
                     }
                 }
                 else
@@ -124,7 +133,7 @@ namespace SSFR_Events.ViewModels
 
         }
 
-        private bool isChecked;
+        private bool isChecked = false;
         public bool IsChecked
         {
             get => isChecked;
@@ -141,6 +150,24 @@ namespace SSFR_Events.ViewModels
 
                 _navService.PushAsync(new RegisterPage());
                 
+            }));
+        }
+
+        private Command onTapCheckBox;
+        public Command OnTapCheckBox
+        {
+            get => onTapCheckBox ?? (onTapCheckBox = new Command(() => 
+            {
+
+                if(IsChecked == true)
+                {
+                    IsChecked = false;
+                }
+                else
+                {
+                    IsChecked = true;
+                }
+
             }));
         }
 

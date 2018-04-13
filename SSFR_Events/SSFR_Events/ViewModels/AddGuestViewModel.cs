@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Plugin.Messaging;
 using SSFR_Events.Models;
 using SSFR_Events.Services;
@@ -96,6 +97,13 @@ namespace SSFR_Events.ViewModels
         {
             get => register ?? ( register = new Command( async () =>
             {
+
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
+                    return;
+                }
+
                 IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
 
                 do
@@ -108,7 +116,7 @@ namespace SSFR_Events.ViewModels
 
                         GuestCountEnabled = false;
 
-                        if (NameEntry != null || LastNameEntry != null || TelephoneNumber != null || EmailEntry != null || SelectedGender != null)
+                        if (NameEntry != null && LastNameEntry != null && TelephoneNumber != null && EmailEntry != null && SelectedGender != null)
                         {
                             Empty = false;
 
@@ -183,27 +191,43 @@ namespace SSFR_Events.ViewModels
                                         }
                                         catch (Exception e)
                                         {
+                                            progresss.Dispose();
+
                                             DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + e.ToString());
                                         }
                                     }
                                     else
                                     {
+                                        progresss.Dispose();
+
                                         DependencyService.Get<IAlert>().Alert("ERROR", "Error el correo no es valido");
                                     }
+                                    progresss.Dispose();
+
                                 }
+                                progresss.Dispose();
+
                             }
                             else
                             {
+                                progresss.Dispose();
+
                                 DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                             }
+                            progresss.Dispose();
+
                         }
                         else
                         {
+                            progresss.Dispose();
+
                             DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                         }
                     }
                     else
                     {
+                        progresss.Dispose();
+
                         DependencyService.Get<IAlert>().Alert("Todos los invitados fueron registrados", "Yo todos los invitados han sido registrados exitosamente.");
 
                         GuestCountEnabled = true;

@@ -19,9 +19,7 @@ namespace SSFR_Events.Droid
 {
     public class CheckBoxRenderer : ViewRenderer<SSFR_Events.CustomRenderers.CheckBox, Android.Widget.CheckBox>
     {
-        Android.Widget.CheckBox checkBox;
-
-
+        Android.Widget.CheckBox checkBox { get; set; }
 
         public CheckBoxRenderer(Context context) : base(context)
         {
@@ -31,20 +29,27 @@ namespace SSFR_Events.Droid
         protected override void OnElementChanged(ElementChangedEventArgs<SSFR_Events.CustomRenderers.CheckBox> e)
         {
             base.OnElementChanged(e);
-            var model = e.NewElement;
-            checkBox = new Android.Widget.CheckBox(Context);
-            checkBox.Tag = this;
-            CheckboxPropertyChanged(model, null);
-            checkBox.SetOnClickListener(new ClickListener(model));
-            SetNativeControl(checkBox);
-        }
-        private void CheckboxPropertyChanged(SSFR_Events.CustomRenderers.CheckBox model, String propertyName)
-        {
-            if (propertyName == null || SSFR_Events.CustomRenderers.CheckBox.IsCheckedProperty.PropertyName == propertyName)
+
+            if (e.NewElement != null)
             {
-                checkBox.Checked = model.IsChecked;
+                var model = e.NewElement;
+                checkBox = new Android.Widget.CheckBox(Context);
+                checkBox.Checked = false;
+
+                //checkBox.Tag = this;
+                CheckboxPropertyChanged(model, null);
+                //checkBox.SetOnClickListener(new ClickListener(model));
+                SetNativeControl(checkBox);
+                checkBox.Click += (s, evnt) =>
+                {
+                    model.Checked = ((Android.Widget.CheckBox)s).Checked;
+                };
             }
 
+         }
+        private void CheckboxPropertyChanged(SSFR_Events.CustomRenderers.CheckBox model, String propertyName)
+        {
+               
             if (propertyName == null || SSFR_Events.CustomRenderers.CheckBox.ColorProperty.PropertyName == propertyName)
             {
                 int[][] states = {
@@ -66,27 +71,27 @@ namespace SSFR_Events.Droid
             }
         }
 
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (checkBox != null)
-            {
-                base.OnElementPropertyChanged(sender, e);
+            //protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+            //{
+            //    if (checkBox != null)
+            //    {
+            //        base.OnElementPropertyChanged(sender, e);
 
-                CheckboxPropertyChanged((SSFR_Events.CustomRenderers.CheckBox)sender, e.PropertyName);
-            }
-        }
+            //        CheckboxPropertyChanged((SSFR_Events.CustomRenderers.CheckBox)sender, e.PropertyName);
+            //    }
+            //}
 
-        public class ClickListener : Java.Lang.Object, IOnClickListener
-        {
-            private SSFR_Events.CustomRenderers.CheckBox _myCheckbox;
-            public ClickListener(SSFR_Events.CustomRenderers.CheckBox myCheckbox)
-            {
-                this._myCheckbox = myCheckbox;
-            }
-            public void OnClick(global::Android.Views.View v)
-            {
-                _myCheckbox.IsChecked = !_myCheckbox.IsChecked;
-            }
-        }
+            //public class ClickListener : Java.Lang.Object, IOnClickListener
+            //{
+            //    private SSFR_Events.CustomRenderers.CheckBox _myCheckbox;
+            //    public ClickListener(SSFR_Events.CustomRenderers.CheckBox myCheckbox)
+            //    {
+            //        this._myCheckbox = myCheckbox;
+            //    }
+            //    public void OnClick(global::Android.Views.View v)
+            //    {
+            //        _myCheckbox.IsChecked = !_myCheckbox.IsChecked;
+            //    }
+            //}
     }
 }

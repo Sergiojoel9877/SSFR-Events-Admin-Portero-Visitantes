@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using SSFR_Events.Helpers;
 
 namespace SSFR_Events.ViewModels
 {
@@ -14,7 +15,7 @@ namespace SSFR_Events.ViewModels
 
         public ObservableCollection<MainMasterDetailPageMenuItem> MenuItems { get; set; }
 
-        private string role = "Modo Admin";
+        private string role = Settings.Role;
         public string Role {
 
             get => role;
@@ -32,21 +33,30 @@ namespace SSFR_Events.ViewModels
 
         private void FillCollection()
         {
+            if(Settings.Role == "Modo Admin")
+            {
+               
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 1, Title = "Eventos Actuales", TargetType = typeof(LoginPage), ImageSource = "evn.png" });
 
-            MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 0, Title = "Reportes", TargetType = typeof(ReportsPage), ImageSource = "repo.png" });
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 2, Title = "Invitados Por Llegar", TargetType = typeof(GuestToArrivePage), ImageSource = "user.png" });
 
-            MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 1, Title = "Eventos Actuales", TargetType = typeof(LoginPage), ImageSource = "evn.png" });
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 3, Title = "Mostrar Invitados", TargetType = typeof(LoginPage), ImageSource = "ev.png" });
 
-            MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 2, Title = "Invitados Por Llegar", TargetType = typeof(GuestToArrivePage), ImageSource = "user.png" });
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 4, Title = "Buscar Visitantes", TargetType = typeof(LoginPage), ImageSource = "bv.png" });
 
-            MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 3, Title = "Mostrar Invitados", TargetType = typeof(LoginPage), ImageSource = "ev.png" });
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 5, Title = "Próximos Eventos", TargetType = typeof(LoginPage), ImageSource = "x_ev.png" });
 
-            MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 4, Title = "Buscar Visitantes", TargetType = typeof(LoginPage), ImageSource = "bv.png" });
+            }
+            else
+            {
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 1, Title = "Eventos Actuales", TargetType = typeof(LoginPage), ImageSource = "evn.png" });
 
-            MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 5, Title = "Próximos Eventos", TargetType = typeof(LoginPage), ImageSource = "x_ev.png" });
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 2, Title = "Invitados Por Llegar", TargetType = typeof(GuestToArrivePage), ImageSource = "user.png" });
 
-            MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 5, Title = "Mantenimiento", TargetType = typeof(LoginPage), ImageSource = "act.png" });
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 3, Title = "Mostrar Invitados", TargetType = typeof(LoginPage), ImageSource = "ev.png" });
 
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 4, Title = "Buscar Visitantes", TargetType = typeof(LoginPage), ImageSource = "bv.png" });
+             }
         }
     }
 }

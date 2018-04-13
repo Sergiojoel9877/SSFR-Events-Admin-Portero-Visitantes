@@ -8,6 +8,7 @@ using System.Text;
 using Com.OneSignal;
 
 using Xamarin.Forms;
+using Plugin.Connectivity;
 
 namespace SSFR_Events
 {
@@ -29,7 +30,7 @@ namespace SSFR_Events
 		{
          
 			InitializeComponent();
-            
+
             Oauthclient = new HttpClient
             {
 
