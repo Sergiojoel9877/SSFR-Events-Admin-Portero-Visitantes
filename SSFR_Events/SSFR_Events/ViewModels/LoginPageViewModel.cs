@@ -10,7 +10,6 @@ using System.Net.Http;
 using Acr.UserDialogs;
 using System.Linq;
 using Plugin.Connectivity;
-using Plugin.Screenshot;
 
 namespace SSFR_Events.ViewModels
 {
@@ -23,8 +22,7 @@ namespace SSFR_Events.ViewModels
         {
             get => login ?? (login = new Command(async () =>
             {
-                await CrossScreenshot.Current.CaptureAndSaveAsync();
-
+              
                 if (!CrossConnectivity.Current.IsConnected)
                 {
                     DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");

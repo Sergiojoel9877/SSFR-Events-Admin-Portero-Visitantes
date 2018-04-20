@@ -13,7 +13,6 @@ using Plugin.Connectivity;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using Newtonsoft.Json;
-using ZXing.Net.Mobile.Forms;
 
 namespace SSFR_Events.ViewModels
 {
@@ -21,7 +20,7 @@ namespace SSFR_Events.ViewModels
     {
         INavigation _navService;
         
-        ZXingBarcodeImageView barcode;
+        Image barcode;
         
         private bool empty;
         public bool Empty
@@ -116,12 +115,12 @@ namespace SSFR_Events.ViewModels
 
                             var r = await App.ssfrClient.ApiPostEventPostAsync(@event);
 
-                            barcode = new ZXingBarcodeImageView();
+                            //barcode = new ZXingBarcodeImageView();
                       
-                            barcode.BarcodeFormat = ZXing.BarcodeFormat.QR_CODE;
-                            barcode.BarcodeOptions.Width = 500;
-                            barcode.BarcodeOptions.Height = 500;
-                            barcode.BarcodeValue = @event.Name;
+                            //barcode.BarcodeFormat = ZXing.BarcodeFormat.QR_CODE;
+                            //barcode.BarcodeOptions.Width = 500;
+                            //barcode.BarcodeOptions.Height = 500;
+                            //barcode.BarcodeValue = @event.Name;
                      
                             progresss.Dispose();
 

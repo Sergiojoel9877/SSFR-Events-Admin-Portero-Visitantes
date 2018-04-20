@@ -20,12 +20,10 @@ using Android.Media;
 using System.Diagnostics;
 using Com.OneSignal;
 using Acr.UserDialogs;
-using Plugin.Screenshot;
-using Plugin.CurrentActivity;
 
 namespace SSFR_Events.Droid
 {
-    [Activity(Label = "SSFR_Events", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "SSFR_Events", Icon = "@drawable/ic_launcher", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -41,10 +39,6 @@ namespace SSFR_Events.Droid
 
             OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
 
-            OnActivityCreated(this, bundle);
-
-            ZXing.Net.Mobile.Forms.Android.Platform.Init();
-
             UserDialogs.Init(this); 
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
@@ -52,10 +46,6 @@ namespace SSFR_Events.Droid
             
         }
 
-        public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
-        {
-            CrossCurrentActivity.Current.Activity = activity;
-        }
     }
 }
 

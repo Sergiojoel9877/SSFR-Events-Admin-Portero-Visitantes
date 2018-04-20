@@ -8,16 +8,14 @@
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
     <PackageReference Include="Com.OneSignal" Version="3.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Syncfusion.Xamarin.Pdf" Version="16.1.0.32" />
     <PackageReference Include="Syncfusion.Xamarin.SfBarcode" Version="16.1.0.32" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
-    <PackageReference Include="Xam.Plugin.Screenshot" Version="1.0.13" />
     <PackageReference Include="Xam.Plugins.Messaging" Version="3.2.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
-    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.3.2" />
   </ItemGroup>
 
   <ItemGroup>
