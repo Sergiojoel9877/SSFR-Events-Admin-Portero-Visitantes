@@ -22,96 +22,104 @@ namespace SSFR_Events.ViewModels
         {
             get => login ?? (login = new Command(async () =>
             {
-              
+
                 if (!CrossConnectivity.Current.IsConnected)
                 {
                     DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
                     return;
                 }
 
-                IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
-
-                var logged = await App._APIServices.LoginAsync(Email, Password, false);
-
-                var userAdmin = await App.ssfrClient.ApiUsersGetAsync();
-
-                var query = (from l in userAdmin where l.Email == Email select l).FirstOrDefault();
-
-                if (logged != "")
+                try
                 {
 
-                    if (query != null)
+                    IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
+
+                    var logged = await App._APIServices.LoginAsync(Email, Password, false);
+
+                    var userAdmin = await App.ssfrClient.ApiUsersGetAsync();
+
+                    var query = (from l in userAdmin where l.Email == Email select l).FirstOrDefault();
+
+                    if (logged != "")
                     {
 
-                        if (query.Role != "Admin")
+                        if (query != null)
                         {
-                            Settings.Token = logged;
 
-                            HttpClient clnt = new HttpClient();
+                            if (query.Role != "Admin")
+                            {
+                                Settings.Token = logged;
 
-                            clnt.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
+                                HttpClient clnt = new HttpClient();
 
-                            clnt.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
+                                clnt.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
 
-                            App.Oauthclient = null;
+                                clnt.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
 
-                            App.Oauthclient = clnt;
+                                App.Oauthclient = null;
 
-                            var claims = await App._APIServices.GetUserClaims();
+                                App.Oauthclient = clnt;
 
-                            progresss.Dispose();
+                                var claims = await App._APIServices.GetUserClaims();
 
-                            DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
+                                progresss.Dispose();
 
-                            Settings.UserName = Email;
+                                DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
 
-                            Settings.Password = password;
+                                Settings.UserName = Email;
 
-                            Settings.Role = "Modo Portero";
+                                Settings.Password = password;
 
-                            await _navService.PushModalAsync(new MainMasterDetailPage());
+                                Settings.Role = "Modo Portero";
+
+                                await _navService.PushModalAsync(new MainMasterDetailPage());
+                            }
+                            else
+                            {
+                                Settings.Token = logged;
+
+                                HttpClient clntAd = new HttpClient();
+
+                                clntAd.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
+
+                                clntAd.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
+
+                                App.Oauthclient = null;
+
+                                App.Oauthclient = clntAd;
+
+                                var claimsAd = await App._APIServices.GetUserClaims();
+
+                                progresss.Dispose();
+
+                                DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
+
+                                Settings.UserName = Email;
+
+                                Settings.Password = password;
+
+                                Settings.Role = "Modo Admin";
+
+                                await _navService.PushModalAsync(new MainMasterDetailPage());
+
+                            }
+
                         }
                         else
                         {
-                            Settings.Token = logged;
-
-                            HttpClient clntAd = new HttpClient();
-
-                            clntAd.BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/");
-
-                            clntAd.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Settings.Token);
-
-                            App.Oauthclient = null;
-
-                            App.Oauthclient = clntAd;
-
-                            var claimsAd = await App._APIServices.GetUserClaims();
-
                             progresss.Dispose();
-
-                            DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
-
-                            Settings.UserName = Email;
-
-                            Settings.Password = password;
-
-                            Settings.Role = "Modo Admin";
-
-                            await _navService.PushModalAsync(new MainMasterDetailPage());
-
+                            DependencyService.Get<IAlert>().Alert("Error", "Al parecer a ocurrido un error al momento de iniciar sesion, por favor intenta nuevamente, es posible que no estes registrado/a.");
                         }
-
                     }
                     else
                     {
                         progresss.Dispose();
-                        DependencyService.Get<IAlert>().Alert("Error", "Al parecer a ocurrido un error al momento de iniciar sesion, por favor intenta nuevamente, es posible que no estes registrado/a.");
+                        DependencyService.Get<IAlert>().Alert("Error", "Al parecer a ocurrido un error al momento de iniciar sesion, por favor intenta nuevamente.");
                     }
                 }
-                else
+                catch (SwaggerException)
                 {
-                    progresss.Dispose();
-                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer a ocurrido un error al momento de iniciar sesion, por favor intenta nuevamente.");
+                    DependencyService.Get<IAlert>().Alert("Error", "Al parecer ocurrió un error al nivel de la API.");
                 }
                 
             })); 

@@ -35,6 +35,14 @@ namespace SSFR_Events.Droid.CustomRenderers
 
                 Control?.SetBackgroundColor(Android.Graphics.Color.Transparent);
 
+                // Text alignment.
+                if (element.HorizontalTextAlignment == Xamarin.Forms.TextAlignment.Center)
+                    Control.Gravity = Android.Views.GravityFlags.CenterHorizontal;
+                else if (element.HorizontalTextAlignment == Xamarin.Forms.TextAlignment.Start)
+                    Control.Gravity = Android.Views.GravityFlags.Start;
+                else if (element.HorizontalTextAlignment == Xamarin.Forms.TextAlignment.End)
+                    Control.Gravity = Android.Views.GravityFlags.End;
+
             }
         }
     }

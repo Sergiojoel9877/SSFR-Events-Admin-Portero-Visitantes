@@ -115,13 +115,17 @@ namespace SSFR_Events.ViewModels
 
                             var r = await App.ssfrClient.ApiPostEventPostAsync(@event);
 
+                            /**TODO: AutoGenerar el Codigo QR, para cada evento y guardarlo en una carpeta de nombre cualsea dentro de la galeria..**/
+
+                            /**Instalar ZXingBarcode... [Nuget Pa]**/
+
                             //barcode = new ZXingBarcodeImageView();
-                      
+
                             //barcode.BarcodeFormat = ZXing.BarcodeFormat.QR_CODE;
                             //barcode.BarcodeOptions.Width = 500;
                             //barcode.BarcodeOptions.Height = 500;
                             //barcode.BarcodeValue = @event.Name;
-                     
+
                             progresss.Dispose();
 
                             if (r)

@@ -11,5 +11,8 @@
 				<category android:name="com.sergiojoelferreras.SSFR_Events" />
 			</intent-filter>
 		</receiver>
+		<!--<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.sergiojoelferreras.SSFR_Events" android:exported="false" android:grantUriPermissions="true">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:values="@values/file_paths"></meta-data>
+		</provider>-->
 	</application>
 </manifest>

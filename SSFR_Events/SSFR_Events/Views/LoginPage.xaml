@@ -16,7 +16,7 @@
 
             </StackLayout>
 
-            <Frame x:Name="CenteredFrame" BackgroundColor="#212121" AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.8, 0.5" AbsoluteLayout.LayoutFlags="All" HasShadow="True" CornerRadius="15">
+            <Frame x:Name="CenteredFrame" BackgroundColor="#212121" AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.8, 0.5" AbsoluteLayout.LayoutFlags="All"  CornerRadius="15">
 
                 <Grid x:Name="Grid" RowSpacing="25">
 

@@ -12,7 +12,6 @@ using Xamarin.Forms;
 using Syncfusion.SfBarcode.XForms;
 using PCLStorage;
 using System.Threading.Tasks;
-using Android.Graphics;
 
 namespace SSFR_Events.ViewModels
 {
