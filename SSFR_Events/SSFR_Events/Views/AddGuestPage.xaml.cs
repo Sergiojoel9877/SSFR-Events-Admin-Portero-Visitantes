@@ -1,4 +1,5 @@
-﻿using SSFR_Events.Models;
+﻿using SSFR_Events.Data;
+using SSFR_Events.Models;
 using SSFR_Events.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,11 @@ namespace SSFR_Events.Views
 		{
 			InitializeComponent ();
 
-            ViewModel = new AddGuestViewModel(Navigation, evnt, barcode);
-            
+            //ViewModel = new AddGuestViewModel(Navigation, evnt, barcode);
+            ViewModel = ((ViewModelLocator)Application.Current.Resources["Locator"]).AddGuestViewModel;
+
+            ViewModel.SendedEvent = evnt;
+
             BindingContext = ViewModel;
 
             //Img.Source = ImageSource.FromStream(() => new MemoryStream(@byte));

@@ -1,4 +1,5 @@
-﻿using SSFR_Events.ViewModels;
+﻿using SSFR_Events.Data;
+using SSFR_Events.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace SSFR_Events.Views
 		{
 			InitializeComponent ();
 
-            ViewModel = new RegisterPageViewModel(Navigation);
+            ViewModel = ((ViewModelLocator)Application.Current.Resources["Locator"]).RegisterPageViewModel;
 
             BindingContext = ViewModel;
 

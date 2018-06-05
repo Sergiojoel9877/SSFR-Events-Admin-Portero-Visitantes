@@ -44,7 +44,7 @@ namespace SSFR_Events.ViewModels
             get => eventType;
 
             set => SetProperty(ref eventType, value);
-        }
+        } 
 
         private DateTime dateSelected;
         public DateTime DateSelected

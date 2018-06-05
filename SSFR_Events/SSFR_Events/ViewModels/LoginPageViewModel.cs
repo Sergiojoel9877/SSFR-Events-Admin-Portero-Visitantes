@@ -35,7 +35,7 @@ namespace SSFR_Events.ViewModels
                     IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
 
                     var logged = await App._APIServices.LoginAsync(Email, Password, false);
-
+          
                     var userAdmin = await App.ssfrClient.ApiUsersGetAsync();
 
                     var query = (from l in userAdmin where l.Email == Email select l).FirstOrDefault();
@@ -72,7 +72,11 @@ namespace SSFR_Events.ViewModels
 
                                 Settings.Role = "Modo Portero";
 
-                                await _navService.PushModalAsync(new MainMasterDetailPage());
+                                Device.BeginInvokeOnMainThread(() => {
+
+                                    Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage());
+
+                                });
                             }
                             else
                             {
@@ -100,7 +104,11 @@ namespace SSFR_Events.ViewModels
 
                                 Settings.Role = "Modo Admin";
 
-                                await _navService.PushModalAsync(new MainMasterDetailPage());
+                                Device.BeginInvokeOnMainThread(() => {
+
+                                    Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage());
+
+                                });
 
                             }
 
@@ -154,11 +162,15 @@ namespace SSFR_Events.ViewModels
         public Command Register
         {
 
-            get => register ?? (register = new Command(() => 
+            get => register ?? (register = new Command( () => 
             {
+               
+                Device.BeginInvokeOnMainThread(() => {
 
-                _navService.PushAsync(new RegisterPage());
-                
+                    Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+
+                });
+
             }));
         }
 
@@ -180,10 +192,18 @@ namespace SSFR_Events.ViewModels
             }));
         }
 
-        public LoginPageViewModel(INavigation navService)
-        {
-            _navService = navService;
+        //public LoginPageViewModel(INavigation navService)
+        //{
+        //    _navService = navService;
 
+        //    Email = Settings.UserName;
+
+        //    Password = Settings.Password;
+
+        //}
+        public LoginPageViewModel()
+        {
+           
             Email = Settings.UserName;
 
             Password = Settings.Password;

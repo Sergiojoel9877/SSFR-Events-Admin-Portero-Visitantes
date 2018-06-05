@@ -19,7 +19,13 @@ namespace SSFR_Events.ViewModels
     {
         INavigation _navService;
 
-        Image barcode = new Image();
+        private Image Barccode;
+        Image barcode
+        {
+            get => Barccode;
+
+            set => SetProperty(ref Barccode, value);
+        }
 
         public ObservableCollection<string> Gender { get; set; } = new ObservableCollection<string>();
 

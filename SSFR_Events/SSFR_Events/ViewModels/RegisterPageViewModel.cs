@@ -10,15 +10,14 @@ using SSFR_Events.Helpers;
 using System.Linq;
 using Acr.UserDialogs;
 using Plugin.Connectivity;
+using CommonServiceLocator;
 
 namespace SSFR_Events.ViewModels
 {
     public class RegisterPageViewModel : ViewModelBase
     {
 
-        private readonly INavigation _navService;
-
-        DBRepository dbRepo = new DBRepository();
+        DBRepository dbRepo;
 
         public ObservableCollection<string> RoleList { get; set; } = new ObservableCollection<string>();
 
@@ -157,8 +156,10 @@ namespace SSFR_Events.ViewModels
 
                                         if (user.Pass != null && user.Pass == ConfirmPassWord)
                                         {
+                                            /*1-)Replaced in favor of EF Core methods..*/
 
-                                            //var r = await App.ssfrClient.ApiUserPostAsync(user);
+                                            //1-)var r = await App.ssfrClient.ApiUserPostAsync(user);
+
                                             var r = await dbRepo.AddUser(user);
 
                                             progresss.Dispose();
@@ -168,9 +169,9 @@ namespace SSFR_Events.ViewModels
 
                                                 DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente" + await dbRepo.GetUsers());
 
-                                                Device.BeginInvokeOnMainThread( async () => {
+                                                Device.BeginInvokeOnMainThread(() => {
 
-                                                    await _navService.PopAsync();
+                                                    Application.Current.MainPage.Navigation.PopAsync();
 
                                                 });
                                                 
@@ -205,7 +206,7 @@ namespace SSFR_Events.ViewModels
 
 
                                     var registrado = await App._APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
-
+                             
                                     if (registrado)
                                     {
 
@@ -235,7 +236,7 @@ namespace SSFR_Events.ViewModels
 
                                                 DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
 
-                                                await _navService.PopAsync();
+                                                //await _navService.PopAsync();
 
                                             }
                                         }
@@ -257,7 +258,11 @@ namespace SSFR_Events.ViewModels
                             {
                                 DependencyService.Get<IAlert>().Alert("Ya exite un Administrador", "Lo siento, ya exite un administrador.");
 
-                                await _navService.PopAsync();
+                                Device.BeginInvokeOnMainThread(() => {
+
+                                    Application.Current.MainPage.Navigation.PopAsync();
+
+                                });
 
                             }
                         }
@@ -293,10 +298,10 @@ namespace SSFR_Events.ViewModels
             RoleList.Add(Portero);
         }
 
-        public RegisterPageViewModel(INavigation navService)
+        public RegisterPageViewModel()
         {
 
-            _navService = navService;
+            dbRepo = ServiceLocator.Current.GetInstance<DBRepository>();
 
             AddRoles();
 

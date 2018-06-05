@@ -9,9 +9,13 @@ namespace SSFR_Events.Services
     public class DBRepository : IDBRepository
     {
 
-        private readonly DBContext dbContext = new DBContext();
+        private DBContext dbContext;
 
-
+        public DBRepository(DBContext cntx)
+        {
+            dbContext = cntx;                
+        }
+        
         //*                  ADDS METHODS                   *\\
 
         //public async Task<bool> AddDoorman(Doorman doorman)

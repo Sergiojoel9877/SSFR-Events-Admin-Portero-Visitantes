@@ -1,4 +1,5 @@
 ﻿using Plugin.Connectivity;
+using SSFR_Events.Data;
 using SSFR_Events.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,8 @@ namespace SSFR_Events.Views
 		{
 			InitializeComponent ();
 
-            ViewModel = new LoginPageViewModel(Navigation);
+            //ViewModel = new LoginPageViewModel(Navigation);
+            ViewModel = ((ViewModelLocator)Application.Current.Resources["Locator"]).LoginViewModel;
 
             BindingContext = ViewModel;
             

@@ -28,8 +28,10 @@ namespace SSFR_Events
 
         public App()
 		{
-         
-			InitializeComponent();
+
+            InitializeComponent();
+
+            ContainerInitializer.Initialize(); //Moved to the App.Xaml, for better performance..
 
             Oauthclient = new HttpClient
             {
@@ -46,10 +48,10 @@ namespace SSFR_Events
             OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
 
             MainPage = loginPage;
+            
+        }
 
-		}
-
-		protected override void OnStart ()
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}
