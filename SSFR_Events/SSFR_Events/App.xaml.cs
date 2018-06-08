@@ -9,6 +9,9 @@ using Com.OneSignal;
 
 using Xamarin.Forms;
 using Plugin.Connectivity;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter;
 
 namespace SSFR_Events
 {
@@ -28,33 +31,45 @@ namespace SSFR_Events
 
         public App()
 		{
-
-            InitializeComponent();
-
-            ContainerInitializer.Initialize(); //Moved to the App.Xaml, for better performance..
-
-            Oauthclient = new HttpClient
+            try
             {
+                InitializeComponent();
 
-                BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/")
+                ContainerInitializer.Initialize(); //Moved to the App.Xaml, for better performance..
 
-            };
+                Oauthclient = new HttpClient
+                {
 
-            var loginPage = new NavigationPage(new LoginPage())
+                    BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/")
+
+                };
+
+                var loginPage = new NavigationPage(new LoginPage())
+                {
+                    BarTextColor = Color.FromHex("#FFA500")
+                };
+
+                OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
+
+                MainPage = loginPage;
+
+            }
+            catch (Exception e)
             {
-                BarTextColor = Color.FromHex("#FFA500")
-            };
-
-            OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
-
-            MainPage = loginPage;
-            
+                var properties = new Dictionary<string, string>
+                {
+                    {"Message", e.Message },
+                    {"Source", e.Source },
+                    {"StackTrace", e.StackTrace }
+                };
+                Crashes.TrackError(e);
+            }
         }
 
         protected override void OnStart ()
 		{
-			// Handle when your app starts
-		}
+            AppCenter.Start("android=dbb02fc3-6244-476e-a802-21da204eb894;", typeof(Analytics), typeof(Crashes));
+        }
 
 		protected override void OnSleep ()
 		{

@@ -20,6 +20,8 @@ using Android.Media;
 using System.Diagnostics;
 using Com.OneSignal;
 using Acr.UserDialogs;
+using Microsoft.AppCenter.Crashes;
+using System.Collections.Generic;
 
 namespace SSFR_Events.Droid
 {
@@ -28,22 +30,36 @@ namespace SSFR_Events.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
+            try
+            {
+                TabLayoutResource = Resource.Layout.Tabbar;
+                ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(bundle);
-            
-            //var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "SSFR_DB.db");
+                base.OnCreate(bundle);
 
-            //DBRepository dBRepository = new DBRepository(path);
+                //var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "SSFR_DB.db");
 
-            OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
+                //DBRepository dBRepository = new DBRepository(path);
 
-            UserDialogs.Init(this); 
+                OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
-            
+                UserDialogs.Init(this);
+
+                global::Xamarin.Forms.Forms.Init(this, bundle);
+                LoadApplication(new App());
+            }
+            catch (Exception e)
+            {
+                var properties = new Dictionary<string, string>
+                {
+                    {"Message", e.Message },
+                    {"Source", e.Source },
+                    {"StackTrace", e.StackTrace }
+                };
+                Crashes.TrackError(e);
+
+            }
+           
         }
 
     }

@@ -102,6 +102,7 @@ namespace SSFR_Events.Droid
 			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_contentPaddingRight = global::SSFR_Events.Droid.Resource.Styleable.CardView_contentPaddingRight;
 			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_contentPaddingTop = global::SSFR_Events.Droid.Resource.Styleable.CardView_contentPaddingTop;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::SSFR_Events.Droid.Resource.Attribute.actionBarSize;
+			global::ZXing.Net.Mobile.Forms.Android.Resource.String.library_name = global::SSFR_Events.Droid.Resource.String.library_name;
 		}
 		
 		public partial class Animation
