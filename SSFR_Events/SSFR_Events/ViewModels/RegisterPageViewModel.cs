@@ -301,7 +301,7 @@ namespace SSFR_Events.ViewModels
         public RegisterPageViewModel()
         {
 
-            dbRepo = ServiceLocator.Current.GetInstance<DBRepository>();
+            dbRepo = ServiceLocator.Current.GetInstance<DBRepository/*<User>*/>();
 
             AddRoles();
 

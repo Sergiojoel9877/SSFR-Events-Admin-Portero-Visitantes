@@ -6,16 +6,16 @@ using SSFR_Events.Services;
 
 namespace SSFR_Events.Services
 {
-    public interface IDBRepository<T> where T : ModelBase
+    public interface IDBRepository/*<T> where T : ModelBase*/
     {
 
-        //Traspass All methods to generics
-        List<T> Get();
-        Task<T> GetById(int id);
-        Task<bool> Exists(int id);
-        Task<bool> Update(T entity);
-        Task<bool> Delete(T entity);
-        Task<IEnumerable<T>> GetAll();
+        ////Traspass All methods to generics
+        //List<T> Get();
+        //Task<T> GetById(int id);
+        //Task<bool> Exists(int id);
+        //Task<bool> Update(T entity);
+        //Task<bool> Delete(T entity);
+        //Task<IEnumerable<T>> GetAll();
 
         //CRUD Users
         Task<bool> AddUser(User user);

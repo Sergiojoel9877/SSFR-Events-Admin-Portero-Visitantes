@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SSFR_Events.Services
 {
-    public class DBRepository<T> : IDBRepository<T> where T : ModelBase
+    public class DBRepository/*<T>*/ : IDBRepository/*<T> where T : ModelBase*/
     {
 
         private DBContext dbContext;
@@ -250,34 +250,34 @@ namespace SSFR_Events.Services
             return false;
         }
 
-        public List<T> Get()
-        {
-            throw new NotImplementedException();
-        }
+        //public List<T> Get()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<T> GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<T> GetById(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<bool> Exists(int id)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<bool> Exists(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<bool> Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<bool> Update(T entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<bool> Delete(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<bool> Delete(T entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<IEnumerable<T>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<IEnumerable<T>> GetAll()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
