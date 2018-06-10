@@ -1244,7 +1244,7 @@ namespace SSFR_Events.Services
     
         [Newtonsoft.Json.JsonProperty("location", Required = Newtonsoft.Json.Required.Always)]
         public string Location { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("eventType", Required = Newtonsoft.Json.Required.Always)]
         public string EventType { get; set; }
     

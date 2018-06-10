@@ -6,9 +6,17 @@ using SSFR_Events.Services;
 
 namespace SSFR_Events.Services
 {
-    public interface IDBRepository
+    public interface IDBRepository<T> where T : ModelBase
     {
-        
+
+        //Traspass All methods to generics
+        List<T> Get();
+        Task<T> GetById(int id);
+        Task<bool> Exists(int id);
+        Task<bool> Update(T entity);
+        Task<bool> Delete(T entity);
+        Task<IEnumerable<T>> GetAll();
+
         //CRUD Users
         Task<bool> AddUser(User user);
         Task<User> GetUser(int id);
@@ -41,5 +49,10 @@ namespace SSFR_Events.Services
         //Task<bool> UpdateDoorman(Doorman doorman);
         //Task<bool> DeleteDoorman(Doorman doorman);
 
+    }
+
+    public class ModelBase
+    {
+        public virtual int Id { get; set; }
     }
 }

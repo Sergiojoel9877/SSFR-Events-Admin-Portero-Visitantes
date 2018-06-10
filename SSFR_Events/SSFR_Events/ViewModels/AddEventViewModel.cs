@@ -155,6 +155,17 @@ namespace SSFR_Events.ViewModels
 
             }));
 
+        //Covert Image to Array
+
+        private void ImageToByte(Image image)
+        {
+
+            using (var ms = new MemoryStream())
+            {
+                
+            }
+
+        }
         public AddEventViewModel(INavigation navService)
         {
             _navService = navService;

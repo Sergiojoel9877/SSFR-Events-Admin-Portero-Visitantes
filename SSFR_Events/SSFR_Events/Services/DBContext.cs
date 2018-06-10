@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SSFR_Events.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,8 @@ namespace SSFR_Events.Services
         public DbSet<User> Users { get; set; }
 
         public DbSet<Events> Events { get; set; }
+
+        public DbSet<QRCodeForUser> QRCode { get; set; }
 
         //public DbSet<Doorman> Doormans { get; set; }
 
