@@ -102,7 +102,12 @@ namespace SSFR_Events.Droid
 			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_contentPaddingRight = global::SSFR_Events.Droid.Resource.Styleable.CardView_contentPaddingRight;
 			global::Syncfusion.SfBarcode.XForms.Droid.Resource.Styleable.CardView_contentPaddingTop = global::SSFR_Events.Droid.Resource.Styleable.CardView_contentPaddingTop;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::SSFR_Events.Droid.Resource.Attribute.actionBarSize;
+			global::ZXing.Net.Mobile.Forms.Android.Resource.Layout.zxingscanneractivitylayout = global::SSFR_Events.Droid.Resource.Layout.zxingscanneractivitylayout;
+			global::ZXing.Net.Mobile.Forms.Android.Resource.Layout.zxingscannerfragmentlayout = global::SSFR_Events.Droid.Resource.Layout.zxingscannerfragmentlayout;
 			global::ZXing.Net.Mobile.Forms.Android.Resource.String.library_name = global::SSFR_Events.Droid.Resource.String.library_name;
+			global::ZXing.Mobile.Resource.Id.contentFrame = global::SSFR_Events.Droid.Resource.Id.contentFrame;
+			global::ZXing.Mobile.Resource.Layout.zxingscanneractivitylayout = global::SSFR_Events.Droid.Resource.Layout.zxingscanneractivitylayout;
+			global::ZXing.Mobile.Resource.Layout.zxingscannerfragmentlayout = global::SSFR_Events.Droid.Resource.Layout.zxingscannerfragmentlayout;
 		}
 		
 		public partial class Animation
@@ -3229,6 +3234,9 @@ namespace SSFR_Events.Droid
 			// aapt resource value: 0x7f0c007c
 			public const int container = 2131492988;
 			
+			// aapt resource value: 0x7f0c00c4
+			public const int contentFrame = 2131493060;
+			
 			// aapt resource value: 0x7f0c0055
 			public const int contentPanel = 2131492949;
 			
@@ -3361,8 +3369,8 @@ namespace SSFR_Events.Droid
 			// aapt resource value: 0x7f0c008b
 			public const int loadingProgressWheel = 2131493003;
 			
-			// aapt resource value: 0x7f0c00c5
-			public const int masked = 2131493061;
+			// aapt resource value: 0x7f0c00c6
+			public const int masked = 2131493062;
 			
 			// aapt resource value: 0x7f0c00ac
 			public const int media_actions = 2131493036;
@@ -3688,8 +3696,8 @@ namespace SSFR_Events.Droid
 			// aapt resource value: 0x7f0c000e
 			public const int view_offset_helper = 2131492878;
 			
-			// aapt resource value: 0x7f0c00c4
-			public const int visible = 2131493060;
+			// aapt resource value: 0x7f0c00c5
+			public const int visible = 2131493061;
 			
 			// aapt resource value: 0x7f0c009e
 			public const int volume_item_container = 2131493022;
@@ -4002,6 +4010,12 @@ namespace SSFR_Events.Droid
 			
 			// aapt resource value: 0x7f030047
 			public const int Toolbar = 2130903111;
+			
+			// aapt resource value: 0x7f030048
+			public const int zxingscanneractivitylayout = 2130903112;
+			
+			// aapt resource value: 0x7f030049
+			public const int zxingscannerfragmentlayout = 2130903113;
 			
 			static Layout()
 			{

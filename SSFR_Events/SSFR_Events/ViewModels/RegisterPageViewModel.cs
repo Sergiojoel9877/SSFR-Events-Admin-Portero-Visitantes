@@ -17,7 +17,7 @@ namespace SSFR_Events.ViewModels
     public class RegisterPageViewModel : ViewModelBase
     {
 
-        DBRepository<User> dbRepo;
+        DBRepository/*<User> */dbRepo;
 
         public ObservableCollection<string> RoleList { get; set; } = new ObservableCollection<string>();
 
