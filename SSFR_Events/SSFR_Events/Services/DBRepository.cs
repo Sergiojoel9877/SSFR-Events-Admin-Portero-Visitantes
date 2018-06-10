@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SSFR_Events.Services
 {
-    public class DBRepository<T> : IDBRepository<T> where T: ModelBase
+    public class DBRepository<T> : IDBRepository<T> where T : ModelBase
     {
 
         private DBContext dbContext;
