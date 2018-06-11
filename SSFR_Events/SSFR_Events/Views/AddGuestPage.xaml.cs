@@ -18,7 +18,7 @@ namespace SSFR_Events.Views
 	{
         AddGuestViewModel ViewModel;
 
-		public AddGuestPage (SSFR_Events.Services.Events evnt, Image barcode)
+		public AddGuestPage (SSFR_Events.Services.Events evnt/*, Image barcode*/)
 		{
 			InitializeComponent ();
 

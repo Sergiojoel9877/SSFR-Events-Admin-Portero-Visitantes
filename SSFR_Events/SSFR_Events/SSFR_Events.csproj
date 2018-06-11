@@ -22,14 +22,11 @@
     <PackageReference Include="PCLStorage" Version="1.0.2" />
     <PackageReference Include="Syncfusion.Xamarin.Pdf" Version="16.1.0.32" />
     <PackageReference Include="Syncfusion.Xamarin.SfBarcode" Version="16.1.0.32" />
-    <PackageReference Include="System.Net.Security" Version="4.3.2" />
     <PackageReference Include="Unity" Version="5.8.6" />
-    <PackageReference Include="UXDivers.GorillaPlayer.SDK" Version="1.2.0.6" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
     <PackageReference Include="Xam.Plugins.Messaging" Version="3.2.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-    <PackageReference Include="Xamarin.Forms" Version="3.0.0.530893" />
-    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.469394-pre1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -18,6 +18,7 @@ namespace SSFR_Events.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+      
             this.StartActivity(typeof(MainActivity));
             // Create your application here
         }

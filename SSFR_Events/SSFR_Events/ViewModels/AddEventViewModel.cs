@@ -13,15 +13,12 @@ using Plugin.Connectivity;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using Newtonsoft.Json;
-using ZXing.Net.Mobile.Forms;
 
 namespace SSFR_Events.ViewModels
 {
     public class AddEventViewModel : ViewModelBase
     {
         INavigation _navService;
-
-        ZXingBarcodeImageView barcode;
         
         private bool empty;
         public bool Empty
@@ -118,23 +115,13 @@ namespace SSFR_Events.ViewModels
 
                             /**TODO: AutoGenerar el Codigo QR, para cada evento y guardarlo en una carpeta de nombre cualsea dentro de la galeria..**/
 
-                            /**Instalar ZXingBarcode... [Nuget Pa]**/
-
-                            barcode = new ZXingBarcodeImageView
-                            {
-                                BarcodeFormat = ZXing.BarcodeFormat.QR_CODE
-                            };
-                            barcode.BarcodeOptions.Width = 500;
-                            barcode.BarcodeOptions.Height = 500;
-                            barcode.BarcodeValue = @event.Name;
-
                             progresss.Dispose();
 
                             if (r)
                             {
                                 bool a = DependencyService.Get<IAlert>().Alert("¡Añade unos visitantes!", "Ingresa cuantos quieras, ¡No hay limites!");
 
-                                await _navService.PushAsync(new AddGuestPage(@event, barcode));
+                                await _navService.PushAsync(new AddGuestPage(@event/*, barcode*/));
                             }
                         }
 
