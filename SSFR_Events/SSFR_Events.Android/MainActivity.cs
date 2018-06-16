@@ -7,6 +7,7 @@ using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using ZXing.Net.Mobile.Forms.Android;
 
 namespace SSFR_Events.Droid
 {
@@ -28,6 +29,8 @@ namespace SSFR_Events.Droid
 
                 OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
 
+                ZXing.Net.Mobile.Forms.Android.Platform.Init();
+
                 UserDialogs.Init(this);
 
                 global::Xamarin.Forms.Forms.Init(this, bundle);
@@ -48,12 +51,12 @@ namespace SSFR_Events.Droid
            
         }
 
-//        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
-//        {
-//#pragma warning disable
-//            PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-//#pragma warning restore
-//        }
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+#pragma warning disable
+            PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+#pragma warning restore
+        }
 
     }
 }
