@@ -47,10 +47,10 @@
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <NoWarn>NU1605</NoWarn>
-    <AotAssemblies>false</AotAssemblies>
+    <AotAssemblies>true</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <EnableProguard>false</EnableProguard>
@@ -111,6 +111,7 @@
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="UnsafeFix.xml" />
     <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
