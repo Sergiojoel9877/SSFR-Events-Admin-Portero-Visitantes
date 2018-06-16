@@ -71,12 +71,9 @@ namespace SSFR_Events.ViewModels
                                 Settings.Password = password;
 
                                 Settings.Role = "Modo Portero";
-
-                                Device.BeginInvokeOnMainThread(() => {
-
-                                    Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage());
-
-                                });
+                                
+                                await Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage(), true);
+                                
                             }
                             else
                             {
@@ -104,12 +101,8 @@ namespace SSFR_Events.ViewModels
 
                                 Settings.Role = "Modo Admin";
 
-                                Device.BeginInvokeOnMainThread(() => {
-
-                                    Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage());
-
-                                });
-
+                                await Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage());
+                                
                             }
 
                         }
@@ -165,12 +158,8 @@ namespace SSFR_Events.ViewModels
             get => register ?? (register = new Command( () => 
             {
                
-                Device.BeginInvokeOnMainThread(() => {
-
-                    Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
-
-                });
-
+                Application.Current.MainPage.Navigation.PushAsync(new RegisterPage(), true);
+                
             }));
         }
 
