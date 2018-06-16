@@ -134,9 +134,6 @@
     <PackageReference Include="Syncfusion.Xamarin.SfBarCode.IOS">
       <Version>16.1.0.32</Version>
     </PackageReference>
-    <PackageReference Include="UXDivers.GorillaPlayer.SDK">
-      <Version>1.2.0.6</Version>
-    </PackageReference>
     <PackageReference Include="Xam.Plugins.Messaging">
       <Version>3.2.1</Version>
     </PackageReference>
