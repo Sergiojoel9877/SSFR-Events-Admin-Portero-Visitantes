@@ -15,7 +15,6 @@ namespace SSFR_Events.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
-        private readonly INavigation _navService;
 
         private Command login;
         public Command Login
@@ -59,11 +58,7 @@ namespace SSFR_Events.ViewModels
                                 App.Oauthclient = null;
 
                                 App.Oauthclient = clnt;
-
-                                var claims = await App._APIServices.GetUserClaims();
-
-                                progresss.Dispose();
-
+                                
                                 DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
 
                                 Settings.UserName = Email;
@@ -71,7 +66,9 @@ namespace SSFR_Events.ViewModels
                                 Settings.Password = password;
 
                                 Settings.Role = "Modo Portero";
-                                
+
+                                progresss.Dispose();
+
                                 await Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage(), true);
                                 
                             }
@@ -89,10 +86,6 @@ namespace SSFR_Events.ViewModels
 
                                 App.Oauthclient = clntAd;
 
-                                var claimsAd = await App._APIServices.GetUserClaims();
-
-                                progresss.Dispose();
-
                                 DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
 
                                 Settings.UserName = Email;
@@ -100,6 +93,8 @@ namespace SSFR_Events.ViewModels
                                 Settings.Password = password;
 
                                 Settings.Role = "Modo Admin";
+
+                                progresss.Dispose();
 
                                 await Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage());
                                 

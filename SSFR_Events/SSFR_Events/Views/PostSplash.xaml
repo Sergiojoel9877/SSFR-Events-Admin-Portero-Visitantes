@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SSFR_Events.Views.PostSplash"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#000">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#000">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="207" HeightRequest="80">
+
+                <Image x:Name="Splash" Source="PostImage.png"/>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
