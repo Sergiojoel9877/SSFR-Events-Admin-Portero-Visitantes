@@ -16,6 +16,41 @@ namespace SSFR_Events.ViewModels
     public class LoginPageViewModel : ViewModelBase
     {
 
+        private bool postSplashVISIBLE = true;
+        public bool PostSplashVISIBLE
+        {
+            get => postSplashVISIBLE;
+            set => SetProperty(ref postSplashVISIBLE, value);
+        }
+
+        private bool logoStackLayoutVISIBLE = false;
+        public bool LogoStackLayoutVISIBLE
+        {
+            get => logoStackLayoutVISIBLE;
+            set => SetProperty(ref logoStackLayoutVISIBLE, value);
+        }
+
+        private bool centeredFrameVISIBLE = false;
+        public bool CenteredFrameVISIBLE
+        {
+            get => centeredFrameVISIBLE;
+            set => SetProperty(ref centeredFrameVISIBLE, value);
+        }
+
+        private bool registerButtonStackVISIBLE = false;
+        public bool RegisterButtonStackVISIBLE
+        {
+            get => registerButtonStackVISIBLE;
+            set => SetProperty(ref registerButtonStackVISIBLE, value);
+        }
+
+        private bool customMessageStackVISIBLE = false;
+        public bool CustomMessageStackVISIBLE
+        {
+            get => customMessageStackVISIBLE;
+            set => SetProperty(ref customMessageStackVISIBLE, value);
+        }
+
         private Command login;
         public Command Login
         {
@@ -152,9 +187,10 @@ namespace SSFR_Events.ViewModels
 
             get => register ?? (register = new Command( () => 
             {
-               
-                Application.Current.MainPage.Navigation.PushAsync(new RegisterPage(), true);
-                
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current.MainPage.Navigation.PushAsync(new RegisterPage(), true);
+                });
             }));
         }
 

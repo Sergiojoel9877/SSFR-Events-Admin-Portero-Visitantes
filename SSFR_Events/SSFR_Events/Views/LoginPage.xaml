@@ -10,13 +10,33 @@
         
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1" AbsoluteLayout.LayoutFlags="All">
 
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.12, 0.8, 0.5" HorizontalOptions="Center" WidthRequest="520" HeightRequest="120">
+            <Grid x:Name="PostSplash" IsVisible="{Binding PostSplashVISIBLE}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#000">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="207" HeightRequest="80">
+
+                    <Image x:Name="Splash" Source="PostImage.png"/>
+
+                </StackLayout>
+            </Grid>
+
+            <StackLayout x:Name="LogoStackLayout" IsVisible="{Binding LogoStackLayoutVISIBLE}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.12, 0.8, 0.5" HorizontalOptions="Center" WidthRequest="520" HeightRequest="120">
 
                 <Image x:Name="Logo" Source="Title.png"/>
 
             </StackLayout>
 
-            <Frame x:Name="CenteredFrame" BackgroundColor="#212121" AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.8, 0.5" AbsoluteLayout.LayoutFlags="All"  CornerRadius="15">
+            <Frame x:Name="CenteredFrame" IsVisible="{Binding CenteredFrameVISIBLE}" BackgroundColor="#212121" AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.8, 0.5" AbsoluteLayout.LayoutFlags="All"  CornerRadius="15">
 
                 <Grid x:Name="Grid" RowSpacing="25">
 
@@ -84,7 +104,7 @@
 
             </Frame>
 
-            <StackLayout AbsoluteLayout.LayoutBounds="0.2, 0.95, 0.5, 0.1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="Start" Orientation="Vertical">
+            <StackLayout x:Name="RegisterButtonStack" IsVisible="{Binding RegisterButtonStackVISIBLE}" AbsoluteLayout.LayoutBounds="0.2, 0.95, 0.5, 0.1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="Start" Orientation="Vertical">
 
                 <Label Text="¿No estás registrado/a?" FontAttributes="Bold" LineBreakMode="NoWrap" VerticalOptions="Center" TextColor="#FFA500"/>
 
@@ -92,7 +112,7 @@
 
             </StackLayout>
 
-            <StackLayout AbsoluteLayout.LayoutBounds="0.97, 1, 0.4, 0.1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="Start" Orientation="Vertical">
+            <StackLayout x:Name="CustomMessageStack" IsVisible="{Binding CustomMessageStackVISIBLE}" AbsoluteLayout.LayoutBounds="0.97, 1, 0.4, 0.1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="Start" Orientation="Vertical">
 
                 <Label Text="Sergio J. Ferreras Batista" FontAttributes="Bold" LineBreakMode="CharacterWrap" VerticalOptions="Center" FontSize="10" TextColor="#55FFFFFF"/>
                 
