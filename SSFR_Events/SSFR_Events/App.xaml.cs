@@ -31,20 +31,10 @@ namespace SSFR_Events
 
         public App()
 		{
-            try
-            {
-                InitializeComponent();
+          
+            InitializeComponent();
 
-            //var loginPage = new NavigationPage(new LoginPage())
-            //{
-
-            //     BarTextColor = Color.FromHex("#FFA500")
-
-            //};
-
-            var PostSplash = new NavigationPage(new PostSplash());
-
-            MainPage = PostSplash;
+            MainPage = new NavigationPage(new PostSplash());
             
         }
 
