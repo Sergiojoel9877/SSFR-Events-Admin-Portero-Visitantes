@@ -120,7 +120,6 @@
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\PostImage.png" />
     <Content Include="UnsafeFix.xml" />
     <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />

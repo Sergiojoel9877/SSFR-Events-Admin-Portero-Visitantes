@@ -26,7 +26,7 @@ namespace SSFR_Events.Views
 
             BindingContext = ViewModel;
             
-		}
+        }
 
         void OnTapCheckBox(View view, object s)
         {

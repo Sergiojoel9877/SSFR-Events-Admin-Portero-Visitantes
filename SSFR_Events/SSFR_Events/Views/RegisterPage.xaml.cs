@@ -25,5 +25,5 @@ namespace SSFR_Events.Views
             BindingContext = ViewModel;
 
         }
-    }
+	}
 }
