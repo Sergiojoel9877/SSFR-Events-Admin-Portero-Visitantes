@@ -15,9 +15,14 @@
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
 
-            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.12, 0.8, 0.5" HorizontalOptions="Center" WidthRequest="520" HeightRequest="120">
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0.5, 0.12, 0.8, 0.5"
+                AbsoluteLayout.LayoutFlags="All"
+                HeightRequest="120"
+                HorizontalOptions="Center"
+                WidthRequest="520">
 
-                <Image x:Name="Logo" Source="Title.png"/>
+                <Image x:Name="Logo" Source="Title.png" />
 
             </StackLayout>
 
@@ -199,7 +204,15 @@
                     TextColor="#FFA500"
                     VerticalOptions="Center" />
 
-                <Button Text="REGISTRATE" Command="{Binding Register}" BackgroundColor="#33FFFFFF" TextColor="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" HorizontalOptions="Center"/>
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="#33FFFFFF"
+                    Command="{Binding Register}"
+                    HorizontalOptions="Center"
+                    Text="REGISTRATE"
+                    TextColor="White" />
 
             </StackLayout>
 

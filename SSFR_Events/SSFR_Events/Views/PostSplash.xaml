@@ -5,5 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="#000"
     NavigationPage.HasNavigationBar="False">
-    <ContentPage.Content />
+    <ContentPage.Content>
+        
+        
+    </ContentPage.Content>
 </ContentPage>
