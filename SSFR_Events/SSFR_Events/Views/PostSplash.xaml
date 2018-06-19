@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SSFR_Events.Views.PostSplash"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#000">
-    <ContentPage.Content>
-       
-    </ContentPage.Content>
+<ContentPage
+    x:Class="SSFR_Events.Views.PostSplash"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#000"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content />
 </ContentPage>

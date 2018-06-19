@@ -30,14 +30,16 @@ namespace SSFR_Events
           
             InitializeComponent();
 
-            var loginPage = new NavigationPage(new LoginPage())
-            {
+            //var loginPage = new NavigationPage(new LoginPage())
+            //{
 
-                 BarTextColor = Color.FromHex("#FFA500")
+            //     BarTextColor = Color.FromHex("#FFA500")
 
-            };
+            //};
 
-            MainPage = loginPage;
+            var PostSplash = new NavigationPage(new PostSplash());
+
+            MainPage = PostSplash;
             
         }
 
