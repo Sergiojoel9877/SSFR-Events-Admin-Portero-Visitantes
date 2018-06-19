@@ -15,37 +15,11 @@
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
 
-            <Grid
-                x:Name="PostSplash"
-                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                AbsoluteLayout.LayoutFlags="All"
-                BackgroundColor="#000"
-                IsVisible="{Binding PostSplashVISIBLE}">
+            <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5, 0.12, 0.8, 0.5" HorizontalOptions="Center" WidthRequest="520" HeightRequest="120">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                <Image x:Name="Logo" Source="Title.png"/>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <StackLayout
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    HeightRequest="80"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    WidthRequest="207">
-
-                    <Image x:Name="Splash" Source="PostImage.png" />
-
-                </StackLayout>
-            </Grid>
+            </StackLayout>
 
             <StackLayout
                 x:Name="LogoStackLayout"
