@@ -17,6 +17,10 @@ namespace SSFR_Events
 {
 	public partial class App : Application
 	{
+        public const string NotificationReceivedKey = "NotificationReceived";
+
+        public const string MobileServiceUrl = "http://ssfrpushnotifications.azurewebsites.net";
+
         public static HttpClient Oauthclient { get; set; }
 
         public static HttpClient client { get; set; } = new HttpClient();
@@ -27,8 +31,9 @@ namespace SSFR_Events
 
         public App()
 		{
-          
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
             //var loginPage = new NavigationPage(new LoginPage())
             //{
@@ -47,15 +52,37 @@ namespace SSFR_Events
 		{
             ContainerInitializer.Initialize(); //Moved to the App.Xaml, for better performance..
 
-            Oauthclient = new HttpClient
+                Oauthclient = new HttpClient
+                {
+
+                    BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/")
+
+                };
+
+                var loginPage = new NavigationPage(new LoginPage())
+                {
+                    BarTextColor = Color.FromHex("#FFA500")
+                };
+
+                OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
+
+                MainPage = loginPage;
+
+            }
+            catch (Exception e)
             {
+                var properties = new Dictionary<string, string>
+                {
+                    {"Message", e.Message },
+                    {"Source", e.Source },
+                    {"StackTrace", e.StackTrace }
+                };
+                Crashes.TrackError(e);
+            }
+        }
 
-                BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/")
-
-            };
-
-            OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
-
+        protected override void OnStart ()
+		{
             AppCenter.Start("android=dbb02fc3-6244-476e-a802-21da204eb894;", typeof(Analytics), typeof(Crashes));
         }
 
