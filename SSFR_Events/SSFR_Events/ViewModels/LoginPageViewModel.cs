@@ -113,8 +113,9 @@ namespace SSFR_Events.ViewModels
                         DependencyService.Get<IAlert>().Alert("Error", "Al parecer a ocurrido un error al momento de iniciar sesion, por favor intenta nuevamente.");
                     }
                 }
-                catch (SwaggerException)
+                catch (SwaggerException e)
                 {
+                 
                     DependencyService.Get<IAlert>().Alert("Error", "Al parecer ocurrió un error al nivel de la API.");
                 }
                 

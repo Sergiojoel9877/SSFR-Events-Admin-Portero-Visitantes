@@ -23,7 +23,14 @@ namespace SSFR_Events.Views
             await Splash.FadeTo(0, 1000, Easing.Linear);
             await Splash.ScaleTo(150, 700, Easing.Linear);
 
-            Application.Current.MainPage = new NavigationPage(new LoginPage());
+            var loginPage = new NavigationPage(new LoginPage())
+            {
+
+                BarTextColor = Color.FromHex("#FFA500")
+
+            };
+
+            Application.Current.MainPage = loginPage;
         }
         
     }

@@ -276,10 +276,9 @@ namespace SSFR_Events.ViewModels
         //    await file.WriteAllTextAsync("42");
         //}
 
-        public AddGuestViewModel(INavigation navService, SSFR_Events.Services.Events evnt/*, Image _barcode*/)
+        public AddGuestViewModel(SSFR_Events.Services.Events evnt/*, Image _barcode*/)
         {
-            _navService = navService;
-
+           
             AddGender();
 
             //barcode = _barcode;

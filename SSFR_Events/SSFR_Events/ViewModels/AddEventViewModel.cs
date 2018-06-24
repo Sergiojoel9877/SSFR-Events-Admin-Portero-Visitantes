@@ -18,7 +18,6 @@ namespace SSFR_Events.ViewModels
 {
     public class AddEventViewModel : ViewModelBase
     {
-        INavigation _navService;
         
         private bool empty;
         public bool Empty
@@ -121,7 +120,9 @@ namespace SSFR_Events.ViewModels
                             {
                                 bool a = DependencyService.Get<IAlert>().Alert("¡Añade unos visitantes!", "Ingresa cuantos quieras, ¡No hay limites!");
 
-                                await _navService.PushAsync(new AddGuestPage(@event/*, barcode*/));
+                                MessagingCenter.Send(this, "PushToGuestPage", new AddGuestPage(@event));
+
+                                //App.Current.MainPage.Navigation.PushAsync(new AddGuestPage(@event/*, barcode*/));
                             }
                         }
 
@@ -153,9 +154,9 @@ namespace SSFR_Events.ViewModels
             }
 
         }
-        public AddEventViewModel(INavigation navService)
+        public AddEventViewModel()
         {
-            _navService = navService;
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SSFR_Events.ViewModels;
+﻿using SSFR_Events.Data;
+using SSFR_Events.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,15 @@ namespace SSFR_Events.Views
 		{
             InitializeComponent();
 
-            ViewModel = new AddEventViewModel(Navigation);
+            ViewModel = ((ViewModelLocator)Application.Current.Resources["Locator"]).AddEventViewModel;
 
             ViewModel.EventType = eventType;
 
             BindingContext = ViewModel;
 
             DatePicker.DateSelected += OnDateSelected;
+
+            PushToGuestPage();
 
         }
 
@@ -36,6 +39,14 @@ namespace SSFR_Events.Views
             date = e.NewDate.Date;
 
             ViewModel.DateSelected = date;
+        }
+
+        void PushToGuestPage()
+        {
+            MessagingCenter.Subscribe<AddEventViewModel, AddGuestPage>(this, "PushToGuestPage", (s, e) =>
+            {
+                Navigation.PushAsync(e);
+            });
         }
     }
 }

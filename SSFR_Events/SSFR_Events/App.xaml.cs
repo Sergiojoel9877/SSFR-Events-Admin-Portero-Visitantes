@@ -30,6 +30,13 @@ namespace SSFR_Events
           
             InitializeComponent();
 
+            Oauthclient = new HttpClient
+            {
+
+                BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/")
+
+            };
+
             MainPage = new NavigationPage(new PostSplash());
             
         }
@@ -37,13 +44,6 @@ namespace SSFR_Events
         protected override void OnStart ()
 		{
             ContainerInitializer.Initialize(); //Moved to the App.Xaml, for better performance..
-
-            Oauthclient = new HttpClient
-            {
-
-                BaseAddress = new Uri("http://ssfrouthapi-sergio.azurewebsites.net/")
-
-            };
 
             OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
 
