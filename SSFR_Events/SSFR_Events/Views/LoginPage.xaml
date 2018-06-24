@@ -26,26 +26,12 @@
 
             </StackLayout>
 
-            <StackLayout
-                x:Name="LogoStackLayout"
-                AbsoluteLayout.LayoutBounds="0.5, 0.12, 0.8, 0.5"
-                AbsoluteLayout.LayoutFlags="All"
-                HeightRequest="120"
-                HorizontalOptions="Center"
-                IsVisible="{Binding LogoStackLayoutVISIBLE}"
-                WidthRequest="520">
-
-                <Image x:Name="Logo" Source="Title.png" />
-
-            </StackLayout>
-
             <Frame
                 x:Name="CenteredFrame"
                 AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.8, 0.5"
                 AbsoluteLayout.LayoutFlags="All"
                 BackgroundColor="#212121"
-                CornerRadius="15"
-                IsVisible="{Binding CenteredFrameVISIBLE}">
+                CornerRadius="15">
 
                 <Grid x:Name="Grid" RowSpacing="25">
 

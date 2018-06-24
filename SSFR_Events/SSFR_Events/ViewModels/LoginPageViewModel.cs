@@ -15,42 +15,6 @@ namespace SSFR_Events.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
-        private readonly INavigation _navService;
-
-        private bool postSplashVISIBLE = true;
-        public bool PostSplashVISIBLE
-        {
-            get => postSplashVISIBLE;
-            set => SetProperty(ref postSplashVISIBLE, value);
-        }
-
-        private bool logoStackLayoutVISIBLE = false;
-        public bool LogoStackLayoutVISIBLE
-        {
-            get => logoStackLayoutVISIBLE;
-            set => SetProperty(ref logoStackLayoutVISIBLE, value);
-        }
-
-        private bool centeredFrameVISIBLE = false;
-        public bool CenteredFrameVISIBLE
-        {
-            get => centeredFrameVISIBLE;
-            set => SetProperty(ref centeredFrameVISIBLE, value);
-        }
-
-        private bool registerButtonStackVISIBLE = false;
-        public bool RegisterButtonStackVISIBLE
-        {
-            get => registerButtonStackVISIBLE;
-            set => SetProperty(ref registerButtonStackVISIBLE, value);
-        }
-
-        private bool customMessageStackVISIBLE = false;
-        public bool CustomMessageStackVISIBLE
-        {
-            get => customMessageStackVISIBLE;
-            set => SetProperty(ref customMessageStackVISIBLE, value);
-        }
 
         private Command login;
         public Command Login
@@ -94,11 +58,7 @@ namespace SSFR_Events.ViewModels
                                 App.Oauthclient = null;
 
                                 App.Oauthclient = clnt;
-
-                                var claims = await App._APIServices.GetUserClaims();
-
-                                progresss.Dispose();
-
+                                
                                 DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
 
                                 Settings.UserName = Email;
@@ -106,7 +66,9 @@ namespace SSFR_Events.ViewModels
                                 Settings.Password = password;
 
                                 Settings.Role = "Modo Portero";
-                                
+
+                                progresss.Dispose();
+
                                 await Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage(), true);
                                 
                             }
@@ -124,10 +86,6 @@ namespace SSFR_Events.ViewModels
 
                                 App.Oauthclient = clntAd;
 
-                                var claimsAd = await App._APIServices.GetUserClaims();
-
-                                progresss.Dispose();
-
                                 DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
 
                                 Settings.UserName = Email;
@@ -135,6 +93,8 @@ namespace SSFR_Events.ViewModels
                                 Settings.Password = password;
 
                                 Settings.Role = "Modo Admin";
+
+                                progresss.Dispose();
 
                                 await Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage());
                                 
@@ -193,10 +153,9 @@ namespace SSFR_Events.ViewModels
 
             get => register ?? (register = new Command( () => 
             {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    Application.Current.MainPage.Navigation.PushAsync(new RegisterPage(), true);
-                });
+               
+                Application.Current.MainPage.Navigation.PushAsync(new RegisterPage(), true);
+                
             }));
         }
 

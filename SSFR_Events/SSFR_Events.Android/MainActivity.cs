@@ -7,6 +7,7 @@ using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Xamarin.Forms;
 using ZXing.Net.Mobile.Forms.Android;
 
 namespace SSFR_Events.Droid
@@ -32,6 +33,8 @@ namespace SSFR_Events.Droid
                 ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
                 UserDialogs.Init(this);
+
+                Forms.SetFlags("FastRenderers_Experimental");
 
                 global::Xamarin.Forms.Forms.Init(this, bundle);
 
