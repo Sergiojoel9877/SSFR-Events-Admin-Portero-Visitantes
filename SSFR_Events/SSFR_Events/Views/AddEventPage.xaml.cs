@@ -18,13 +18,11 @@ namespace SSFR_Events.Views
 
         DateTime date { get; set; }
 
-        public AddEventPage(string eventType)
+        public AddEventPage()
 		{
             InitializeComponent();
 
             ViewModel = ((ViewModelLocator)Application.Current.Resources["Locator"]).AddEventViewModel;
-
-            ViewModel.EventType = eventType;
 
             BindingContext = ViewModel;
 

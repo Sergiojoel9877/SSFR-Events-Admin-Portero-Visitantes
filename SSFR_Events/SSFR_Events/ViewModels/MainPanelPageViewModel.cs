@@ -81,9 +81,11 @@ namespace SSFR_Events.ViewModels
 
                 EventType = "Aniversario";
 
-                _navService.PushAsync(new AddEventPage(EventType));
+                _navService.PushAsync(new AddEventPage());
 
-                 EventType = String.Empty;
+                MessagingCenter.Send(this, "EventType", EventType);
+
+                EventType = String.Empty;
 
             }));
         }
@@ -101,7 +103,9 @@ namespace SSFR_Events.ViewModels
 
                 EventType = "Boda";
 
-                _navService.PushAsync(new AddEventPage(EventType));
+                _navService.PushAsync(new AddEventPage());
+
+                MessagingCenter.Send(this, "EventType", EventType);
 
                 EventType = String.Empty;
 
@@ -121,7 +125,9 @@ namespace SSFR_Events.ViewModels
 
                 EventType = "Cumpleaños";
 
-                _navService.PushAsync(new AddEventPage(EventType));
+                _navService.PushAsync(new AddEventPage());
+
+                MessagingCenter.Send(this, "EventType", EventType);
 
                 EventType = String.Empty;
 
@@ -141,7 +147,9 @@ namespace SSFR_Events.ViewModels
 
                 EventType = "Funeral";
 
-                _navService.PushAsync(new AddEventPage(EventType));
+                _navService.PushAsync(new AddEventPage());
+
+                MessagingCenter.Send(this, "EventType", EventType);
 
                 EventType = String.Empty;
 
@@ -161,7 +169,9 @@ namespace SSFR_Events.ViewModels
 
                 EventType = "Personalizado";
 
-                _navService.PushAsync(new AddEventPage(EventType));
+                _navService.PushAsync(new AddEventPage());
+
+                MessagingCenter.Send(this, "EventType", EventType);
 
                 EventType = String.Empty;
 

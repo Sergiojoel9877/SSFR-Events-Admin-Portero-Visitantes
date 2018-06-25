@@ -156,7 +156,14 @@ namespace SSFR_Events.ViewModels
         }
         public AddEventViewModel()
         {
+            MessagingCenter.Subscribe<MainPanelPageViewModel, string>(this, "EventType", (s, e) =>
+            {
 
+                EventType = e;
+
+            });
+
+            MessagingCenter.Unsubscribe<MainPanelPageViewModel, string>(this, "EventType");
         }
     }
 }
