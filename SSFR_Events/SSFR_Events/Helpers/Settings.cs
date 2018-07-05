@@ -66,5 +66,12 @@ namespace SSFR_Events.Helpers
                 AppSettings.AddOrUpdateValue("Role", value);
             }
         }
+
+        public static string EventType
+        {
+            get => AppSettings.GetValueOrDefault("EventType", "");
+
+            set => AppSettings.AddOrUpdateValue("EventType", value);
+        }
     }
 }

@@ -28,9 +28,7 @@ namespace SSFR_Events
         public App()
 		{
 
-#if DEBUG
             LiveReload.Init();
-#endif   
 
             InitializeComponent();
 
@@ -47,7 +45,7 @@ namespace SSFR_Events
 
         protected override void OnStart ()
 		{
-            ContainerInitializer.Initialize(); //Moved to the App.Xaml, for better performance..
+            ContainerInitializer.Initialize();
 
             OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
 

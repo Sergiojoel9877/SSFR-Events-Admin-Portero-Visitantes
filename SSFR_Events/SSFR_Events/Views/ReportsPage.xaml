@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:views="clr-namespace:SSFR_Events.Views"
-            x:Class="SSFR_Events.Views.ReportsPage"
-            Title="Reportes"
-            BackgroundColor="#000">
-  <!--Pages can be added as references or inline-->
+<TabbedPage
+    x:Class="SSFR_Events.Views.ReportsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:SSFR_Events.Views"
+    Title="Reportes"
+    BackgroundColor="#000">
+    <!--  Pages can be added as references or inline  -->
 
     <views:TotalAssitanceByEvent Title="Asistencia total Eventos" />
     <views:PorcentageForAssistanceToEachEvent Title="% asistencia a cada evento" />

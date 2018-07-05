@@ -12,6 +12,7 @@ using Acr.UserDialogs;
 using Plugin.Connectivity;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using SSFR_Events.Helpers;
 using Newtonsoft.Json;
 
 namespace SSFR_Events.ViewModels
@@ -156,14 +157,16 @@ namespace SSFR_Events.ViewModels
         }
         public AddEventViewModel()
         {
-            MessagingCenter.Subscribe<MainPanelPageViewModel, string>(this, "EventType", (s, e) =>
-            {
+            //MessagingCenter.Subscribe<MainPanelPageViewModel, string>(this, "EventType", (s, e) =>
+            //{
 
-                EventType = e;
+            //    EventType = e;
 
-            });
+            //});
 
-            MessagingCenter.Unsubscribe<MainPanelPageViewModel, string>(this, "EventType");
+            EventType = Settings.EventType;
+
+            //MessagingCenter.Unsubscribe<MainPanelPageViewModel, string>(this, "EventType");
         }
     }
 }
