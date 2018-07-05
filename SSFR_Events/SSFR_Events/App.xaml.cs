@@ -27,7 +27,11 @@ namespace SSFR_Events
 
         public App()
 		{
-          
+
+#if DEBUG
+            LiveReload.Init();
+#endif   
+
             InitializeComponent();
 
             Oauthclient = new HttpClient
