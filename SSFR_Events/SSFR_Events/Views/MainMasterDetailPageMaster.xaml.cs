@@ -30,7 +30,7 @@ namespace SSFR_Events.Views
 
             ListView = MenuItemsListView;
 
-            On<Xamarin.Forms.PlatformConfiguration.Android>();
+           
         }
     }
 }
