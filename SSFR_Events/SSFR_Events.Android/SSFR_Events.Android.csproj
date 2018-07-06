@@ -101,6 +101,9 @@
     <PackageReference Include="Xamarin.GooglePlayServices.Gcm">
       <Version>42.1021.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.LiveReload">
+      <Version>0.3.27</Version>
+    </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>2.4.1</Version>
     </PackageReference>
