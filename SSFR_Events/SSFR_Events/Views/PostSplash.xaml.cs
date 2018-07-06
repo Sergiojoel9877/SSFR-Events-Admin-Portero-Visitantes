@@ -1,4 +1,5 @@
 ﻿
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +15,8 @@ namespace SSFR_Events.Views
 
         protected override async void OnAppearing()
         {
+            await Task.Yield();
+
             base.OnAppearing();
 
             await Splash.ScaleTo(1, 2000);
@@ -30,8 +33,12 @@ namespace SSFR_Events.Views
 
             };
 
-            Application.Current.MainPage = loginPage;
+            Device.BeginInvokeOnMainThread(() =>
+            {
+
+                Application.Current.MainPage = loginPage;
+
+            });
         }
-        
     }
 }
