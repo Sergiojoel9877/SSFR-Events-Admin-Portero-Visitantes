@@ -1,33 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:SSFR_Events.CustomRenderers"
-             BackgroundColor="#000"
-             x:Class="SSFR_Events.Views.GuestToArrivePage">
+<ContentPage
+    x:Class="SSFR_Events.Views.GuestToArrivePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SSFR_Events.CustomRenderers"
+    BackgroundColor="#000">
     <ContentPage.Content>
         <ScrollView Orientation="Vertical">
             <StackLayout x:Name="Stack">
 
-                <Frame x:Name="CenteredFrame" BackgroundColor="#212121" HorizontalOptions="Center" Margin="16, 15, 16, 0" HasShadow="True" CornerRadius="25">
+                <Frame
+                    x:Name="CenteredFrame"
+                    Margin="16,15,16,0"
+                    BackgroundColor="#212121"
+                    CornerRadius="25"
+                    HasShadow="True"
+                    HorizontalOptions="Center">
 
                     <Grid>
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212" Grid.Column="0" Grid.Row="0">
+                        <Frame
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Padding="2"
+                            BackgroundColor="#131212"
+                            CornerRadius="25"
+                            HasShadow="False"
+                            HorizontalOptions="Center"
+                            WidthRequest="220">
 
-                            <local:TransparentEditor x:Name="NameEntry" Text="{Binding Name}" Placeholder="Nombre del evento" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End"/>
+                            <local:TransparentEditor
+                                x:Name="NameEntry"
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                HorizontalTextAlignment="Center"
+                                Placeholder="Nombre del evento"
+                                PlaceholderColor="#FFA500"
+                                Text="{Binding Name}"
+                                TextColor="#FFA500"
+                                VerticalOptions="End" />
 
                         </Frame>
 
-                        <Image VerticalOptions="Center" HeightRequest="50" WidthRequest="50" Source="buscar.png" Grid.Column="1" Grid.Row="0">
+                        <Image
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HeightRequest="50"
+                            Source="buscar.png"
+                            VerticalOptions="Center"
+                            WidthRequest="50">
 
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Search}" />
@@ -39,7 +69,13 @@
 
                 </Frame>
 
-                <Frame x:Name="guestList" BackgroundColor="#212121" HorizontalOptions="Center" Margin="16, 15, 16, 0" HasShadow="True" CornerRadius="25">
+                <Frame
+                    x:Name="guestList"
+                    Margin="16,15,16,0"
+                    BackgroundColor="#212121"
+                    CornerRadius="25"
+                    HasShadow="True"
+                    HorizontalOptions="Center">
 
                     <ListView ItemsSource="{Binding GuestList}">
                         <ListView.ItemTemplate>
@@ -49,16 +85,30 @@
 
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*" />
                                             </Grid.RowDefinitions>
 
-                                            <Label Text="{Binding Name, StringFormat='Nombre: {0}'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="18" TextColor="#FFA500" Grid.Column="0" Grid.Row="0"/>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                FontSize="18"
+                                                HorizontalTextAlignment="Center"
+                                                Text="{Binding Name, StringFormat='Nombre: {0}'}"
+                                                TextColor="#FFA500" />
 
-                                            <Label Text="{Binding LastName, StringFormat='Apellidos: {0}'}" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="18" TextColor="#FFA500" Grid.Column="1" Grid.Row="0"/>
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                FontAttributes="Bold"
+                                                FontSize="18"
+                                                HorizontalTextAlignment="Center"
+                                                Text="{Binding LastName, StringFormat='Apellidos: {0}'}"
+                                                TextColor="#FFA500" />
 
                                         </Grid>
 

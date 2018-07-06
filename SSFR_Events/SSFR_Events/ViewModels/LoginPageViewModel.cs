@@ -10,6 +10,7 @@ using System.Net.Http;
 using Acr.UserDialogs;
 using System.Linq;
 using Plugin.Connectivity;
+using System.Threading.Tasks;
 
 namespace SSFR_Events.ViewModels
 {
@@ -151,10 +152,16 @@ namespace SSFR_Events.ViewModels
         public Command Register
         {
 
-            get => register ?? (register = new Command( () => 
+            get => register ?? (register = new Command( async () => 
             {
-               
-                Application.Current.MainPage.Navigation.PushAsync(new RegisterPage(), true);
+                await Task.Yield();
+
+                Device.BeginInvokeOnMainThread(async () => 
+                {
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage(), true);
+
+                });
                 
             }));
         }

@@ -46,7 +46,7 @@
                         Grid.Column="1"
                         Margin="0,0,0,10"
                         FontAttributes="Bold"
-                        FontSize="20"
+                        FontSize="Small"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="End"
                         Text="{Binding Role}"
@@ -66,15 +66,15 @@
                             Spacing="20">
 
                             <Image
-                                HeightRequest="45"
+                                HeightRequest="35"
                                 Source="{Binding ImageSource}"
                                 VerticalOptions="Center"
-                                WidthRequest="45" />
+                                WidthRequest="35" />
 
                             <Label
                                 FontAttributes="Bold, Italic"
                                 FontFamily="Droid Sans Mono"
-                                FontSize="20"
+                                FontSize="Medium"
                                 Text="{Binding Title}"
                                 TextColor="White"
                                 VerticalOptions="FillAndExpand"
