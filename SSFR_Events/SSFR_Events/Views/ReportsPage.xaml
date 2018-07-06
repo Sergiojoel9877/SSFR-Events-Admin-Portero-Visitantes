@@ -5,11 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:SSFR_Events.Views"
     Title="Reportes"
-    BackgroundColor="#000">
+    BackgroundColor="Orange"
+    BarTextColor="Black">
     <!--  Pages can be added as references or inline  -->
 
-    <views:TotalAssitanceByEvent Title="Asistencia total Eventos" />
-    <views:PorcentageForAssistanceToEachEvent Title="% asistencia a cada evento" />
-    <views:MostVisitedEvents Title="Eventos Mas Visitados" />
+    <views:TotalAssitanceByEvent Title="Asistencia" Icon="p.png" />
+    <views:PorcentageForAssistanceToEachEvent Title="% Asistencia" Icon="ev.png" />
+    <views:MostVisitedEvents Title="Eventos Mas Visitados" Icon="show.png" />
 
 </TabbedPage>
