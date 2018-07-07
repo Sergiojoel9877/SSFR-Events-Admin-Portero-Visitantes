@@ -5,8 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:SSFR_Events.Views"
     Title="Reportes"
-    BackgroundColor="Orange"
-    BarTextColor="Black">
+    BackgroundColor="DarkGray"
+    BarTextColor="Orange">
     <!--  Pages can be added as references or inline  -->
 
     <views:TotalAssitanceByEvent Title="Asistencia" Icon="p.png" />

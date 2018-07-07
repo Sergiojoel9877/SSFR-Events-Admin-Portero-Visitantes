@@ -37,11 +37,7 @@ namespace SSFR_Events.Views
 
             page.Title = item.Title;
 
-            var detail = new NavigationPage(page);
-
-            detail.BarTextColor = Color.FromHex("#FFA500");
-
-            Detail.Navigation.PushAsync(detail);
+            Detail.Navigation.PushAsync(page);
 
             IsPresented = false;
 

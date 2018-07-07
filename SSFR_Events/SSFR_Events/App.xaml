@@ -8,12 +8,12 @@
 
         <!--  Application resource dictionary  -->
 
+        <!--  Pages  -->
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarTextColor" Value="#FFA500" />
+        </Style>
+
         <VMLoc:ViewModelLocator x:Key="Locator" />
-
-
-
-        <!--  Login Style Objects  -->
-
 
     </Application.Resources>
 </Application>

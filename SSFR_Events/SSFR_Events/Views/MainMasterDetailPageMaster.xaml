@@ -66,10 +66,10 @@
                             Spacing="20">
 
                             <Image
-                                HeightRequest="35"
+                                HeightRequest="25"
                                 Source="{Binding ImageSource}"
                                 VerticalOptions="Center"
-                                WidthRequest="35" />
+                                WidthRequest="25" />
 
                             <Label
                                 FontAttributes="Bold, Italic"

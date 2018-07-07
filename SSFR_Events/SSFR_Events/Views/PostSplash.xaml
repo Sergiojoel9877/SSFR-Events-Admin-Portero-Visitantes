@@ -6,31 +6,19 @@
     BackgroundColor="#000"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <Grid BackgroundColor="#000">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <FlexLayout
+            AlignItems="Center"
+            BackgroundColor="Black"
+            Direction="Column"
+            JustifyContent="Center">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+            <Image
+                x:Name="Splash"
+                FlexLayout.AlignSelf="Center"
+                Scale="-1"
+                Source="PostImage.png" />
 
-            <StackLayout
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                HeightRequest="80"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                WidthRequest="207">
-
-                <Image x:Name="Splash" Source="PostImage.png" />
-
-            </StackLayout>
-        </Grid>
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>
