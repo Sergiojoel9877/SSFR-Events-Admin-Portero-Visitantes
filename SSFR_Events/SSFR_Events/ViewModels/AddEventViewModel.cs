@@ -44,8 +44,8 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref eventType, value);
         } 
 
-        private DateTime dateSelected;
-        public DateTime DateSelected
+        private string dateSelected;
+        public string DateSelected
         {
             get => dateSelected;
 
@@ -68,10 +68,10 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref location, value);
         }
 
-        private void ChangeDate(DateTime newDate)
-        {
-            DateSelected = newDate; 
-        }
+        //private void ChangeDate(DateTime newDate)
+        //{
+        //    DateSelected = newDate; 
+        //}
 
         private Command register;
         public Command Register => register ?? (register = new Command(async () =>
@@ -106,7 +106,7 @@ namespace SSFR_Events.ViewModels
                             {
                                 Name = NameEntry,
                                 Location = Location,
-                                Date = DateSelected.ToString(),
+                                Date = DateSelected,
                                 Time = TimeSelected.ToString(),
                                 EventType = EventType
                             };
@@ -146,15 +146,15 @@ namespace SSFR_Events.ViewModels
 
         //Covert Image to Array
 
-        private void ImageToByte(Image image)
-        {
+        //private void ImageToByte(Image image)
+        //{
 
-            using (var ms = new MemoryStream())
-            {
+        //    using (var ms = new MemoryStream())
+        //    {
                 
-            }
+        //    }
 
-        }
+        //}
         public AddEventViewModel()
         {
             //MessagingCenter.Subscribe<MainPanelPageViewModel, string>(this, "EventType", (s, e) =>

@@ -16,7 +16,7 @@ namespace SSFR_Events.Views
 	{
         AddEventViewModel ViewModel;
 
-        DateTime date { get; set; }
+        string date { get; set; }
 
         public AddEventPage()
 		{
@@ -34,7 +34,9 @@ namespace SSFR_Events.Views
 
         public void OnDateSelected(object sender, DateChangedEventArgs e)
         {
-            date = e.NewDate.Date;
+            var obj = (DatePicker)sender;
+
+            date = String.Format("{0}/{1}/{2}", obj.Date.Day, obj.Date.Month, obj.Date.Year);
 
             ViewModel.DateSelected = date;
         }
