@@ -41,7 +41,7 @@ namespace SSFR_Events.Views
 
             detail.BarTextColor = Color.FromHex("#FFA500");
 
-            Detail = detail;
+            Detail.Navigation.PushAsync(detail);
 
             IsPresented = false;
 

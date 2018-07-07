@@ -13,6 +13,7 @@ namespace SSFR_Events.Views
 			InitializeComponent ();
 		}
 
+        //Make sure that it was tested first.. [status = noneTested]
         protected override async void OnAppearing()
         {
             await Task.Yield();
