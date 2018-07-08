@@ -67,7 +67,9 @@ namespace SSFR_Events.ViewModels
                             {
                                 GuestList.Add(e);
                             }
-                            //continue;
+
+                            DependencyService.Get<IToast>().LongAlert("Estos son todos los invitados..");
+                           
                         }
 
                         progresss.Dispose();
