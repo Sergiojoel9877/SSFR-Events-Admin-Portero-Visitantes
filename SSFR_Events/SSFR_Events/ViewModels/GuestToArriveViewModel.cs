@@ -61,11 +61,13 @@ namespace SSFR_Events.ViewModels
 
                         foreach (var e in evnt)
                         {
-                            if (GuestList.Any(ex => ex.Name != e.Name))
+                            var existe = GuestList.Any(ex => ex.Name == e.Name);
+
+                            if (!existe)
                             {
                                 GuestList.Add(e);
                             }
-                            continue;
+                            //continue;
                         }
 
                         progresss.Dispose();
