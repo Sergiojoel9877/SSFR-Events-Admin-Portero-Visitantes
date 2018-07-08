@@ -61,7 +61,11 @@ namespace SSFR_Events.ViewModels
 
                         foreach (var e in evnt)
                         {
-                            GuestList.Add(e);
+                            if (GuestList.Any(ex => ex.Name != e.Name))
+                            {
+                                GuestList.Add(e);
+                            }
+                            continue;
                         }
 
                         progresss.Dispose();
