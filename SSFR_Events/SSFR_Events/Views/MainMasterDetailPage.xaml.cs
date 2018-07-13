@@ -1,4 +1,5 @@
 ﻿using SSFR_Events.Models;
+using SSFR_Events.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,24 @@ namespace SSFR_Events.Views
             var page = (Page)Activator.CreateInstance(item.TargetType);
 
             page.Title = item.Title;
+
+            switch (page.Title)
+            {
+                case "Mostrar Eventos":
+                    DependencyService.Get<IToast>().LongAlert("Esta vista aún no está implementada");
+                    break;
+                case "Eventos Actuales":
+                    DependencyService.Get<IToast>().LongAlert("Esta vista aún no está implementada");
+                    break;
+                case "Buscar Visitantes":
+                    DependencyService.Get<IToast>().LongAlert("Esta vista aún no está implementada");
+                    break;
+                case "Próximos Eventos":
+                    DependencyService.Get<IToast>().LongAlert("Esta vista aún no está implementada");
+                    break;
+                default:
+                    break;
+            }
 
             Detail.Navigation.PushAsync(page);
 
