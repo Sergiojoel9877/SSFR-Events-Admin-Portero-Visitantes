@@ -16,10 +16,7 @@ namespace SSFR_Events.Views
         public ReportsPage ()
         {
             InitializeComponent();
-
             On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
-
-            On<Xamarin.Forms.PlatformConfiguration.Android>().SetBarItemColor(Color.Orange);
         }
     }
 }
