@@ -5,12 +5,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="#000">
     <ContentPage.Content>
-        <StackLayout>
-            <ListView ItemsSource="{Binding EventsList}">
+        <StackLayout Padding="10">
+            <ListView
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="False"
+                ItemsSource="{Binding EventsList}"
+                RowHeight="110">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame BackgroundColor="#212121" CornerRadius="30">
+                            <Frame
+                                Margin="0,10,0,0"
+                                BackgroundColor="#212121"
+                                CornerRadius="30">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -21,38 +28,42 @@
                                     </Grid.RowDefinitions>
 
                                     <Image
-                                        Grid.Row="1"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
                                         Grid.Column="0"
                                         HorizontalOptions="Start"
                                         Source="ev.png"
-                                        VerticalOptions="Center" />
+                                        VerticalOptions="CenterAndExpand" />
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Title}"
+                                        TextColor="#FFA500" />
 
                                     <StackLayout
                                         Grid.Row="1"
-                                        Grid.Column="1"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
                                         Padding="5"
-                                        Orientation="Vertical">
+                                        HorizontalOptions="Center"
+                                        Orientation="Horizontal">
 
                                         <Label
-                                            FontSize="Medium"
-                                            HorizontalTextAlignment="Center"
-                                            Text="{Binding Name}"
+                                            FontSize="Small"
+                                            HorizontalTextAlignment="Start"
+                                            Text="Total de Asistencia: "
                                             TextColor="#FFA500" />
 
-                                        <StackLayout Orientation="Horizontal">
-
-                                            <Label
-                                                FontSize="Small"
-                                                HorizontalTextAlignment="Start"
-                                                Text="Total de Asistencia"
-                                                TextColor="#FFA500" />
-
-                                            <Label
-                                                FontSize="Small"
-                                                Text="{Binding Count, StringFormat='{0} Visitantes'}"
-                                                TextColor="#FFA500" />
-
-                                        </StackLayout>
+                                        <Label
+                                            FontAttributes="Italic"
+                                            FontSize="Small"
+                                            Text="{Binding Count, StringFormat='{0} Visitantes'}"
+                                            TextColor="#FFA500" />
 
                                     </StackLayout>
 

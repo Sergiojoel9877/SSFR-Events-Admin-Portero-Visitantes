@@ -12,9 +12,7 @@ namespace SSFR_Events.ViewModels
 {
     public class TotalAssistanceByEventViewModel : ViewModelBase
     {
-        public ObservableCollection<Events> EventsList { get; set; } = new ObservableCollection<Events>();
-
-        public ObservableCollection<Event> Events { get; set; } = new ObservableCollection<Event>();
+        public ObservableCollection<Event> EventsList { get; set; } = new ObservableCollection<Event>();
 
         private Command fillListCommand;
         public Command FillListCommand
@@ -23,21 +21,11 @@ namespace SSFR_Events.ViewModels
             {
                 await Task.Yield();
 
-                await FillList();
+                await CountAssistance();
 
             })); 
         }
         
-        async Task FillList()
-        {
-            await Task.Yield();
-
-            var events = await App.ssfrClient.ApiEventsGetAsync();
-
-            events.ForEach(s => EventsList.Add(s));
-
-        }
-
         async Task CountAssistance()
         {
             await Task.Yield();
@@ -46,12 +34,28 @@ namespace SSFR_Events.ViewModels
 
             var events = await App.ssfrClient.ApiEventsGetAsync();
 
-            //var guestsQuery = from s in guests where s.EventId == 
-                              
-            //foreach (var u in guestsQuery)
-            //{
-            //    //Events.Add();
-            //}
+            int count = 0;
+
+            foreach (var item in events)
+            {
+                var guestsQuery = from s in guests where s.EventId == item.Id select s;
+
+                foreach (var u in guestsQuery)
+                {
+                    count++;
+                }
+
+                Event e = new Event { Count = count, Title = item.Name };
+
+                if (!EventsList.Contains(e))
+                {
+                    EventsList.Add(e);
+                }
+
+                count = 0;
+
+                e = null;
+            }
         }
 
         public TotalAssistanceByEventViewModel()
@@ -61,11 +65,10 @@ namespace SSFR_Events.ViewModels
 
     }
 
-    class Event
+    public class Event
     {
         public int Count { get; set; }
 
         public string Title { get; set; }
-
     }
 }
