@@ -32,6 +32,8 @@ namespace SSFR_Events.Droid
 
                 ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
+                Rg.Plugins.Popup.Popup.Init(this, bundle);
+
                 UserDialogs.Init(this);
 
                 Forms.SetFlags("FastRenderers_Experimental");

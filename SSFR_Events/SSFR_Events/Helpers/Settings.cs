@@ -73,5 +73,12 @@ namespace SSFR_Events.Helpers
 
             set => AppSettings.AddOrUpdateValue("EventType", value);
         }
+
+        public static string EventName
+        {
+            get => AppSettings.GetValueOrDefault("EventName", "");
+
+            set => AppSettings.AddOrUpdateValue("EventName", value);
+        }
     }
 }

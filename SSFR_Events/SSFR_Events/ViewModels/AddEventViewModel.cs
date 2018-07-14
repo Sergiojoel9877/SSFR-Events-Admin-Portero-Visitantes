@@ -14,6 +14,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using SSFR_Events.Helpers;
 using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 
 namespace SSFR_Events.ViewModels
 {
@@ -111,7 +112,11 @@ namespace SSFR_Events.ViewModels
                                 EventType = EventType
                             };
 
+                            Settings.EventName = @event.Name;
+
                             var r = await App.ssfrClient.ApiPostEventPostAsync(@event);
+
+                            await PopupNavigation.Instance.PushAsync(new QRCodePage());
 
                             /**TODO: AutoGenerar el Codigo QR, para cada evento y guardarlo en una carpeta de nombre cualsea dentro de la galeria..**/
 
