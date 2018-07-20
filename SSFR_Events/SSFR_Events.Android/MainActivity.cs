@@ -4,6 +4,8 @@ using Android.Content.PM;
 using Android.OS;
 using Com.OneSignal;
 using Microsoft.AppCenter.Crashes;
+using SSFR_Events.Droid.Services;
+using SSFR_Events.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -32,6 +34,8 @@ namespace SSFR_Events.Droid
 
                 ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
+                DependencyService.Register<TakeScreenshot>();
+
                 Rg.Plugins.Popup.Popup.Init(this, bundle);
 
                 UserDialogs.Init(this);
@@ -39,6 +43,8 @@ namespace SSFR_Events.Droid
                 Forms.SetFlags("FastRenderers_Experimental");
 
                 global::Xamarin.Forms.Forms.Init(this, bundle);
+
+                DependencyService.Get<TakeScreenshot>().SetActivity(this);
 
                 LoadApplication(new App());
             }

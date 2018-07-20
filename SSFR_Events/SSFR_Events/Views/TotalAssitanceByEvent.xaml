@@ -62,7 +62,7 @@
                                         <Label
                                             FontAttributes="Italic"
                                             FontSize="Small"
-                                            Text="{Binding Count, StringFormat='{0} Visitantes'}"
+                                            Text="{Binding Count, StringFormat='({0}) Visitantes'}"
                                             TextColor="#FFA500" />
 
                                     </StackLayout>
