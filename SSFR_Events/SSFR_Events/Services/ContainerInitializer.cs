@@ -20,6 +20,7 @@ namespace SSFR_Events.Services
             container.RegisterInstance(typeof(AddGuestViewModel));
             container.RegisterInstance(typeof(MainMasterDetailPageMasterViewModel));
             container.RegisterInstance(typeof(RegisterPageViewModel));
+            container.RegisterInstance(typeof(TotalAssistanceByEventViewModel));
             container.RegisterInstance(typeof(DBRepository));
             container.RegisterInstance(typeof(DBContext));
             container.RegisterType(typeof(DbContextOptionsBuilder));

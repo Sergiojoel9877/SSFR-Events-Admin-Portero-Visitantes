@@ -10,12 +10,12 @@ using System.Net.Http;
 using Acr.UserDialogs;
 using System.Linq;
 using Plugin.Connectivity;
+using System.Threading.Tasks;
 
 namespace SSFR_Events.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
-        private readonly INavigation _navService;
 
         private Command login;
         public Command Login
@@ -59,11 +59,7 @@ namespace SSFR_Events.ViewModels
                                 App.Oauthclient = null;
 
                                 App.Oauthclient = clnt;
-
-                                var claims = await App._APIServices.GetUserClaims();
-
-                                progresss.Dispose();
-
+                                
                                 DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
 
                                 Settings.UserName = Email;
@@ -72,11 +68,10 @@ namespace SSFR_Events.ViewModels
 
                                 Settings.Role = "Modo Portero";
 
-                                Device.BeginInvokeOnMainThread(() => {
+                                progresss.Dispose();
 
-                                    Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage());
-
-                                });
+                                await Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage(), true);
+                                
                             }
                             else
                             {
@@ -92,10 +87,6 @@ namespace SSFR_Events.ViewModels
 
                                 App.Oauthclient = clntAd;
 
-                                var claimsAd = await App._APIServices.GetUserClaims();
-
-                                progresss.Dispose();
-
                                 DependencyService.Get<IToast>().LongAlert("¡Bienvenido al sistema!");
 
                                 Settings.UserName = Email;
@@ -104,12 +95,10 @@ namespace SSFR_Events.ViewModels
 
                                 Settings.Role = "Modo Admin";
 
-                                Device.BeginInvokeOnMainThread(() => {
+                                progresss.Dispose();
 
-                                    Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage());
-
-                                });
-
+                                await Application.Current.MainPage.Navigation.PushModalAsync(new MainMasterDetailPage());
+                                
                             }
 
                         }
@@ -125,8 +114,9 @@ namespace SSFR_Events.ViewModels
                         DependencyService.Get<IAlert>().Alert("Error", "Al parecer a ocurrido un error al momento de iniciar sesion, por favor intenta nuevamente.");
                     }
                 }
-                catch (SwaggerException)
+                catch (SwaggerException e)
                 {
+                 
                     DependencyService.Get<IAlert>().Alert("Error", "Al parecer ocurrió un error al nivel de la API.");
                 }
                 
@@ -162,15 +152,17 @@ namespace SSFR_Events.ViewModels
         public Command Register
         {
 
-            get => register ?? (register = new Command( () => 
+            get => register ?? (register = new Command( async () => 
             {
-               
-                Device.BeginInvokeOnMainThread(() => {
+                await Task.Yield();
 
-                    Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+                Device.BeginInvokeOnMainThread(async () => 
+                {
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage(), true);
 
                 });
-
+                
             }));
         }
 

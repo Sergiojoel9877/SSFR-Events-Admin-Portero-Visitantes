@@ -39,5 +39,10 @@ namespace SSFR_Events.Data
         {
             get => ServiceLocator.Current.GetInstance<RegisterPageViewModel>();
         }
+
+        public TotalAssistanceByEventViewModel TotalAssistanceByEventViewModel
+        {
+            get => ServiceLocator.Current.GetInstance<TotalAssistanceByEventViewModel>();
+        }
     }
 }

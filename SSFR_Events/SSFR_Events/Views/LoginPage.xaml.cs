@@ -39,6 +39,5 @@ namespace SSFR_Events.Views
                 ViewModel.IsChecked = false;
             }
         }
-
     }
 }

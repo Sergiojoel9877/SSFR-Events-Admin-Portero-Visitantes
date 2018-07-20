@@ -5,6 +5,7 @@ using SSFR_Events.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using SSFR_Events.Helpers;
 using System.Text;
 using Xamarin.Forms;
 
@@ -81,10 +82,12 @@ namespace SSFR_Events.ViewModels
 
                 EventType = "Aniversario";
 
-                _navService.PushAsync(new AddEventPage(EventType));
+                //MessagingCenter.Send(this, "EventType", EventType);
 
-                 EventType = String.Empty;
+                Settings.EventType = EventType;
 
+                _navService.PushAsync(new AddEventPage());
+               
             }));
         }
 
@@ -101,9 +104,11 @@ namespace SSFR_Events.ViewModels
 
                 EventType = "Boda";
 
-                _navService.PushAsync(new AddEventPage(EventType));
+                //MessagingCenter.Send(this, "EventType", EventType);
 
-                EventType = String.Empty;
+                Settings.EventType = EventType;
+
+                _navService.PushAsync(new AddEventPage());
 
             }));
         }
@@ -121,10 +126,12 @@ namespace SSFR_Events.ViewModels
 
                 EventType = "Cumpleaños";
 
-                _navService.PushAsync(new AddEventPage(EventType));
+                //MessagingCenter.Send(this, "EventType", EventType);
 
-                EventType = String.Empty;
+                Settings.EventType = EventType;
 
+                _navService.PushAsync(new AddEventPage());
+                
             }));
         }
 
@@ -141,9 +148,11 @@ namespace SSFR_Events.ViewModels
 
                 EventType = "Funeral";
 
-                _navService.PushAsync(new AddEventPage(EventType));
+                //MessagingCenter.Send(this, "EventType", EventType);
 
-                EventType = String.Empty;
+                Settings.EventType = EventType;
+
+                _navService.PushAsync(new AddEventPage());
 
             }));
         }
@@ -161,10 +170,12 @@ namespace SSFR_Events.ViewModels
 
                 EventType = "Personalizado";
 
-                _navService.PushAsync(new AddEventPage(EventType));
+                //MessagingCenter.Send(this, "EventType", EventType);
 
-                EventType = String.Empty;
+                Settings.EventType = EventType;
 
+                _navService.PushAsync(new AddEventPage());
+                
             }));
         }
        

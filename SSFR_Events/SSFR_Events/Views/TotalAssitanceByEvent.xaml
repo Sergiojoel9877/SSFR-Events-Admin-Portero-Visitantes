@@ -1,13 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SSFR_Events.Views.TotalAssitanceByEvent" 
-             BackgroundColor="#000">
+<ContentPage
+    x:Class="SSFR_Events.Views.TotalAssitanceByEvent"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#000">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="10">
+            <ListView
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="False"
+                ItemsSource="{Binding EventsList}"
+                RowHeight="110">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                Margin="0,10,0,0"
+                                BackgroundColor="#212121"
+                                CornerRadius="30">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        HorizontalOptions="Start"
+                                        Source="ev.png"
+                                        VerticalOptions="CenterAndExpand" />
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Title}"
+                                        TextColor="#FFA500" />
+
+                                    <StackLayout
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Padding="5"
+                                        HorizontalOptions="Center"
+                                        Orientation="Horizontal">
+
+                                        <Label
+                                            FontSize="Small"
+                                            HorizontalTextAlignment="Start"
+                                            Text="Total de Asistencia: "
+                                            TextColor="#FFA500" />
+
+                                        <Label
+                                            FontAttributes="Italic"
+                                            FontSize="Small"
+                                            Text="{Binding Count, StringFormat='({0}) Visitantes'}"
+                                            TextColor="#FFA500" />
+
+                                    </StackLayout>
+
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -61,7 +61,15 @@ namespace SSFR_Events.ViewModels
 
                         foreach (var e in evnt)
                         {
-                            GuestList.Add(e);
+                            var existe = GuestList.Any(ex => ex.Name == e.Name);
+
+                            if (!existe)
+                            {
+                                GuestList.Add(e);
+                            }
+
+                            DependencyService.Get<IToast>().LongAlert("Estos son todos los invitados..");
+                           
                         }
 
                         progresss.Dispose();

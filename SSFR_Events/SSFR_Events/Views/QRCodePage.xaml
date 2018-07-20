@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="SSFR_Events.Views.QRCodePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms">
+    <ContentPage.Content>
+        <StackLayout
+            BackgroundColor="#212121"
+            HorizontalOptions="Center"
+            Orientation="Vertical"
+            VerticalOptions="Center">
+
+            <zxing:ZXingBarcodeImageView
+                BarcodeFormat="QR_CODE"
+                BarcodeValue="{Binding EventName}"
+                HeightRequest="150"
+                WidthRequest="150" />
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalTextAlignment="Center"
+                Text="{Binding EventName, StringFormat='Este es el nombre del evento al cual haz sido invitado: {0}'}"
+                TextColor="Orange" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

@@ -17,8 +17,7 @@ namespace SSFR_Events.ViewModels
 {
     public class AddGuestViewModel : ViewModelBase
     {
-        INavigation _navService;
-
+    
         private Image Barccode;
         Image barcode
         {
@@ -103,6 +102,17 @@ namespace SSFR_Events.ViewModels
 
         }
 
+        //private Command getEvents;
+        //public Command GetEvents
+        //{
+        //    get => getEvents ?? (getEvents = new Command( async ()=>
+        //    {
+
+        //        SendedEvent = await App.ssfrClient.ApiEventsGetAsync().Result.FirstOrDefault(e => e.Name == evnt.Name);
+
+        //    }));
+        //}
+
         private Command register;
         public Command Register
         {
@@ -117,121 +127,115 @@ namespace SSFR_Events.ViewModels
 
                 IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
 
+                var res = GuestCount--;
+
                 do
                 {
-             
-                    if (GuestCount != 0)
+
+                    GuestCountEnabled = false;
+                    
+                    if (NameEntry != null && LastNameEntry != null && TelephoneNumber != null && EmailEntry != null && SelectedGender != null)
                     {
-                     
-                        GuestCount--;
+                        Empty = false;
 
-                        GuestCountEnabled = false;
-
-                        if (NameEntry != null && LastNameEntry != null && TelephoneNumber != null && EmailEntry != null && SelectedGender != null)
+                        if (Empty == false)
                         {
-                            Empty = false;
 
-                            if (Empty == false)
+                            var GuestList = await App.ssfrClient.ApiGuestsGetAsync();
+
+                            var EventsList = await App.ssfrClient.ApiEventsGetAsync();
+
+                            var queryEvents = EventsList.FirstOrDefault(e => e.Name == SendedEvent.Name);
+
+                            var query = GuestList.Any(g => g.Email == EmailEntry && g.EventId == queryEvents.Id);
+
+                            if (query)
                             {
-
-                                var GuestList = await App.ssfrClient.ApiGuestsGetAsync();
-
-                                var query = GuestList.Any(g => g.Email == EmailEntry);
-
-                                if (query)
-                                {
-                                    DependencyService.Get<IAlert>().Alert("Este invitado ya existe", "Lo siento tal parece que  ya existe un invitado con este correo.");
-                                }
-                                else
-                                {
-                                    if (EmailEntry.Contains("@"))
-                                    {
-                                        try
-                                        {
-                                            Guest guest;
-
-                                            if (SelectedGender == "Masculino")
-                                            {
-                                                guest = new SSFR_Events.Services.Guest()
-                                                {
-                                                    Name = NameEntry,
-                                                    LastName = LastNameEntry,
-                                                    Email = EmailEntry,
-                                                    Gender = "M",
-                                                    Telephone = TelephoneNumber,
-                                                    EventId = SendedEvent.Id
-                                                };
-
-                                            }
-                                            else
-                                            {
-                                                guest = new SSFR_Events.Services.Guest()
-                                                {
-                                                    Name = NameEntry,
-                                                    LastName = LastNameEntry,
-                                                    Email = EmailEntry,
-                                                    Gender = "F",
-                                                    Telephone = TelephoneNumber,
-                                                    EventId = SendedEvent.Id
-                                                };
-                                            }
-                                            
-                                            var r = await App.ssfrClient.ApiGuestPostAsync(guest);
-
-                                            if (r)
-                                            {
-                                                var sendEmail = CrossMessaging.Current.EmailMessenger;
-
-                                                if (sendEmail.CanSendEmail)
-                                                {
-
-                                                    var mail = new EmailMessageBuilder()
-                                                    .To(EmailEntry)
-                                                    .Subject("¡Hey hola, te e inivitado a mi nuevo evento!")
-                                                    .Body("Mi evento es de nombre: " + SendedEvent.Name + " empieza el " + SendedEvent.Date + " a las " + SendedEvent.Time + " a celebrarse en " + SendedEvent.Location)
-                                                    .Build();
-
-                                                    sendEmail.SendEmail(mail);
-
-                                                    //sendEmail.SendEmail(EmailEntry, "¡Hey hola!", "Señores Sergio Joel Ferreras les escribe, esto es una simple prueba desde mi App (la cual estoy desarrollando), disculpen las molestias que les pueda causar, pasen buenas tardes.");
-                                                    
-                                                    DependencyService.Get<IAlert>().Alert("Registrado con éxito", "Invitado registrado con éxito");
-
-                                                    NameEntry = null;
-                                                    LastNameEntry = null;
-                                                    EmailEntry = null;
-                                                    SelectedGender = null;
-                                                    TelephoneNumber = null;
-
-                                                    progresss.Dispose();
-
-                                                }
-                                            }
-                                        }
-                                        catch (Exception e)
-                                        {
-                                            progresss.Dispose();
-
-                                            DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + e.ToString());
-                                        }
-                                    }
-                                    else
-                                    {
-                                        progresss.Dispose();
-
-                                        DependencyService.Get<IAlert>().Alert("ERROR", "Error el correo no es valido");
-                                    }
-                                    progresss.Dispose();
-
-                                }
-                                progresss.Dispose();
-
+                                DependencyService.Get<IAlert>().Alert("Este invitado ya existe", "Lo siento tal parece que  ya existe un invitado con este correo.");
                             }
                             else
                             {
+                                if (EmailEntry.Contains("@"))
+                                {
+                                    try
+                                    {
+                                        Guest guest;
+
+                                        if (SelectedGender == "Masculino")
+                                        {
+                                            guest = new SSFR_Events.Services.Guest()
+                                            {
+                                                Name = NameEntry,
+                                                LastName = LastNameEntry,
+                                                Email = EmailEntry,
+                                                Gender = "M",
+                                                Telephone = TelephoneNumber,
+                                                EventId = queryEvents.Id
+                                            };
+
+                                        }
+                                        else
+                                        {
+                                            guest = new SSFR_Events.Services.Guest()
+                                            {
+                                                Name = NameEntry,
+                                                LastName = LastNameEntry,
+                                                Email = EmailEntry,
+                                                Gender = "F",
+                                                Telephone = TelephoneNumber,
+                                                EventId = queryEvents.Id
+                                            };
+                                        }
+
+                                        var r = await App.ssfrClient.ApiGuestPostAsync(guest);
+
+                                        if (r)
+                                        {
+                                            var sendEmail = CrossMessaging.Current.EmailMessenger;
+
+                                            if (sendEmail.CanSendEmail)
+                                            {
+
+                                                var mail = new EmailMessageBuilder()
+                                                .To(EmailEntry)
+                                                .Subject("¡Hey hola, te he invitado a mi nuevo evento!")
+                                                .Body("Mi evento es de nombre: " + SendedEvent.Name + " empieza el " + SendedEvent.Date + " a las " + SendedEvent.Time + " a celebrarse en " + SendedEvent.Location)
+                                                .Build();
+
+                                                sendEmail.SendEmail(mail);
+
+                                                //sendEmail.SendEmail(EmailEntry, "¡Hey hola!", "Señores Sergio Joel Ferreras les escribe, esto es una simple prueba desde mi App (la cual estoy desarrollando), disculpen las molestias que les pueda causar, pasen buenas tardes.");
+
+                                                DependencyService.Get<IAlert>().Alert("Registrado con éxito", "Invitado registrado con éxito");
+
+                                                NameEntry = null;
+                                                LastNameEntry = null;
+                                                EmailEntry = null;
+                                                SelectedGender = null;
+                                                TelephoneNumber = null;
+
+                                                GuestCountEnabled = true;
+
+                                                progresss.Dispose();
+
+                                            }
+                                        }
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        progresss.Dispose();
+
+                                        DependencyService.Get<IAlert>().Alert("ERROR", "Error: " + e.ToString());
+                                    }
+                                }
+                                else
+                                {
+                                    progresss.Dispose();
+
+                                    DependencyService.Get<IAlert>().Alert("ERROR", "Error el correo no es valido");
+                                }
                                 progresss.Dispose();
 
-                                DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                             }
                             progresss.Dispose();
 
@@ -242,17 +246,26 @@ namespace SSFR_Events.ViewModels
 
                             DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                         }
+                        progresss.Dispose();
+
                     }
                     else
                     {
                         progresss.Dispose();
 
-                        DependencyService.Get<IAlert>().Alert("Todos los invitados fueron registrados", "Yo todos los invitados han sido registrados exitosamente.");
-
-                        GuestCountEnabled = true;
+                        DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios, y/o las contraseña no son iguales, intenta una vez mas.");
                     }
 
-                } while (GuestCount > 0);
+                    if (res == 0)
+                    {
+                        progresss.Dispose();
+
+                        DependencyService.Get<IAlert>().Alert("Todos los invitados fueron registrados", "Yo todos los invitados han sido registrados exitosamente.");
+
+                    }
+
+
+                } while (res < GuestCount);
                 
             }));
         }
@@ -276,16 +289,13 @@ namespace SSFR_Events.ViewModels
         //    await file.WriteAllTextAsync("42");
         //}
 
-        public AddGuestViewModel(INavigation navService, SSFR_Events.Services.Events evnt/*, Image _barcode*/)
+        public AddGuestViewModel(SSFR_Events.Services.Events evnt/*, Image _barcode*/)
         {
-            _navService = navService;
-
+           
             AddGender();
 
-            //barcode = _barcode;
-
-            SendedEvent = App.ssfrClient.ApiEventsGetAsync().Result.FirstOrDefault(e => e.Name == evnt.Name);
-
+            SendedEvent = evnt;
+           
         }
     }
 }

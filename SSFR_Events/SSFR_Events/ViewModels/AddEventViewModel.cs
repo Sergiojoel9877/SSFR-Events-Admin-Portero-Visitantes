@@ -12,13 +12,14 @@ using Acr.UserDialogs;
 using Plugin.Connectivity;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using SSFR_Events.Helpers;
 using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 
 namespace SSFR_Events.ViewModels
 {
     public class AddEventViewModel : ViewModelBase
     {
-        INavigation _navService;
         
         private bool empty;
         public bool Empty
@@ -44,8 +45,8 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref eventType, value);
         } 
 
-        private DateTime dateSelected;
-        public DateTime DateSelected
+        private string dateSelected;
+        public string DateSelected
         {
             get => dateSelected;
 
@@ -68,10 +69,10 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref location, value);
         }
 
-        private void ChangeDate(DateTime newDate)
-        {
-            DateSelected = newDate; 
-        }
+        //private void ChangeDate(DateTime newDate)
+        //{
+        //    DateSelected = newDate; 
+        //}
 
         private Command register;
         public Command Register => register ?? (register = new Command(async () =>
@@ -106,12 +107,16 @@ namespace SSFR_Events.ViewModels
                             {
                                 Name = NameEntry,
                                 Location = Location,
-                                Date = DateSelected.ToString(),
+                                Date = DateSelected,
                                 Time = TimeSelected.ToString(),
                                 EventType = EventType
                             };
 
+                            Settings.EventName = @event.Name;
+
                             var r = await App.ssfrClient.ApiPostEventPostAsync(@event);
+
+                            await PopupNavigation.Instance.PushAsync(new QRCodePage());
 
                             /**TODO: AutoGenerar el Codigo QR, para cada evento y guardarlo en una carpeta de nombre cualsea dentro de la galeria..**/
 
@@ -121,7 +126,9 @@ namespace SSFR_Events.ViewModels
                             {
                                 bool a = DependencyService.Get<IAlert>().Alert("¡Añade unos visitantes!", "Ingresa cuantos quieras, ¡No hay limites!");
 
-                                await _navService.PushAsync(new AddGuestPage(@event/*, barcode*/));
+                                MessagingCenter.Send(this, "PushToGuestPage", new AddGuestPage(@event));
+
+                                //App.Current.MainPage.Navigation.PushAsync(new AddGuestPage(@event/*, barcode*/));
                             }
                         }
 
@@ -144,18 +151,27 @@ namespace SSFR_Events.ViewModels
 
         //Covert Image to Array
 
-        private void ImageToByte(Image image)
-        {
+        //private void ImageToByte(Image image)
+        //{
 
-            using (var ms = new MemoryStream())
-            {
+        //    using (var ms = new MemoryStream())
+        //    {
                 
-            }
+        //    }
 
-        }
-        public AddEventViewModel(INavigation navService)
+        //}
+        public AddEventViewModel()
         {
-            _navService = navService;
+            //MessagingCenter.Subscribe<MainPanelPageViewModel, string>(this, "EventType", (s, e) =>
+            //{
+
+            //    EventType = e;
+
+            //});
+
+            EventType = Settings.EventType;
+
+            //MessagingCenter.Unsubscribe<MainPanelPageViewModel, string>(this, "EventType");
         }
     }
 }

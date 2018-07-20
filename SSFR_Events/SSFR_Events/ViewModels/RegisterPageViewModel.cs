@@ -133,8 +133,8 @@ namespace SSFR_Events.ViewModels
                                 if (Email.Contains("@"))
                                 {
 
-                                    //var registrado = await App._APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
-                                    var registrado = true;
+                                    var registrado = await App._APIServices.RegisterAsync(Email, PassWord, ConfirmPassWord);
+                                    //var registrado = true;
 
                                     //if (registrado)
                                     if (registrado)
@@ -156,18 +156,18 @@ namespace SSFR_Events.ViewModels
 
                                         if (user.Pass != null && user.Pass == ConfirmPassWord)
                                         {
-                                            /*1-)Replaced in favor of EF Core methods..*/
+                                        /*1-)Replaced in favor of EF Core methods..*/
 
-                                            //1-)var r = await App.ssfrClient.ApiUserPostAsync(user);
+                                            var r = await App.ssfrClient.ApiUserPostAsync(user);
 
-                                            var r = await dbRepo.AddUser(user);
+                                            //var r = await dbRepo.AddUser(user);
 
                                             progresss.Dispose();
 
                                             if (r)
                                             {
 
-                                                DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente" + await dbRepo.GetUsers());
+                                                DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente"/* + await dbRepo.GetUsers()*/);
 
                                                 Device.BeginInvokeOnMainThread(() => {
 
@@ -236,7 +236,11 @@ namespace SSFR_Events.ViewModels
 
                                                 DependencyService.Get<IAlert>().Alert("Registrado exitosamente", "Registrado exitosamente");
 
-                                                //await _navService.PopAsync();
+                                                Device.BeginInvokeOnMainThread(() => {
+
+                                                    Application.Current.MainPage.Navigation.PopAsync();
+
+                                                });
 
                                             }
                                         }

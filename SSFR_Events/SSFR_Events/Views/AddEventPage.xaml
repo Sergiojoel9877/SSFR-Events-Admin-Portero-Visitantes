@@ -1,86 +1,168 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:SSFR_Events.CustomRenderers"
-             x:Class="SSFR_Events.Views.AddEventPage"
-             BackgroundColor="#000"
-             Title="Añadir un Evento">
+<ContentPage
+    x:Class="SSFR_Events.Views.AddEventPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SSFR_Events.CustomRenderers"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    Title="Añadir un Evento"
+    BackgroundColor="#000">
     <ContentPage.Content>
         <ScrollView Orientation="Vertical">
             <StackLayout VerticalOptions="Center">
-                <Frame x:Name="CenteredFrame" BackgroundColor="#212121" HorizontalOptions="Center" Margin="16, 5, 16, 5" HasShadow="True" CornerRadius="25">
+                <Frame
+                    x:Name="CenteredFrame"
+                    Margin="16,5,16,5"
+                    BackgroundColor="#212121"
+                    CornerRadius="25"
+                    HasShadow="True"
+                    HorizontalOptions="Center">
 
                     <Grid Grid.RowSpan="80">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Margin="0, 0, 0, 0">
+                        <StackLayout
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,0,0,0"
+                            Orientation="Vertical">
 
-                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                            <Frame
+                                Padding="2"
+                                BackgroundColor="#131212"
+                                CornerRadius="25"
+                                HasShadow="False"
+                                HorizontalOptions="Center"
+                                WidthRequest="220">
 
-                                <local:TransparentEditor x:Name="NameEntry" Text="{Binding NameEntry}" Placeholder="Nombre del evento" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+                                <local:TransparentEditor
+                                    x:Name="NameEntry"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalTextAlignment="Center"
+                                    Placeholder="Nombre del evento"
+                                    PlaceholderColor="#FFA500"
+                                    Text="{Binding NameEntry}"
+                                    TextColor="#FFA500"
+                                    VerticalOptions="End" />
 
                             </Frame>
 
                         </StackLayout>
 
-                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="0, 5, 0, 0">
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,5,0,0"
+                            Orientation="Vertical">
 
-                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
-                                
+                            <Frame
+                                Padding="2"
+                                BackgroundColor="#131212"
+                                CornerRadius="25"
+                                HasShadow="False"
+                                HorizontalOptions="Center"
+                                WidthRequest="220">
+
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer  />
+                                    <TapGestureRecognizer />
                                 </Frame.GestureRecognizers>
 
                                 <Grid>
-                                    
+
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    
+
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
-                                    <Label Text="Fecha: " HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="18" VerticalTextAlignment="Center" TextColor="#FFA500" Grid.Column="0" Grid.Row="0"/>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Fecha: "
+                                        TextColor="#FFA500"
+                                        VerticalTextAlignment="Center" />
 
-                                    <DatePicker x:Name="DatePicker" TextColor="#FFA500" HorizontalOptions="End" VerticalOptions="End" Grid.Column="1" Grid.Row="0" Margin="0, 0, 10, 0"/>
+                                    <DatePicker
+                                        x:Name="DatePicker"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="0,0,10,0"
+                                        FontSize="Medium"
+                                        HorizontalOptions="End"
+                                        TextColor="#FFA500"
+                                        VerticalOptions="End" />
                                 </Grid>
 
                             </Frame>
 
                         </StackLayout>
 
-                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="0, 5, 0, 0">
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,5,0,0"
+                            Orientation="Vertical">
 
-                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
-                                
+                            <Frame
+                                Padding="2"
+                                BackgroundColor="#131212"
+                                CornerRadius="25"
+                                HasShadow="False"
+                                HorizontalOptions="Center"
+                                WidthRequest="220">
+
                                 <Grid>
-                                    
+
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    
+
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
-                                    <Label Text="Hora: " HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="18" VerticalTextAlignment="Center" TextColor="#FFA500" Grid.Column="0" Grid.Row="0"/>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Hora: "
+                                        TextColor="#FFA500"
+                                        VerticalTextAlignment="Center" />
 
-                                    <TimePicker x:Name="TimePicker" TextColor="#FFA500" Time="{Binding TimeSelected}" HorizontalOptions="End" VerticalOptions="End" Grid.Column="1" Grid.Row="0" Margin="0, 0, 15, 0"/>
+                                    <TimePicker
+                                        x:Name="TimePicker"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="0,0,15,0"
+                                        HorizontalOptions="End"
+                                        TextColor="#FFA500"
+                                        Time="{Binding TimeSelected}"
+                                        VerticalOptions="End" />
 
                                 </Grid>
 
@@ -88,42 +170,95 @@
 
                         </StackLayout>
 
-                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Margin="0, 10, 0, 0">
+                        <StackLayout
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,10,0,0"
+                            Orientation="Vertical">
 
-                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="2" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                            <Frame
+                                Padding="2"
+                                BackgroundColor="#131212"
+                                CornerRadius="25"
+                                HasShadow="False"
+                                HorizontalOptions="Center"
+                                WidthRequest="220">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer  />
+                                    <TapGestureRecognizer />
                                 </Frame.GestureRecognizers>
 
-                                <local:TransparentEditor x:Name="Loc" Text="{Binding Location}" Placeholder="Ubicación" HorizontalTextAlignment="Center" PlaceholderColor="#FFA500" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+                                <local:TransparentEditor
+                                    x:Name="Loc"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalTextAlignment="Center"
+                                    Placeholder="Ubicación"
+                                    PlaceholderColor="#FFA500"
+                                    Text="{Binding Location}"
+                                    TextColor="#FFA500"
+                                    VerticalOptions="End" />
 
                             </Frame>
 
                         </StackLayout>
 
-                        <StackLayout Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Margin="0, 10, 0, 0">
+                        <StackLayout
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,10,0,0"
+                            Orientation="Vertical">
 
-                            <Frame HorizontalOptions="Center" CornerRadius="25" Padding="10" WidthRequest="220" HasShadow="False" BackgroundColor="#131212">
+                            <Frame
+                                Padding="10"
+                                BackgroundColor="#131212"
+                                CornerRadius="25"
+                                HasShadow="False"
+                                HorizontalOptions="Center"
+                                WidthRequest="220">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer  />
+                                    <TapGestureRecognizer />
                                 </Frame.GestureRecognizers>
 
-                                <Label x:Name="EventType" Text="{Binding EventType, StringFormat='Tipo: {0}'}" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="18" TextColor="#FFA500" VerticalOptions="End" />
+                                <Label
+                                    x:Name="EventType"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding EventType, StringFormat='Tipo: {0}'}"
+                                    TextColor="#FFA500"
+                                    VerticalOptions="End" />
 
                             </Frame>
 
                         </StackLayout>
-                        
-                        <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Orientation="Vertical" Margin="0, 15, 0, 5">
 
-                            <Frame BackgroundColor="#212121" HorizontalOptions="Center" CornerRadius="20" Padding="2" WidthRequest="240" HasShadow="False">
+                        <StackLayout
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,15,0,5"
+                            Orientation="Vertical">
 
-                                <Image VerticalOptions="Center" HeightRequest="50" WidthRequest="50" Source="save.png">
+                            <Frame
+                                Padding="2"
+                                BackgroundColor="#212121"
+                                CornerRadius="20"
+                                HasShadow="False"
+                                HorizontalOptions="Center"
+                                WidthRequest="240">
+
+                                <Image
+                                    HeightRequest="50"
+                                    Source="save.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="50">
 
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Register}" />
                                     </Image.GestureRecognizers>
-                                    
+
                                 </Image>
 
                             </Frame>

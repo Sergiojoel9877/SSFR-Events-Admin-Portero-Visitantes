@@ -29,6 +29,8 @@ namespace SSFR_Events.Views
             BindingContext = ViewModel;
 
             ListView = MenuItemsListView;
+
+           
         }
     }
 }

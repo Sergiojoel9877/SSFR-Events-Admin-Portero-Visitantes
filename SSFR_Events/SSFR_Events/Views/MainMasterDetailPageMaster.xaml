@@ -1,50 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SSFR_Events.Views.MainMasterDetailPageMaster"
-             Title="Master"
-             NavigationPage.HasNavigationBar="False"
-             NavigationPage.HasBackButton="False"
-             BackgroundColor="#4D4947">
+<ContentPage
+    x:Class="SSFR_Events.Views.MainMasterDetailPageMaster"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Master"
+    BackgroundColor="#4D4947"
+    NavigationPage.HasBackButton="False"
+    NavigationPage.HasNavigationBar="False">
     <ScrollView>
-        <ListView x:Name="MenuItemsListView" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
-              <ListView.Header>
-                    <Grid BackgroundColor="#000">
-                        
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        
-                        <Grid.RowDefinitions>
-                             <RowDefinition Height="*"/>
-                             <RowDefinition Height="*"/>
-                             <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+        <ListView
+            x:Name="MenuItemsListView"
+            HasUnevenRows="true"
+            ItemsSource="{Binding MenuItems}"
+            SeparatorVisibility="None">
+            <ListView.Header>
+                <Grid BackgroundColor="#000">
 
-                    <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="187" HeightRequest="60" Margin="0, 0, 15, 15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                            <Image Source="MasterTitle.png"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,0,15,15"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="187">
+
+                        <Image Source="MasterTitle.png" />
+
+                    </StackLayout>
+
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="0,0,0,10"
+                        FontAttributes="Bold"
+                        FontSize="Small"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="End"
+                        Text="{Binding Role}"
+                        TextColor="#FFA500"
+                        VerticalOptions="End" />
+
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout
+                            Padding="15,10"
+                            BackgroundColor="#4D4947"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            Spacing="20">
+
+                            <Image
+                                HeightRequest="25"
+                                Source="{Binding ImageSource}"
+                                VerticalOptions="Center"
+                                WidthRequest="25" />
+
+                            <Label
+                                FontAttributes="Bold, Italic"
+                                FontFamily="Droid Sans Mono"
+                                FontSize="Medium"
+                                Text="{Binding Title}"
+                                TextColor="White"
+                                VerticalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center" />
 
                         </StackLayout>
-
-                        <Label Text="{Binding Role}" FontSize="20" FontAttributes="Bold" TextColor="#FFA500" Grid.Column="1" Grid.Row="2" VerticalOptions="End" HorizontalOptions="Center" HorizontalTextAlignment="End" Margin="0, 0, 0, 10" />
-                
-                    </Grid>
-              </ListView.Header>
-              <ListView.ItemTemplate>
-                   <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="15,10" Spacing="20" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="#4D4947">
-                         
-                                <Image Source="{Binding ImageSource}" WidthRequest="45" HeightRequest="45" VerticalOptions="Center"/>
-
-                                <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" FontSize="20" TextColor="White" FontFamily="Droid Sans Mono" FontAttributes="Bold, Italic"/>
-                         
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-              </ListView.ItemTemplate>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </ScrollView>
 </ContentPage>
