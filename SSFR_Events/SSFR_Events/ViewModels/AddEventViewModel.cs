@@ -69,11 +69,6 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref location, value);
         }
 
-        //private void ChangeDate(DateTime newDate)
-        //{
-        //    DateSelected = newDate; 
-        //}
-
         private Command register;
         public Command Register => register ?? (register = new Command(async () =>
             {
@@ -116,19 +111,15 @@ namespace SSFR_Events.ViewModels
 
                             var r = await App.ssfrClient.ApiPostEventPostAsync(@event);
 
-                            await PopupNavigation.Instance.PushAsync(new QRCodePage());
-
                             /**TODO: AutoGenerar el Codigo QR, para cada evento y guardarlo en una carpeta de nombre cualsea dentro de la galeria..**/
 
                             progresss.Dispose();
 
                             if (r)
                             {
-                                bool a = DependencyService.Get<IAlert>().Alert("¡Añade unos visitantes!", "Ingresa cuantos quieras, ¡No hay limites!");
+                                DependencyService.Get<IToast>().LongAlert("¡Añade unos visitantes!, Ingresa cuantos quieras, ¡No hay limites!");
 
                                 MessagingCenter.Send(this, "PushToGuestPage", new AddGuestPage(@event));
-
-                                //App.Current.MainPage.Navigation.PushAsync(new AddGuestPage(@event/*, barcode*/));
                             }
                         }
 
@@ -149,29 +140,11 @@ namespace SSFR_Events.ViewModels
 
             }));
 
-        //Covert Image to Array
-
-        //private void ImageToByte(Image image)
-        //{
-
-        //    using (var ms = new MemoryStream())
-        //    {
-                
-        //    }
-
-        //}
         public AddEventViewModel()
         {
-            //MessagingCenter.Subscribe<MainPanelPageViewModel, string>(this, "EventType", (s, e) =>
-            //{
-
-            //    EventType = e;
-
-            //});
-
+ 
             EventType = Settings.EventType;
 
-            //MessagingCenter.Unsubscribe<MainPanelPageViewModel, string>(this, "EventType");
         }
     }
 }

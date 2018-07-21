@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using SSFR_Events.Helpers;
+using SSFR_Events.Services;
+using Xamarin.Forms;
 
 namespace SSFR_Events.ViewModels
 {
@@ -19,6 +21,5 @@ namespace SSFR_Events.ViewModels
         {
             EventName = Settings.EventName;
         }
-
     }
 }

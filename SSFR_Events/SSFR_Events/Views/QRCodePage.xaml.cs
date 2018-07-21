@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SSFR_Events.ViewModels;
+using SSFR_Events.Services;
 
 namespace SSFR_Events.Views
 {
@@ -24,6 +25,7 @@ namespace SSFR_Events.Views
             vm = new QRCodeViewModel();
 
             BindingContext = vm;
-		}
-	}
+
+        }
+    }
 }

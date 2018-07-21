@@ -12,6 +12,8 @@ using Xamarin.Forms;
 using Syncfusion.SfBarcode.XForms;
 using PCLStorage;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+using SSFR_Events.Helpers;
 
 namespace SSFR_Events.ViewModels
 {
@@ -195,10 +197,10 @@ namespace SSFR_Events.ViewModels
 
                                             if (sendEmail.CanSendEmail)
                                             {
-
                                                 var mail = new EmailMessageBuilder()
                                                 .To(EmailEntry)
                                                 .Subject("¡Hey hola, te he invitado a mi nuevo evento!")
+                                                .WithAttachment(Settings.Path, "image/png")
                                                 .Body("Mi evento es de nombre: " + SendedEvent.Name + " empieza el " + SendedEvent.Date + " a las " + SendedEvent.Time + " a celebrarse en " + SendedEvent.Location)
                                                 .Build();
 
@@ -279,15 +281,6 @@ namespace SSFR_Events.ViewModels
             Gender.Add(F);
 
         }
-
-        //public async Task PCLStorageSample()
-        //{
-        //    var s = Convert.ToBase64String(barcode.To);
-        //    IFolder rootFolder = FileSystem.Current.LocalStorage;
-        //    IFolder folder = await rootFolder.CreateFolderAsync("QRCode", CreationCollisionOption.ReplaceExisting);
-        //    IFile file = await folder.CreateFileAsync("QRCode_Image", CreationCollisionOption.ReplaceExisting);
-        //    await file.WriteAllTextAsync("42");
-        //}
 
         public AddGuestViewModel(SSFR_Events.Services.Events evnt/*, Image _barcode*/)
         {

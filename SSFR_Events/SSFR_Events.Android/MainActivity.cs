@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Xamarin.Forms;
 using ZXing.Net.Mobile.Forms.Android;
+using Plugin.CurrentActivity;
 
 namespace SSFR_Events.Droid
 {
@@ -26,16 +27,10 @@ namespace SSFR_Events.Droid
 
                 base.OnCreate(bundle);
 
-                //var path = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "SSFR_DB.db");
-
-                //DBRepository dBRepository = new DBRepository(path);
-
                 OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
 
                 ZXing.Net.Mobile.Forms.Android.Platform.Init();
-
-                DependencyService.Register<TakeScreenshot>();
-
+                
                 Rg.Plugins.Popup.Popup.Init(this, bundle);
 
                 UserDialogs.Init(this);
@@ -43,8 +38,6 @@ namespace SSFR_Events.Droid
                 Forms.SetFlags("FastRenderers_Experimental");
 
                 global::Xamarin.Forms.Forms.Init(this, bundle);
-
-                DependencyService.Get<TakeScreenshot>().SetActivity(this);
 
                 LoadApplication(new App());
             }

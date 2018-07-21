@@ -1,5 +1,7 @@
-﻿using SSFR_Events.Data;
+﻿using Rg.Plugins.Popup.Services;
+using SSFR_Events.Data;
 using SSFR_Events.Models;
+using SSFR_Events.Services;
 using SSFR_Events.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,18 +20,15 @@ namespace SSFR_Events.Views
 	{
         AddGuestViewModel ViewModel;
 
-		public AddGuestPage (SSFR_Events.Services.Events evnt/*, Image barcode*/)
+		public AddGuestPage (SSFR_Events.Services.Events evnt)
 		{
 			InitializeComponent ();
 
-            //ViewModel = new AddGuestViewModel(Navigation, evnt, barcode);
             ViewModel = ((ViewModelLocator)Application.Current.Resources["Locator"]).AddGuestViewModel;
 
             ViewModel.SendedEvent = evnt;
 
             BindingContext = ViewModel;
-
-            //Img.Source = ImageSource.FromStream(() => new MemoryStream(@byte));
             
 		}
 
@@ -37,5 +36,14 @@ namespace SSFR_Events.Views
         {
                 
         }
-	}
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await PopupNavigation.Instance.PushAsync(new QRCodePage());
+
+            var screenshot = DependencyService.Get<ITakeScreenshot>().Capture();
+        }
+    }
 }

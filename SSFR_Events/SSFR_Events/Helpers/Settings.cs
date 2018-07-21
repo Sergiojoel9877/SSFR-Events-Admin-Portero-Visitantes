@@ -80,5 +80,12 @@ namespace SSFR_Events.Helpers
 
             set => AppSettings.AddOrUpdateValue("EventName", value);
         }
+
+        public static string Path
+        {
+            get => AppSettings.GetValueOrDefault("Path", "");
+
+            set => AppSettings.AddOrUpdateValue("Path", value);
+        }
     }
 }
