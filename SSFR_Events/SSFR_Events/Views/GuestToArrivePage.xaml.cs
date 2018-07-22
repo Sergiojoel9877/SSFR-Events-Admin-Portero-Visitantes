@@ -24,7 +24,16 @@ namespace SSFR_Events.Views
 
             BindingContext = ViewModel;
 
-		}
+            GuestListView.ItemSelected += ItemSelected;
+            
+        }
+
+        void ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var list = (ListView)sender;
+
+            list.SelectedItem = null;
+        }
 
         protected override bool OnBackButtonPressed()
         {
