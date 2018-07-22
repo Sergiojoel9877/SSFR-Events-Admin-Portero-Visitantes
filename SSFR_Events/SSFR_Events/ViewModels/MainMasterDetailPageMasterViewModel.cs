@@ -38,7 +38,7 @@ namespace SSFR_Events.ViewModels
                
                 MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 6, Title = "Reportes", TargetType = typeof(ReportsPage), ImageSource = "repo.png" });
 
-                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 1, Title = "Eventos Actuales", TargetType = null, ImageSource = "evn.png" });
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 1, Title = "Eventos Actuales", TargetType = typeof(ActualEventsPage), ImageSource = "evn.png" });
 
                 MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 2, Title = "Invitados Por Llegar", TargetType = typeof(GuestToArrivePage), ImageSource = "user.png" });
 
