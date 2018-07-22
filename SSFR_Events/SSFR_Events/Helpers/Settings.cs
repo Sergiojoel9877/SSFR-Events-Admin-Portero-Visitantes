@@ -74,11 +74,11 @@ namespace SSFR_Events.Helpers
             set => AppSettings.AddOrUpdateValue("EventType", value);
         }
 
-        public static string EventName
+        public static string GuestUserName
         {
-            get => AppSettings.GetValueOrDefault("EventName", "");
+            get => AppSettings.GetValueOrDefault("GuestUserName", "");
 
-            set => AppSettings.AddOrUpdateValue("EventName", value);
+            set => AppSettings.AddOrUpdateValue("GuestUserName", value);
         }
 
         public static string Path

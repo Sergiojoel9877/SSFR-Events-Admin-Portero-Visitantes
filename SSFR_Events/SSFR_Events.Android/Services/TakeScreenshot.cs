@@ -39,7 +39,7 @@ namespace SSFR_Events.Droid.Services
 
                 var storage = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures).Path;
       
-                var file = System.IO.Path.Combine(storage, "QRCode.png");
+                var file = System.IO.Path.Combine(storage, "TuCodigoQR.png");
 
                 Settings.Path = file; 
 

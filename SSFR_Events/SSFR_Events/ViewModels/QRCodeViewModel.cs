@@ -10,16 +10,16 @@ namespace SSFR_Events.ViewModels
     public class QRCodeViewModel : ViewModelBase
     {
 
-        private string eventName;
-        public string EventName
+        private string guestUserName;
+        public string GuestUserName
         {
-            get => eventName;
-            set => SetProperty(ref eventName, value);
+            get => guestUserName;
+            set => SetProperty(ref guestUserName, value);
         }
 
         public QRCodeViewModel()
         {
-            EventName = Settings.EventName;
+            GuestUserName = Settings.GuestUserName;
         }
     }
 }

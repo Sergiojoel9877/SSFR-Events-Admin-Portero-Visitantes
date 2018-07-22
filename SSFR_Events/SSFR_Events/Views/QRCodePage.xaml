@@ -14,7 +14,7 @@
 
             <zxing:ZXingBarcodeImageView
                 BarcodeFormat="QR_CODE"
-                BarcodeValue="{Binding EventName}"
+                BarcodeValue="{Binding GuestUserName}"
                 HeightRequest="150"
                 WidthRequest="150" />
 

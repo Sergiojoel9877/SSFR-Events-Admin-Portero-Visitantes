@@ -36,14 +36,5 @@ namespace SSFR_Events.Views
         {
                 
         }
-
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-
-            await PopupNavigation.Instance.PushAsync(new QRCodePage());
-
-            var screenshot = DependencyService.Get<ITakeScreenshot>().Capture();
-        }
     }
 }
