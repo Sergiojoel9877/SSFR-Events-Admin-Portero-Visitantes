@@ -7,6 +7,7 @@
     <ContentPage.Content>
         <StackLayout Padding="10">
             <ListView
+                x:Name="AssistanceListView"
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="False"
                 ItemsSource="{Binding EventsList}"
