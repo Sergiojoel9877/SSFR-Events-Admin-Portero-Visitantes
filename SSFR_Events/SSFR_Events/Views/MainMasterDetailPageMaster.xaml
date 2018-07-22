@@ -7,83 +7,105 @@
     BackgroundColor="#4D4947"
     NavigationPage.HasBackButton="False"
     NavigationPage.HasNavigationBar="False">
-    <ScrollView>
-        <ListView
-            x:Name="MenuItemsListView"
-            HasUnevenRows="true"
-            ItemsSource="{Binding MenuItems}"
-            SeparatorVisibility="None">
-            <ListView.Header>
-                <Grid BackgroundColor="#000">
+    <ListView
+        x:Name="MenuItemsListView"
+        HasUnevenRows="true"
+        ItemsSource="{Binding MenuItems}"
+        SeparatorVisibility="None">
+        <ListView.Header>
+            <Grid BackgroundColor="#000">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
+                <StackLayout
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,15,15"
+                    HeightRequest="60"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="187">
+
+                    <Image Source="MasterTitle.png" />
+
+                </StackLayout>
+
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="0,0,0,10"
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="End"
+                    Text="{Binding Role}"
+                    TextColor="#FFA500"
+                    VerticalOptions="End" />
+
+            </Grid>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
                     <StackLayout
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Margin="0,0,15,15"
-                        HeightRequest="60"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="187">
+                        Padding="15,10"
+                        BackgroundColor="#4D4947"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="20">
 
-                        <Image Source="MasterTitle.png" />
+                        <Image
+                            HeightRequest="25"
+                            Source="{Binding ImageSource}"
+                            VerticalOptions="Center"
+                            WidthRequest="25" />
+
+                        <Label
+                            FontAttributes="Bold, Italic"
+                            FontFamily="Droid Sans Mono"
+                            FontSize="Medium"
+                            Text="{Binding Title}"
+                            TextColor="White"
+                            VerticalOptions="FillAndExpand"
+                            VerticalTextAlignment="Center" />
 
                     </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.Footer>
+            <StackLayout Orientation="Vertical">
 
-                    <Label
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Margin="0,0,0,10"
-                        FontAttributes="Bold"
-                        FontSize="Small"
-                        HorizontalOptions="Center"
-                        HorizontalTextAlignment="End"
-                        Text="{Binding Role}"
-                        TextColor="#FFA500"
-                        VerticalOptions="End" />
+                <Label
+                    Margin="0,35,0,0"
+                    FontAttributes="Bold, Italic"
+                    FontSize="Micro"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="WordWrap"
+                    Text=" ® Todos los Derechos Reservados, Sergio J. Ferreras - SSFR™"
+                    TextColor="White"
+                    VerticalOptions="End" />
+                <Label
+                    Margin="0,1,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Micro"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="WordWrap"
+                    Text="Release 1.0.7 - Build (7)"
+                    TextColor="White"
+                    VerticalOptions="End" />
 
-                </Grid>
-            </ListView.Header>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout
-                            Padding="15,10"
-                            BackgroundColor="#4D4947"
-                            HorizontalOptions="FillAndExpand"
-                            Orientation="Horizontal"
-                            Spacing="20">
-
-                            <Image
-                                HeightRequest="25"
-                                Source="{Binding ImageSource}"
-                                VerticalOptions="Center"
-                                WidthRequest="25" />
-
-                            <Label
-                                FontAttributes="Bold, Italic"
-                                FontFamily="Droid Sans Mono"
-                                FontSize="Medium"
-                                Text="{Binding Title}"
-                                TextColor="White"
-                                VerticalOptions="FillAndExpand"
-                                VerticalTextAlignment="Center" />
-
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ScrollView>
+            </StackLayout>
+        </ListView.Footer>
+    </ListView>
 </ContentPage>

@@ -209,7 +209,7 @@
 
                 <Label
                     FontAttributes="Bold"
-                    FontSize="10"
+                    FontSize="Micro"
                     LineBreakMode="CharacterWrap"
                     Text="Sergio J. Ferreras Batista"
                     TextColor="#55FFFFFF"
@@ -217,9 +217,9 @@
 
                 <Label
                     FontAttributes="Bold"
-                    FontSize="10"
+                    FontSize="Micro"
                     LineBreakMode="CharacterWrap"
-                    Text="Final Release 1.0.0"
+                    Text="Release 1.0.7 - Build (7)"
                     TextColor="#55FFFFFF"
                     VerticalOptions="Center" />
 

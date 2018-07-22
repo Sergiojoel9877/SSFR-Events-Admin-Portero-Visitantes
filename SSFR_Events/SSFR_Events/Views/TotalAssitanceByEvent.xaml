@@ -11,7 +11,7 @@
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="False"
                 ItemsSource="{Binding EventsList}"
-                RowHeight="110">
+                RowHeight="130">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -32,16 +32,18 @@
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
                                         Grid.Column="0"
+                                        HeightRequest="32"
                                         HorizontalOptions="Start"
                                         Source="ev.png"
-                                        VerticalOptions="CenterAndExpand" />
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="32" />
 
                                     <Label
                                         Grid.Row="0"
                                         Grid.Column="0"
                                         Grid.ColumnSpan="2"
                                         FontAttributes="Bold"
-                                        FontSize="Medium"
+                                        FontSize="Large"
                                         HorizontalTextAlignment="Center"
                                         Text="{Binding Title}"
                                         TextColor="#FFA500" />
@@ -52,7 +54,8 @@
                                         Grid.ColumnSpan="2"
                                         Padding="5"
                                         HorizontalOptions="Center"
-                                        Orientation="Horizontal">
+                                        Orientation="Horizontal"
+                                        VerticalOptions="End">
 
                                         <Label
                                             FontSize="Small"
