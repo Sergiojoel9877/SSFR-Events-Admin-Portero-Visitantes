@@ -10,7 +10,7 @@
     <!--  Pages can be added as references or inline  -->
 
     <views:TotalAssitanceByEvent Title="Asistencia" Icon="p.png" />
-    <views:PorcentageForAssistanceToEachEvent Title="% Asistencia" Icon="ev.png" />
+    <!--<views:PorcentageForAssistanceToEachEvent Title="% Asistencia" Icon="ev.png" />-->
     <views:MostVisitedEvents Title="Eventos Mas Visitados" Icon="show.png" />
 
 </TabbedPage>

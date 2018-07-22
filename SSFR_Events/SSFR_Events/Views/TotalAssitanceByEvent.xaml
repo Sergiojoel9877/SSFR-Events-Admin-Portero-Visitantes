@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="#000">
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout Padding="10,0,10,0">
             <ListView
                 x:Name="AssistanceListView"
                 CachingStrategy="RecycleElement"
@@ -43,7 +43,7 @@
                                         Grid.Column="0"
                                         Grid.ColumnSpan="2"
                                         FontAttributes="Bold"
-                                        FontSize="Large"
+                                        FontSize="Medium"
                                         HorizontalTextAlignment="Center"
                                         Text="{Binding Title}"
                                         TextColor="#FFA500" />
