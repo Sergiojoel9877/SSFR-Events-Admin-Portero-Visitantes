@@ -69,13 +69,13 @@ namespace SSFR_Events.ViewModels
             set => SetProperty(ref location, value);
         }
 
-        //private void ChangeDate(DateTime newDate)
-        //{
-        //    DateSelected = newDate; 
-        //}
-
         private Command register;
         public Command Register => register ?? (register = new Command(async () =>
+        {
+
+            IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
+
+            try
             {
 
                 if (!CrossConnectivity.Current.IsConnected)
@@ -83,8 +83,6 @@ namespace SSFR_Events.ViewModels
                     DependencyService.Get<IAlert>().Alert("Error", "Al parecer no tienes acceso a intenet.");
                     return;
                 }
-
-                IProgressDialog progresss = UserDialogs.Instance.Loading("Por favor espera", null, null, true, MaskType.Black);
 
                 if (NameEntry != null && Location != null)
                 {
@@ -99,7 +97,7 @@ namespace SSFR_Events.ViewModels
 
                         if (query)
                         {
-                            DependencyService.Get<IAlert>().Alert("Este Evento ya existe", "Lo siento tal parece que ya existe un evento con este correo.");
+                            DependencyService.Get<IAlert>().Alert("Este Evento ya existe", "Lo siento tal parece que ya existe un evento con este nombre.");
                         }
                         else
                         {
@@ -112,13 +110,7 @@ namespace SSFR_Events.ViewModels
                                 EventType = EventType
                             };
 
-                            Settings.EventName = @event.Name;
-
                             var r = await App.ssfrClient.ApiPostEventPostAsync(@event);
-
-                            await PopupNavigation.Instance.PushAsync(new QRCodePage());
-
-                            /**TODO: AutoGenerar el Codigo QR, para cada evento y guardarlo en una carpeta de nombre cualsea dentro de la galeria..**/
 
                             progresss.Dispose();
 
@@ -128,7 +120,6 @@ namespace SSFR_Events.ViewModels
 
                                 MessagingCenter.Send(this, "PushToGuestPage", new AddGuestPage(@event));
 
-                                //App.Current.MainPage.Navigation.PushAsync(new AddGuestPage(@event/*, barcode*/));
                             }
                         }
 
@@ -146,32 +137,20 @@ namespace SSFR_Events.ViewModels
                     DependencyService.Get<IAlert>().Alert("Error", "No puedes dejar campos vacios");
                 }
                 progresss.Dispose();
+            }
+            catch (Exception e)
+            {
+                progresss.Dispose();
+                DependencyService.Get<IToast>().LongAlert("Hubo un error inesperado, trata otra vez");
+            }
 
-            }));
+        }));
 
-        //Covert Image to Array
-
-        //private void ImageToByte(Image image)
-        //{
-
-        //    using (var ms = new MemoryStream())
-        //    {
-                
-        //    }
-
-        //}
         public AddEventViewModel()
         {
-            //MessagingCenter.Subscribe<MainPanelPageViewModel, string>(this, "EventType", (s, e) =>
-            //{
-
-            //    EventType = e;
-
-            //});
 
             EventType = Settings.EventType;
 
-            //MessagingCenter.Unsubscribe<MainPanelPageViewModel, string>(this, "EventType");
         }
     }
 }

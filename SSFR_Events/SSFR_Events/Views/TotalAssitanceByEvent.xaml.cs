@@ -25,6 +25,15 @@ namespace SSFR_Events.Views
 
             BindingContext = vm;
 
-		}
-	}
+            AssistanceListView.ItemSelected += AssistanceListView_ItemSelected;   
+            
+        }
+
+        private void AssistanceListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var list = (ListView)sender;
+
+            list.SelectedItem = null;
+        }
+    }
 }

@@ -12,19 +12,15 @@ using Xamarin.Forms;
 using Syncfusion.SfBarcode.XForms;
 using PCLStorage;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+using SSFR_Events.Helpers;
+using Rg.Plugins.Popup.Services;
+using SSFR_Events.Views;
 
 namespace SSFR_Events.ViewModels
 {
     public class AddGuestViewModel : ViewModelBase
     {
-    
-        private Image Barccode;
-        Image barcode
-        {
-            get => Barccode;
-
-            set => SetProperty(ref Barccode, value);
-        }
 
         public ObservableCollection<string> Gender { get; set; } = new ObservableCollection<string>();
 
@@ -151,7 +147,11 @@ namespace SSFR_Events.ViewModels
 
                             if (query)
                             {
-                                DependencyService.Get<IAlert>().Alert("Este invitado ya existe", "Lo siento tal parece que  ya existe un invitado con este correo.");
+                                DependencyService.Get<IAlert>().Alert("Este invitado ya existe", "Lo siento tal parece que ya existe un invitado con este correo.");
+
+                                res = guestCount;
+
+                                progresss.Dispose();
                             }
                             else
                             {
@@ -189,35 +189,46 @@ namespace SSFR_Events.ViewModels
 
                                         var r = await App.ssfrClient.ApiGuestPostAsync(guest);
 
+                                        Settings.GuestUserName = guest.Name;
+
                                         if (r)
                                         {
-                                            var sendEmail = CrossMessaging.Current.EmailMessenger;
 
-                                            if (sendEmail.CanSendEmail)
+                                            progresss.Dispose();
+
+                                            await PopupNavigation.Instance.PushAsync(new QRCodePage());
+
+                                            var screenshot = DependencyService.Get<ITakeScreenshot>().Capture();
+
+                                            if (screenshot)
                                             {
+                                                await PopupNavigation.Instance.PopAsync();
 
-                                                var mail = new EmailMessageBuilder()
-                                                .To(EmailEntry)
-                                                .Subject("¡Hey hola, te he invitado a mi nuevo evento!")
-                                                .Body("Mi evento es de nombre: " + SendedEvent.Name + " empieza el " + SendedEvent.Date + " a las " + SendedEvent.Time + " a celebrarse en " + SendedEvent.Location)
-                                                .Build();
+                                                var sendEmail = CrossMessaging.Current.EmailMessenger;
 
-                                                sendEmail.SendEmail(mail);
+                                                if (sendEmail.CanSendEmail)
+                                                {
 
-                                                //sendEmail.SendEmail(EmailEntry, "¡Hey hola!", "Señores Sergio Joel Ferreras les escribe, esto es una simple prueba desde mi App (la cual estoy desarrollando), disculpen las molestias que les pueda causar, pasen buenas tardes.");
+                                                    var mail = new EmailMessageBuilder()
+                                                    .To(EmailEntry)
+                                                    .Subject("¡Hey hola, te he invitado a mi nuevo evento!")
+                                                    .WithAttachment(Settings.Path, "image/png")
+                                                    .Body("Mi evento es de nombre: " + SendedEvent.Name + " empieza el " + SendedEvent.Date + " a las " + SendedEvent.Time + " a celebrarse en " + SendedEvent.Location)
+                                                    .Build();
 
-                                                DependencyService.Get<IAlert>().Alert("Registrado con éxito", "Invitado registrado con éxito");
+                                                    sendEmail.SendEmail(mail);
 
-                                                NameEntry = null;
-                                                LastNameEntry = null;
-                                                EmailEntry = null;
-                                                SelectedGender = null;
-                                                TelephoneNumber = null;
+                                                    DependencyService.Get<IAlert>().Alert("Registrado con éxito", "Invitado registrado con éxito");
 
-                                                GuestCountEnabled = true;
+                                                    NameEntry = null;
+                                                    LastNameEntry = null;
+                                                    EmailEntry = null;
+                                                    SelectedGender = null;
+                                                    TelephoneNumber = null;
 
-                                                progresss.Dispose();
+                                                    GuestCountEnabled = true;
 
+                                                }
                                             }
                                         }
                                     }
@@ -265,7 +276,7 @@ namespace SSFR_Events.ViewModels
                     }
 
 
-                } while (res < GuestCount);
+                } while (res <= GuestCount);
                 
             }));
         }
@@ -280,16 +291,7 @@ namespace SSFR_Events.ViewModels
 
         }
 
-        //public async Task PCLStorageSample()
-        //{
-        //    var s = Convert.ToBase64String(barcode.To);
-        //    IFolder rootFolder = FileSystem.Current.LocalStorage;
-        //    IFolder folder = await rootFolder.CreateFolderAsync("QRCode", CreationCollisionOption.ReplaceExisting);
-        //    IFile file = await folder.CreateFileAsync("QRCode_Image", CreationCollisionOption.ReplaceExisting);
-        //    await file.WriteAllTextAsync("42");
-        //}
-
-        public AddGuestViewModel(SSFR_Events.Services.Events evnt/*, Image _barcode*/)
+        public AddGuestViewModel(SSFR_Events.Services.Events evnt)
         {
            
             AddGender();

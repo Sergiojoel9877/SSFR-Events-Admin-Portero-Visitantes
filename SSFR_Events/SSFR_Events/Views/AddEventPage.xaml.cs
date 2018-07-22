@@ -28,6 +28,10 @@ namespace SSFR_Events.Views
 
             DatePicker.DateSelected += OnDateSelected;
 
+            date = String.Format("{0}/{1}/{2}", DatePicker.Date.Day, DatePicker.Date.Month, DatePicker.Date.Year);
+
+            ViewModel.DateSelected = date;
+
             PushToGuestPage();
 
         }

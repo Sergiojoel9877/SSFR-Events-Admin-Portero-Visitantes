@@ -6,6 +6,6 @@ namespace SSFR_Events.Services
 {
     public interface ITakeScreenshot
     {
-        byte[] Capture();
+        bool Capture();
     }
 }

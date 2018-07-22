@@ -76,7 +76,7 @@
                 HasShadow="True"
                 HorizontalOptions="Center">
 
-                <ListView ItemsSource="{Binding GuestList}">
+                <ListView x:Name="GuestListView" ItemsSource="{Binding GuestList}">
                     <ListView.Header>
                         <StackLayout Orientation="Horizontal" Spacing="120">
                             <Label

@@ -5,12 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="#000">
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout Padding="10,0,10,0">
             <ListView
+                x:Name="AssistanceListView"
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="False"
                 ItemsSource="{Binding EventsList}"
-                RowHeight="110">
+                RowHeight="130">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -31,9 +32,11 @@
                                         Grid.Row="0"
                                         Grid.RowSpan="2"
                                         Grid.Column="0"
+                                        HeightRequest="32"
                                         HorizontalOptions="Start"
                                         Source="ev.png"
-                                        VerticalOptions="CenterAndExpand" />
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="32" />
 
                                     <Label
                                         Grid.Row="0"
@@ -51,7 +54,8 @@
                                         Grid.ColumnSpan="2"
                                         Padding="5"
                                         HorizontalOptions="Center"
-                                        Orientation="Horizontal">
+                                        Orientation="Horizontal"
+                                        VerticalOptions="End">
 
                                         <Label
                                             FontSize="Small"

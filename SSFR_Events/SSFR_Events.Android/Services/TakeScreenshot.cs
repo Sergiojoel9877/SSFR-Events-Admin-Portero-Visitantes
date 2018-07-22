@@ -13,40 +13,44 @@ using SSFR_Events.Services;
 using SSFR_Events.Droid.Services;
 using Xamarin.Forms;
 using Android.Graphics;
+using Plugin.CurrentActivity;
 using System.IO;
+using SSFR_Events.Helpers;
 
 [assembly: Dependency(typeof(TakeScreenshot))]
 namespace SSFR_Events.Droid.Services
 {
     public class TakeScreenshot : ITakeScreenshot
-    {
+    { 
 
-        private Activity currentActivity;
-
-        public void SetActivity(Activity activity)
+        public bool Capture()
         {
-            currentActivity = activity;
-        }
+            var rootView =  CrossCurrentActivity.Current.Activity.Window.DecorView.RootView;
 
-        byte[] ITakeScreenshot.Capture()
-        {
-            var rootView = currentActivity.Window.DecorView.RootView;
+            var height = rootView.Height;
 
-            using ( var screenShot = Bitmap.CreateBitmap(rootView.Width, rootView.Height - 150, Bitmap.Config.Argb8888))
+            var width = rootView.Width;
+
+            using ( var screenShot = Bitmap.CreateBitmap(width, height, Bitmap.Config.Argb8888))
             {
                 Canvas canvas = new Canvas(screenShot);
 
                 rootView.Draw(canvas);
 
-                using (var stream = new MemoryStream())
-                {
-                    screenShot.Compress(Bitmap.CompressFormat.Png, 100, stream);
-                    stream.ToArray();
-                }
+                var storage = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures).Path;
+      
+                var file = System.IO.Path.Combine(storage, "TuCodigoQR.png");
+
+                Settings.Path = file; 
+
+                var stream = new FileStream(file, FileMode.Create);
+
+                screenShot.Compress(Bitmap.CompressFormat.Png, 100, stream);
+
+                stream.Close();
+
+                return true;
             }
-
-            return null;
-
         }
     }
 }
