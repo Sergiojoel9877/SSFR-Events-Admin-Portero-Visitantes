@@ -49,5 +49,10 @@ namespace SSFR_Events.Data
         {
             get => ServiceLocator.Current.GetInstance<ActualEventsPageViewModel>();
         }
+
+        public ShowGuestsViewModel ShowGuestsViewModel
+        {
+            get => ServiceLocator.Current.GetInstance<ShowGuestsViewModel>();
+        }
     }
 }
