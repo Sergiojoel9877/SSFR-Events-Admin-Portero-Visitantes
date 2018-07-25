@@ -31,6 +31,7 @@ namespace SSFR_Events.ViewModels
 
             get => search ?? (search = new Command(async () =>
             {
+                GuestList.Clear();
 
                 if (!CrossConnectivity.Current.IsConnected)
                 {
