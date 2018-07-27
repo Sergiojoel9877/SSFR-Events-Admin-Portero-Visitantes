@@ -163,6 +163,17 @@ namespace SSFR_Events.ViewModels
 
                                         if (SelectedGender == "Masculino")
                                         {
+
+                                            var Assistences = new ObservableCollection<HasAssisted>()
+                                            {
+                                                new HasAssisted() { Assisted = false, EventId = queryEvents.Id }
+                                            };
+
+                                            var Invitations = new ObservableCollection<WasInvited>()
+                                            {
+                                                new WasInvited() { Invited = true, EventId = queryEvents.Id }
+                                            };
+                                            
                                             guest = new SSFR_Events.Services.Guest()
                                             {
                                                 Name = NameEntry,
@@ -170,12 +181,24 @@ namespace SSFR_Events.ViewModels
                                                 Email = EmailEntry,
                                                 Gender = "M",
                                                 Telephone = TelephoneNumber,
-                                                EventId = queryEvents.Id
+                                                EventId = queryEvents.Id,
+                                                Assistences = Assistences,
+                                                Invitations = Invitations
                                             };
 
                                         }
                                         else
                                         {
+                                            var Assistences = new ObservableCollection<HasAssisted>()
+                                            {
+                                                new HasAssisted() { Assisted = false, EventId = queryEvents.Id }
+                                            };
+
+                                            var Invitations = new ObservableCollection<WasInvited>()
+                                            {
+                                                new WasInvited() { Invited = true, EventId = queryEvents.Id }
+                                            };
+
                                             guest = new SSFR_Events.Services.Guest()
                                             {
                                                 Name = NameEntry,
@@ -183,7 +206,9 @@ namespace SSFR_Events.ViewModels
                                                 Email = EmailEntry,
                                                 Gender = "F",
                                                 Telephone = TelephoneNumber,
-                                                EventId = queryEvents.Id
+                                                EventId = queryEvents.Id,
+                                                Assistences = Assistences,
+                                                Invitations = Invitations
                                             };
                                         }
 

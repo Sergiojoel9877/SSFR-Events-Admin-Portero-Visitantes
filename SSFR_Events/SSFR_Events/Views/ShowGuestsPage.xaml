@@ -2,8 +2,128 @@
 <ContentPage
     x:Class="SSFR_Events.Views.ShowGuestsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SSFR_Events.CustomRenderers">
     <ContentPage.Content>
-        <StackLayout />
+        <StackLayout>
+            <Frame
+                x:Name="CenteredFrame"
+                Margin="16,15,16,0"
+                BackgroundColor="#212121"
+                CornerRadius="25"
+                HasShadow="True"
+                HorizontalOptions="Center">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Frame
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="2"
+                        BackgroundColor="#131212"
+                        CornerRadius="25"
+                        HasShadow="False"
+                        HorizontalOptions="Center"
+                        WidthRequest="220">
+
+                        <local:TransparentEditor
+                            x:Name="NameEntry"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalTextAlignment="Center"
+                            Placeholder="Nombre del evento"
+                            PlaceholderColor="#FFA500"
+                            Text="{Binding Name}"
+                            TextColor="#FFA500"
+                            VerticalOptions="End" />
+
+                    </Frame>
+
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HeightRequest="50"
+                        Source="buscar.png"
+                        VerticalOptions="Center"
+                        WidthRequest="50">
+
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Search}" />
+                        </Image.GestureRecognizers>
+
+                    </Image>
+                </Grid>
+            </Frame>
+
+            <ListView x:Name="ShowGuestPageList" ItemsSource="{Binding ResultList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame BackgroundColor="#212121" CornerRadius="20">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="3*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        HeightRequest="48"
+                                        Source="falta.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="48" />
+
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="5"
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding Name, StringFormat='Nombre: {0}'}"
+                                        TextColor="#FFA500" />
+
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="5"
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding LastName, StringFormat='Apellido (s): {0}'}"
+                                        TextColor="#FFA500" />
+
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Margin="5"
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        HorizontalTextAlignment="Start"
+                                        Text="{Binding EventName, StringFormat='Evento: {0}'}"
+                                        TextColor="#FFA500" />
+
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

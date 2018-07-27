@@ -159,7 +159,9 @@ namespace SSFR_Events.ViewModels
                 Device.BeginInvokeOnMainThread(async () => 
                 {
 
-                    await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage(), true);
+                    //await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage(), true);
+
+                    MessagingCenter.Send(this, "PushToRegisterPage", new RegisterPage());
 
                 });
                 

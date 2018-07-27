@@ -42,7 +42,7 @@ namespace SSFR_Events.ViewModels
 
                 MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 2, Title = "Invitados Por Llegar", TargetType = typeof(GuestToArrivePage), ImageSource = "user.png" });
 
-                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 3, Title = "Mostrar Invitados", TargetType = null, ImageSource = "ev.png" });
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 3, Title = "Mostrar Invitados", TargetType = typeof(ShowGuestsPage), ImageSource = "ev.png" });
 
                 MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 4, Title = "Buscar Visitantes", TargetType = null, ImageSource = "bv.png" });
 
@@ -55,7 +55,7 @@ namespace SSFR_Events.ViewModels
 
                 MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 2, Title = "Invitados Por Llegar", TargetType = typeof(GuestToArrivePage), ImageSource = "user.png" });
 
-                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 3, Title = "Mostrar Invitados", TargetType = typeof(LoginPage), ImageSource = "ev.png" });
+                MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 3, Title = "Mostrar Invitados", TargetType = typeof(ShowGuestsPage), ImageSource = "ev.png" });
 
                 MenuItems.Add(new MainMasterDetailPageMenuItem { Id = 4, Title = "Buscar Visitantes", TargetType = typeof(LoginPage), ImageSource = "bv.png" });
              }

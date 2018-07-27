@@ -25,6 +25,8 @@ namespace SSFR_Events.Views
             ViewModel = ((ViewModelLocator)Application.Current.Resources["Locator"]).LoginViewModel;
 
             BindingContext = ViewModel;
+
+            PushToRegisterPage();
             
 		}
 
@@ -38,6 +40,14 @@ namespace SSFR_Events.Views
             {
                 ViewModel.IsChecked = false;
             }
+        }
+
+        void PushToRegisterPage()
+        {
+            MessagingCenter.Subscribe<LoginPageViewModel, RegisterPage>(this, "PushToRegisterPage", (s, e) =>
+            {
+                Navigation.PushAsync(e);
+            });
         }
     }
 }
