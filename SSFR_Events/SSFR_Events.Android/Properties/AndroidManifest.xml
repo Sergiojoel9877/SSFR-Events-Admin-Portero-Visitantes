@@ -6,7 +6,7 @@
   <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE"/>
 	<permission android:name="com.sergiojoelferreras.SSFR_Events.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 	<uses-permission android:name="com.sergiojoelferreras.SSFR_Events.permission.C2D_MESSAGE" />
-	<application android:hardwareAccelerated="true" android:label="SSFR Events" android:icon="@drawable/ic_launcher" android:theme="@style/MainTheme">
+	<application android:hardwareAccelerated="true" android:label="SSFR Events" android:icon="@drawable/ic_launcher" android:theme="@style/MainTheme" android:allowBackup="true" android:name="MainApplication">
 		<receiver android:name="com.onesignal.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
 			<intent-filter>
 				<action android:name="com.google.android.c2dm.intent.RECEIVE" />

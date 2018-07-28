@@ -12,6 +12,7 @@ using System.Diagnostics;
 using Xamarin.Forms;
 using ZXing.Net.Mobile.Forms.Android;
 using Plugin.CurrentActivity;
+using Android.Widget;
 
 namespace SSFR_Events.Droid
 {
@@ -27,6 +28,13 @@ namespace SSFR_Events.Droid
 
                 base.OnCreate(bundle);
 
+                MainApplication.activity = this;
+
+                if (Intent.GetBooleanExtra("crash", false))
+                {
+                    Toast.MakeText(this, "App restarted after crash", ToastLength.Short).Show();
+                }
+                
                 OneSignal.Current.StartInit("23fbe6ba-7814-4714-aa75-00a3480f5b68").EndInit();
 
                 ZXing.Net.Mobile.Forms.Android.Platform.Init();

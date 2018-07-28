@@ -11,13 +11,12 @@ namespace SSFR_Events.Services
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "11.17.0.0 (NJsonSchema v9.10.42.0 (Newtonsoft.Json v9.0.0.0))")]
     public partial class SSFRClient 
     {
-        private string _baseUrl = "";
+        private string _baseUrl = "http://ssfrmainapisergio.azurewebsites.net";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
-        public SSFRClient(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public SSFRClient(System.Net.Http.HttpClient httpClient)
         {
-            BaseUrl = baseUrl; 
             _httpClient = httpClient; 
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
             {
