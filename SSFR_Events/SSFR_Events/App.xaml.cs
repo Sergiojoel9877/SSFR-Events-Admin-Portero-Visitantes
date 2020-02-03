@@ -27,9 +27,6 @@ namespace SSFR_Events
 
         public App()
 		{
-
-            LiveReload.Init();
-
             InitializeComponent();
 
             Oauthclient = new HttpClient
@@ -40,7 +37,6 @@ namespace SSFR_Events
             };
 
             MainPage = new NavigationPage(new PostSplash());
-            
         }
 
         protected override void OnStart ()
