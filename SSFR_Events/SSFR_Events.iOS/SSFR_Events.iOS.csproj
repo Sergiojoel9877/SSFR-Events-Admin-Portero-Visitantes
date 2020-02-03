@@ -160,7 +160,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\SSFR_Events\SSFR_Events.csproj">
-      <Project>{9D15BCFA-529F-4C59-9A70-51AFEB82BE0C}</Project>
+      <Project>{A7F29EDE-1E11-4C3B-9C45-E7017510FF7E}</Project>
       <Name>SSFR_Events</Name>
     </ProjectReference>
   </ItemGroup>
